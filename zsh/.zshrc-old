@@ -1,11 +1,7 @@
 eval "$(starship init zsh)"
-bindkey -e
 
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-alias vim="nvim"
-alias ovim="vim"
 
 # Add PATHS
 export PATH="/opt/homebrew/bin:$PATH"
@@ -15,4 +11,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm_completion
 
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
+source /opt/homebrew/opt/zsh-autocomplete/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 source <(fzf --zsh)
+
