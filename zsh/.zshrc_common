@@ -1,8 +1,3 @@
-# Enable Powerlevel10k instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 bindkey -e
 
 export EDITOR="nvim"
@@ -15,10 +10,21 @@ alias ovim="vim"
 autoload -Uz compinit
 compinit
 
-# Load Zsh plugins (these will be installed on Linux using the script)
-source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+# OS-specific logic for Homebrew and Zsh plugins
+if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS specific setup
+    export PATH="/opt/homebrew/bin:$PATH"
+    
+    # Homebrew-managed Zsh plugins
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+else
+    # Linux setup for Zsh plugins (these will be installed by the script)
+    source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+fi
 
 # Zsh Autosuggestions settings
 ZSH_AUTOSUGGEST_MANUAL_REBIND=1
