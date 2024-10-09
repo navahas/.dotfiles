@@ -4,3 +4,4 @@
     ~/.config/nvim/colors: nvim/colors
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.p10k.zsh: p10k/.p10k.zsh
