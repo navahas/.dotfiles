@@ -1,6 +1,7 @@
 - link:
     ~/.zshrc: zsh/.zshrc
-    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/init.lua: nvim/init.lua
+    ~/.config/nvim/lua: nvim/lua
     ~/.config/nvim/colors: nvim/colors
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.tmux.conf: tmux/.tmux.conf
