@@ -8,6 +8,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.foldmethod = 'indent'
+vim.o.foldlevelstart = 99  -- Open all folds by default
 vim.api.nvim_exec2('language en_US', { output = true })
 
 -- Leader key
