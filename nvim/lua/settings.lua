@@ -1,3 +1,27 @@
+-- Initial Settings
+-- Custom mode display for fun
+vim.opt.showmode = false
+local mode_map = {
+    n = "",
+    i = " ── INSERT ──",
+    v = " ── VISUAL ──",
+    V = " ── VISUAL LINE ──",
+    ["\22"] = " ── VISUAL BLOCK ──",
+    c = " ── COMMAND ──",
+    s = " ── SELECT ──",
+    t = " ── TERMINAL ──",
+}
+
+-- Custom mode display in the command area
+vim.api.nvim_create_autocmd("ModeChanged", {
+    pattern = "*",
+    callback = function()
+        local mode = vim.fn.mode()
+        local msg = mode_map[mode] or " ── UNKNOWN ──"
+        vim.cmd("echohl ModeMsg | echom '" .. msg .. "' | echohl None")
+    end,
+})
+
 -- settings.lua
 vim.o.scrolloff = 8
 vim.o.number = true

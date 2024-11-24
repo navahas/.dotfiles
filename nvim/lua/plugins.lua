@@ -1,6 +1,8 @@
 return require('packer').startup(function(use)
-    use 'tomasiser/vim-code-dark'
     use 'wbthomason/packer.nvim' -- Plugin manager
+    use 'tomasiser/vim-code-dark'
+    use 'Mofiqul/vscode.nvim'
+    use 'nvim-tree/nvim-web-devicons'
     use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use {
@@ -20,6 +22,23 @@ return require('packer').startup(function(use)
 
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
     use 'nvim-treesitter/playground'
+
+    use 'stevearc/dressing.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'MunifTanjim/nui.nvim'
+    if vim.g.avante_enabled then
+        use {
+            'yetone/avante.nvim',
+            branch = 'main',
+            -- build = 'make', -- Build step
+            config = function()
+                require('avante_lib').load()
+                require('avante').setup()
+            end
+        }
+    end
+
+    vim.g.avante_enabled = false;
 
     require('plugins.telescope')
     require('plugins.harpoon')

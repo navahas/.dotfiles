@@ -5,6 +5,7 @@ export VISUAL="nvim"
 
 alias vim="nvim"
 alias ovim="vim"
+alias v.="nvim ."
 
 # Enable the "new" completion system (compsys)
 autoload -Uz compinit
