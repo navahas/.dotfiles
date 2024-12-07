@@ -23,6 +23,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 -- settings.lua
+vim.o.mouse = 'n'
 vim.o.scrolloff = 8
 vim.o.number = true
 vim.o.relativenumber = true
@@ -37,8 +38,13 @@ vim.api.nvim_exec2('language en_US', { output = true })
 
 -- Leader key
 vim.g.mapleader = " "
+vim.g.netrw_banner = 0
 
 -- Status Line
 vim.o.statusline = ""
-vim.o.statusline = vim.o.statusline .. "%#LineNr#"
-vim.o.statusline = vim.o.statusline .. " %f"
+vim.o.statusline = vim.o.statusline .. "%#LineNr#" -- Highlight group
+vim.o.statusline = vim.o.statusline .. " %f" -- File name
+vim.o.statusline = vim.o.statusline .. " %{&fileencoding?&fileencoding:&encoding}" -- File encoding (e.g., UTF-8)
+vim.o.statusline = vim.o.statusline .. " %= "      -- Right-align the rest
+vim.o.statusline = vim.o.statusline .. " %l:%c"    -- Line and column
+vim.o.statusline = vim.o.statusline .. " %p%%"     -- Percentage through the file

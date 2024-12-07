@@ -30,7 +30,7 @@ return require('packer').startup(function(use)
         use {
             'yetone/avante.nvim',
             branch = 'main',
-            -- build = 'make', -- Build step
+            build = 'make', -- Build step
             config = function()
                 require('avante_lib').load()
                 require('avante').setup()

@@ -17,7 +17,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1  # Use argument if provided
 else
     # Find directories recursively within search paths
-    selected=$(find "${search_dirs[@]}" -mindepth 1 -maxdepth 2 -type d | fzf)
+    selected=$(find "${search_dirs[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 # Step 3: Exit if no directory is selected
@@ -32,8 +32,19 @@ selected_name=$(basename "$selected" | tr . _)
 tmux_running=$(pgrep tmux)
 
 # Step 6: Start tmux if not running
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
-    tmux new-session -s $selected_name -c $selected
+# Step 6: Handle cases where the script is executed outside of Tmux
+if [[ -z $TMUX ]]; then
+    if [[ -z $tmux_running ]]; then
+        # If Tmux is not running, start a new session
+        tmux new-session -s $selected_name -c $selected
+    else
+        # If Tmux is running, attach to the session if it exists, or create a new one
+        if tmux has-session -t=$selected_name 2> /dev/null; then
+            tmux attach-session -t $selected_name
+        else
+            tmux new-session -s $selected_name -c $selected
+        fi
+    fi
     exit 0
 fi
 
