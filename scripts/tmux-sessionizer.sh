@@ -3,14 +3,11 @@
 # Step 1: Define the directories to search
 search_dirs=(
     "$HOME/.dotfiles"
-    "$HOME/development"
-    "$HOME/development/bitchill"
-    "$HOME/development/codecrypto.academy"
-    "$HOME/development/mindfolk"
-    "$HOME/development/proyects"
-    "$HOME/development/pruebas"
-    "$HOME/development/sources"
 )
+
+# Add all subdirectories from $HOME/development dynamically
+development_dirs=$(find "$HOME/development" -mindepth 1 -maxdepth 1 -type d)
+search_dirs+=($development_dirs)
 
 # Step 2: Use fzf to let the user select a directory
 if [[ $# -eq 1 ]]; then
