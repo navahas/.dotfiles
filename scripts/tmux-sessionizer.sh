@@ -3,6 +3,7 @@
 # Step 1: Define the directories to search
 search_dirs=(
     "$HOME/.dotfiles"
+    "$HOME/.config"
 )
 
 # Add all subdirectories from $HOME/development dynamically
