@@ -7,50 +7,61 @@ search_dirs=(
 )
 
 # Add all subdirectories from $HOME/development dynamically
-development_dirs=$(find "$HOME/development" -mindepth 1 -maxdepth 1 -type d)
+development_dirs=$(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d)
 search_dirs+=($development_dirs)
 
-# Step 2: Use fzf to let the user select a directory
-if [[ $# -eq 1 ]]; then
-    selected=$1  # Use argument if provided
-else
-    # Find directories recursively within search paths
+open_nvim=false
+selected=""
+
+# Parse arguments
+for arg in "$@"; do
+    if [[ $arg == "--vi" ]]; then
+        open_nvim=true
+    else
+        selected=$arg
+    fi
+done
+
+# If no directory is passed, use fzf to select one
+if [[ -z $selected ]]; then
     selected=$(find "${search_dirs[@]}" -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
-# Step 3: Exit if no directory is selected
+# Exit if no directory is selected
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-# Step 4: Create a tmux session name from the selected directory
+# Step 2: Create a tmux session name from the selected directory
 selected_name=$(basename "$selected" | tr . _)
 
-# Step 5: Check if tmux is running
-tmux_running=$(pgrep tmux)
-
-# Step 6: Start tmux if not running
-# Step 6: Handle cases where the script is executed outside of Tmux
-if [[ -z $TMUX ]]; then
-    if [[ -z $tmux_running ]]; then
-        # If Tmux is not running, start a new session
-        tmux new-session -s $selected_name -c $selected
+# Step 3: Check if the session exists
+if tmux has-session -t=$selected_name 2> /dev/null; then
+    # If session exists, attach or switch to it
+    if [[ -z $TMUX ]]; then
+        # Outside tmux: Attach to the session
+        tmux attach-session -t $selected_name
     else
-        # If Tmux is running, attach to the session if it exists, or create a new one
-        if tmux has-session -t=$selected_name 2> /dev/null; then
-            tmux attach-session -t $selected_name
-        else
-            tmux new-session -s $selected_name -c $selected
-        fi
+        # Inside tmux: Switch to the session
+        tmux switch-client -t $selected_name
     fi
-    exit 0
+else
+    # If session does not exist, create a new one
+    if [[ -z $TMUX ]]; then
+        # Outside tmux:
+        tmux new-session -d -s $selected_name -c $selected
+        # Run nvim if the --vi flag is provided
+        if $open_nvim; then
+            tmux send-keys -t $selected_name "nvim ." C-m
+        fi
+        tmux attach-session -t $selected_name
+    else
+        # Inside tmux:
+        tmux new-session -ds $selected_name -c $selected
+        if $open_nvim; then
+            tmux send-keys -t $selected_name "nvim ." C-m
+        fi
+        tmux switch-client -t $selected_name
+    fi
+
 fi
-
-# Step 7: Create a new session if it doesn't exist
-if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    tmux new-session -ds $selected_name -c $selected
-fi
-
-# Step 8: Switch to the session
-tmux switch-client -t $selected_name
-
