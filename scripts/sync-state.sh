@@ -1,19 +1,88 @@
 #!/bin/bash
 
 # Default Configuration
-EXCLUDE_PATTERNS=("node_modules/" "*.log" ".git/" ".DS_Store")  # Excluded patterns
-TIMESTAMP_FILE=".sync_timestamp"                               # Tracking file name
+EXCLUDE_PATTERNS=("node_modules/" "*.log" ".DS_Store")
+TIMESTAMP_FILE=".sync_timestamp"
+LOG_FILE="$HOME/.sync.log"
 
-# Function to display usage
-usage() {
-  echo "Usage: $0 [-l LOCAL_ROOT] [-r REMOTE] [-e EXCLUDES]"
-  echo "  -l LOCAL_ROOT   Local directory to sync"
-  echo "  -r REMOTE       Remote directory in 'host:path' format"
-  echo "  -e EXCLUDES     Additional patterns to exclude (comma-separated)"
-  exit 1
+# Utility: Log messages
+log() {
+  local message="$1"
+  echo "$(date '+%Y-%m-%d %H:%M:%S') - $message" | tee -a "$LOG_FILE"
 }
 
-# Parse options
+# Utility: Generate exclude arguments for rsync
+build_exclude_args() {
+  local exclude_args=""
+  for pattern in "${EXCLUDE_PATTERNS[@]}" "${ADDITIONAL_EXCLUDES[@]}"; do
+    exclude_args+="--exclude=$pattern "
+  done
+  echo "$exclude_args"
+}
+
+# Utility: Ensure the local timestamp file exists
+ensure_local_timestamp() {
+  if [ ! -f "${LOCAL_ROOT}${TIMESTAMP_FILE}" ]; then
+    log "Local timestamp missing. Creating it..."
+    date '+%s' > "${LOCAL_ROOT}${TIMESTAMP_FILE}"
+  fi
+}
+
+# Fetch the remote timestamp
+fetch_remote_timestamp() {
+  local tmpfile=$(mktemp)
+  rsync -az "${REMOTE}${TIMESTAMP_FILE}" "$tmpfile" 2>/dev/null
+  if [ $? -eq 0 ]; then
+    cat "$tmpfile"
+  else
+    echo "0"
+  fi
+  rm -f "$tmpfile"
+}
+
+# Convert Unix timestamp to human-readable format
+human_readable_timestamp() {
+  local timestamp="$1"
+  if [ "$timestamp" -gt 0 ]; then
+    date -r "$timestamp" '+%Y-%m-%d %H:%M:%S'
+  else
+    echo "No timestamp available"
+  fi
+}
+
+# Perform upload to remote
+upload_to_remote() {
+  log "Local is newer. Uploading changes to remote..."
+  rsync -avz --delete $(build_exclude_args) "$LOCAL_ROOT" "$REMOTE" | tee -a "$LOG_FILE"
+  date '+%s' > "${LOCAL_ROOT}${TIMESTAMP_FILE}"
+}
+
+# Perform download from remote
+download_from_remote() {
+  log "Remote is newer. Downloading changes to local..."
+  rsync -avz --delete $(build_exclude_args) "$REMOTE" "$LOCAL_ROOT" | tee -a "$LOG_FILE"
+  date '+%s' > "${LOCAL_ROOT}${TIMESTAMP_FILE}"
+}
+
+# Main Sync Logic
+sync_directories() {
+  ensure_local_timestamp
+  local local_timestamp=$(cat "${LOCAL_ROOT}${TIMESTAMP_FILE}")
+  local remote_timestamp=$(fetch_remote_timestamp)
+
+  log "Local timestamp: $(human_readable_timestamp "$local_timestamp")"
+  log "Remote timestamp: $(human_readable_timestamp "$remote_timestamp")"
+
+  if [ "$local_timestamp" -gt "$remote_timestamp" ]; then
+    upload_to_remote
+  elif [ "$local_timestamp" -lt "$remote_timestamp" ]; then
+    download_from_remote
+  else
+    log "Local and remote are already in sync."
+  fi
+}
+
+# Parse arguments
 while getopts "l:r:e:h" opt; do
   case $opt in
     l) LOCAL_ROOT="$OPTARG" ;;
@@ -24,64 +93,10 @@ while getopts "l:r:e:h" opt; do
   esac
 done
 
-# Ensure required arguments are provided
 if [ -z "$LOCAL_ROOT" ] || [ -z "$REMOTE" ]; then
   echo "Error: Both LOCAL_ROOT and REMOTE must be provided."
   usage
 fi
-
-# Merge exclude patterns
-EXCLUDE_ARGS=""
-for pattern in "${EXCLUDE_PATTERNS[@]}" "${ADDITIONAL_EXCLUDES[@]}"; do
-  EXCLUDE_ARGS+="--exclude=$pattern "
-done
-
-# Update local timestamp file
-update_local_timestamp() {
-  echo "$(date +%s)" > "${LOCAL_ROOT}${TIMESTAMP_FILE}"
-}
-
-# Fetch remote timestamp
-fetch_remote_timestamp() {
-  local tmpfile=$(mktemp)
-  rsync -az "${REMOTE}${TIMESTAMP_FILE}" "$tmpfile" 2>/dev/null
-  if [ $? -eq 0 ]; then
-    cat "$tmpfile"
-  else
-    echo "0"  # Default to 0 if remote timestamp is missing
-  fi
-  rm -f "$tmpfile"
-}
-
-# Sync logic
-sync_directories() {
-  local local_timestamp
-  local remote_timestamp
-
-  # Ensure local timestamp file exists
-  if [ ! -f "${LOCAL_ROOT}${TIMESTAMP_FILE}" ]; then
-    echo "Local timestamp missing. Creating it..."
-    update_local_timestamp
-  fi
-
-  local_timestamp=$(cat "${LOCAL_ROOT}${TIMESTAMP_FILE}")
-  remote_timestamp=$(fetch_remote_timestamp)
-
-  echo "Local timestamp: $local_timestamp"
-  echo "Remote timestamp: $remote_timestamp"
-
-  if [ "$local_timestamp" -gt "$remote_timestamp" ]; then
-    echo "Local is newer or first sync. Uploading to remote..."
-    rsync -az --delete $EXCLUDE_ARGS "$LOCAL_ROOT" "$REMOTE"
-    update_local_timestamp
-  elif [ "$local_timestamp" -lt "$remote_timestamp" ]; then
-    echo "Remote is newer. Downloading to local..."
-    rsync -az --delete $EXCLUDE_ARGS "$REMOTE" "$LOCAL_ROOT"
-    update_local_timestamp
-  else
-    echo "Local and remote are already in sync."
-  fi
-}
 
 # Run the sync
 sync_directories
