@@ -1,7 +1,6 @@
 - link:
    ~/.config/nvim: nvim
    ~/.config/aerospace: aerospace
-   ~/.config/sketchybar: sketchybar
    ~/.config/kitty: kitty
    ~/.tmux.conf: tmux/.tmux.conf
    ~/.p10k.zsh: p10k/.p10k.zsh
