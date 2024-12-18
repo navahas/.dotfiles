@@ -1,3 +1,4 @@
 dotbot/
 install
 nvim.backup
+.sync_timestamp
