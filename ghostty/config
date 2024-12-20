@@ -7,9 +7,12 @@ keybind = super+ctrl+j=goto_split:bottom
 
 window-inherit-working-directory = true
 
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor, no-sudo
 cursor-style = block
 macos-titlebar-style = hidden
+macos-option-as-alt = left
+keybind = alt+left=esc:b
+keybind = alt+right=esc:f
 background-opacity = 0.92
 background-blur-radius = 32
 
