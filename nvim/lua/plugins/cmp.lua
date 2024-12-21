@@ -2,7 +2,7 @@ local cmp = require('cmp')
 
 cmp.setup({
     completion = {
-        automcomplete = true,
+        autocomplete = false,
     },
     mapping = {
         ['<C-p>'] = cmp.mapping.select_prev_item(),
@@ -14,8 +14,6 @@ cmp.setup({
         { name = 'nvim_lsp' }, -- LSP completions
         { name = 'buffer' }, -- Buffer completions
         -- { name = 'path' }, -- Path completions
-    },
-    performance = {
     },
 })
 

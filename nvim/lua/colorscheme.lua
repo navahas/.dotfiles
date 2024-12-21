@@ -32,10 +32,10 @@ require('vscode').setup({
         Cursor = { fg=c.vscDarkBlue, bg=c.vscLightGreen, bold=true },
         CursorLine = { bg = '#2E2E2E' },
         -- Override LSP Diagnostic Colors
-        DiagnosticError = { fg = '#D16969', bg = '#1e1e1e' }, -- light red
-        DiagnosticWarn  = { fg = '#D7BA7D', bg = '#1e1e1e' }, -- light yellow
-        DiagnosticInfo  = { fg = '#9CDCFE', bg = '#1e1e1e' }, -- light blue
-        DiagnosticHint  = { fg = '#9CDCFE', bg = '#1e1e1e' }, -- light green
+        DiagnosticError = { fg = '#D16969', bg = '' }, -- light red
+        DiagnosticWarn  = { fg = '#D7BA7D', bg = '' }, -- light yellow
+        DiagnosticInfo  = { fg = '#9CDCFE', bg = '' }, -- light blue
+        DiagnosticHint  = { fg = '#9CDCFE', bg = '' }, -- light green
         -- Floating window customization
         NormalFloat = { bg = '#1F1F1F' },
         FloatBorder = { fg = '', bg = '#1F1F1F' },

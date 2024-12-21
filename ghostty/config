@@ -1,5 +1,6 @@
-theme = custom_theme
+theme = Custom
 
+# command = /bin/bash -c "$HOME/.local/scripts/theme-randomizer.sh; exec /bin/zsh"
 keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+k=goto_split:top

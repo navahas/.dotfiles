@@ -1,5 +1,6 @@
 -- lsp.lua
 local lspconfig = require('lspconfig')
+local cmp_nvim_lsp = require('cmp_nvim_lsp')
 
 -- Global diagnostic configuration
 vim.diagnostic.config({
@@ -21,10 +22,38 @@ require('mason-lspconfig').setup({
     automatic_installation = true,
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Capabilities setup with cmp_nvim_lsp
+local capabilities = cmp_nvim_lsp.default_capabilities()
+capabilities.textDocument.completion = {
+    completionItem = {
+        snippetSupport = true,
+    },
+    triggerCharacters = {}, -- Disable automatic triggers globally
+}
+
+local max_file_size = 100 * 1024 -- 100 KB limit
 
 -- Function for common keymaps for LSP servers
 local on_attach = function(client, bufnr)
+    -- Disable auto-trigger for completions (safety net)
+    if client.server_capabilities.completionProvider then
+        client.server_capabilities.completionProvider.triggerCharacters = {}
+    end
+
+    local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr))
+    if file_size > max_file_size then
+        vim.notify(
+          string.format(
+            "LSP disabled for %s (file size %d KB exceeds limit)",
+            vim.api.nvim_buf_get_name(bufnr),
+            file_size / 1024
+          ),
+          vim.log.levels.WARN
+        )
+        vim.lsp.stop_client(client.id)
+        return
+    end
+
     local opts = { noremap = true, silent = true }
     local buf_set_keymap = function(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- Common LSP Keybindings
@@ -42,16 +71,16 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     buf_set_keymap('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     buf_set_keymap('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    -- Disable document formatting for ts_ls
-    if client.name == "ts_ls" then
-        client.server_capabilities.documentFormattingProvider = false
-    end
 end
 
 -- TypeScript server setup
 lspconfig.ts_ls.setup({
-    capabilities = capabilities,
-    on_attach = on_attach,
+    capabalities = capabilities,
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        -- Disable formatting for tsserver
+        client.server_capabilities.documentFormattingProvider = false
+    end,
     root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json"),
     filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
     cmd = { "typescript-language-server", "--stdio" },
