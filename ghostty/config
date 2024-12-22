@@ -1,12 +1,14 @@
 theme = Custom
 
-# command = /bin/bash -c "$HOME/.local/scripts/theme-randomizer.sh; exec /bin/zsh"
-keybind = ctrl+h=goto_split:left
-keybind = ctrl+l=goto_split:right
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+j=goto_split:bottom
+# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
+
+keybind = super+ctrl+h=goto_split:left
+keybind = super+ctrl+l=goto_split:right
+keybind = super+ctrl+k=goto_split:top
+keybind = super+ctrl+j=goto_split:bottom
 
 window-inherit-working-directory = true
+window-save-state = always
 
 shell-integration-features = no-cursor, no-sudo
 cursor-style = block
@@ -29,8 +31,3 @@ macos-icon = custom-style
 macos-icon-frame = plastic
 macos-icon-ghost-color = white
 macos-icon-screen-color = dark sea green,dark slate grey
-
-# keybind = super+l=new_split:right
-# shell-integration = zsh
-# shell-integration-features = cursor,sudo,title
-# unfocused-split-fill = #2e2e2e
