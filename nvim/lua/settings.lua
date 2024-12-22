@@ -36,10 +36,10 @@ vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99  -- Open all folds by default
 vim.api.nvim_exec2('language en_US', { output = true })
 
--- Leader key
+-- Leader key & netrw
 vim.g.mapleader = " "
 vim.g.netrw_banner = 0
-
+vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 -- Status Line
 vim.o.statusline = ""
 vim.o.statusline = vim.o.statusline .. "%#LineNr#" -- Highlight group
