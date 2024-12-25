@@ -27,6 +27,10 @@ run = 'layout floating'
 check-further-callbacks = true
 run = 'layout floating'
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'telegram'
+run = 'layout floating'
+
 [key-mapping]
 preset = 'qwerty'
 
@@ -39,6 +43,9 @@ outer.top =        24
 outer.right =      24
 
 [mode.main.binding]
+
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
 
 alt-comma = 'layout tiles horizontal vertical'
 alt-shift-comma = 'layout accordion horizontal vertical'

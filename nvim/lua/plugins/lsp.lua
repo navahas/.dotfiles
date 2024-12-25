@@ -139,3 +139,5 @@ lspconfig.lua_ls.setup({
     }
 })
 
+-- Zig language server setup
+lspconfig.zls.setup{}
