@@ -1,76 +1,91 @@
-return require('packer').startup({
-    function(use)
-        -- Packer manages itself
-        use 'wbthomason/packer.nvim'
+-- Bootstrap lazy.nvim if not already installed
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+---@diagnostic disable-next-line: undefined-field
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+vim.opt.rtp:prepend(lazypath)
 
-        -- Themes
-        use { 'tomasiser/vim-code-dark' }
-        use { 'Mofiqul/vscode.nvim' }
+-- Load lazy.nvim
+require("lazy").setup({
+    -- Themes
+    { "tomasiser/vim-code-dark" },
+    { "Mofiqul/vscode.nvim" },
 
-        -- Icons
-        use { 'nvim-tree/nvim-web-devicons', event = 'BufRead' }
+    -- Icons (loaded only when required by dependencies)
+    {
+        "nvim-tree/nvim-web-devicons",
+        lazy = true,
+    },
 
-        -- FZF
-        use {
-            'junegunn/fzf',
-            run = function() vim.fn['fzf#install']() end,
-        }
-        use { 'junegunn/fzf.vim', after = 'fzf' }
+    -- Telescope (loads only when invoked)
+    {
+        "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
+        dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("plugins.telescope")
+        end,
+    },
 
-        -- Telescope
-        use {
-            'nvim-telescope/telescope.nvim',
-            tag = '0.1.8',
-            requires = { 'nvim-lua/plenary.nvim' },
-        }
+    -- Harpoon
+    {
+        "ThePrimeagen/harpoon",
+        keys = { "<leader>a", "<leader>h" },
+        config = function()
+            require("plugins.harpoon")
+        end,
+    },
 
-        -- Harpoon
-        use {
-            'ThePrimeagen/harpoon',
-            keys = { '<leader>a', '<leader>h' },
-        }
+    -- Mason (Load on specific LSP or DAP commands)
+    {
+        "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        lazy = true,
+        dependencies = { "williamboman/mason.nvim" },
+    },
+    {
+        "neovim/nvim-lspconfig",
+        config = function()
+            require("plugins.lsp")
+        end,
+    },
 
-        -- Mason and LSP
-        use {
-            'williamboman/mason.nvim',
-            event = 'BufRead',
-        }
-        use {
-            'neovim/nvim-lspconfig',
-            after = 'mason.nvim',
-        }
-        use { 'williamboman/mason-lspconfig.nvim', after = 'mason.nvim' }
+    -- Completion
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        config = function()
+            require("plugins.cmp")
+        end,
+    },
+    {
+        "hrsh7th/cmp-nvim-lsp",
+        dependencies = { "hrsh7th/nvim-cmp" }, -- Ensure it loads after `nvim-cmp`
+    },
 
-        -- Completion
-        use {
-            'hrsh7th/nvim-cmp',
-            event = 'InsertEnter',
-        }
-        use { 'hrsh7th/cmp-nvim-lsp', after = 'nvim-cmp' }
-        use { 'hrsh7th/cmp-buffer', after = 'nvim-cmp' }
-        use { 'hrsh7th/cmp-path', after = 'nvim-cmp' }
-        use { 'hrsh7th/cmp-cmdline', after = 'nvim-cmp' }
 
-        -- Treesitter
-        use {
-            'nvim-treesitter/nvim-treesitter',
-            event = 'BufRead',
-            run = ':TSUpdate',
-        }
-        use { 'nvim-treesitter/playground', after = 'nvim-treesitter' }
-
-        -- Utility libraries
-        use { 'nvim-lua/plenary.nvim', module = 'plenary' }
-        use { 'MunifTanjim/nui.nvim', module = 'nui' }
-
-        require('plugins.telescope')
-        require('plugins.harpoon')
-        require('plugins.lsp')
-        require('plugins.treesitter')
-        require('plugins.cmp')
-    end,
-    config = {
-        -- Custom path for the compiled file
-        -- compile_path = vim.fn.stdpath('data') .. '/packer_compiled.lua'
-    }
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
+        event = "BufReadPost",
+        build = ":TSUpdate",
+        config = function()
+            require("plugins.treesitter")
+        end,
+    },
+    { "nvim-treesitter/playground", dependencies = { "nvim-treesitter/nvim-treesitter" } },
 })
