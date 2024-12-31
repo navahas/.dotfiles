@@ -1,6 +1,7 @@
 theme = Custom
 
 # command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
+link-url = true
 
 keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
@@ -12,12 +13,15 @@ window-save-state = always
 
 shell-integration-features = no-cursor, no-sudo
 cursor-style = block
+cursor-style-blink = true
 macos-titlebar-style = hidden
 macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
 background-opacity = 0.92
 background-blur-radius = 32
+
+quick-terminal-position = bottom
 
 window-padding-x = 11
 window-padding-y = 11

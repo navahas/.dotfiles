@@ -7,9 +7,9 @@ local mode_map = {
     v = " ──> VISUAL",
     V = " ──> VISUAL LINE",
     ["\22"] = " ──> VISUAL BLOCK",
-    c = " ──> COMMAND",
     s = " ──> SELECT",
-    t = " ──> TERMINAL",
+    -- c = " ──> COMMAND",
+    -- t = " ──> TERMINAL",
 }
 
 -- Custom mode display in the command area
