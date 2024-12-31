@@ -1,103 +1,80 @@
--- Bootstrap lazy.nvim if not already installed
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
----@diagnostic disable-next-line: undefined-field
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable",
-        lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
--- Load lazy.nvim
-require("lazy").setup({
-    -- Themes
-    { "tomasiser/vim-code-dark" },
-    { "Mofiqul/vscode.nvim" },
-
-    -- Icons (load only when needed by other plugins)
-    {
-        "nvim-tree/nvim-web-devicons",
-        lazy = true,
-    },
-
-    -- Telescope (load on command)
-    {
-        "nvim-telescope/telescope.nvim",
-        cmd = "Telescope",
-        dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
-        config = function()
-            require("plugins.telescope")
-        end,
-    },
-
-    -- Harpoon (lazy-load on specific key mappings)
-    {
-        "ThePrimeagen/harpoon",
-        keys = { "<leader>a", "<leader>h" },
-        config = function()
-            require("plugins.harpoon")
-        end,
-    },
-
-    -- Mason (load on Mason-related commands)
-    {
+return {
+    "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
         "williamboman/mason.nvim",
-        cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
         "williamboman/mason-lspconfig.nvim",
-        lazy = true,
-        dependencies = { "williamboman/mason.nvim" },
+        "hrsh7th/cmp-nvim-lsp",
     },
+    config = function()
+        local lspconfig = require("lspconfig")
+        local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    -- LSP Configuration
-    {
-        "neovim/nvim-lspconfig",
-        event = { "BufReadPre", "BufNewFile" }, -- Load when editing files
-        config = function()
-            require("plugins.lsp")
-        end,
-    },
+        vim.diagnostic.config({
+            virtual_text = true,
+            signs = true,
+            underline = true,
+            update_in_insert = true,
+            severity_sort = true,
+            float = {
+                source = true,
+                border = "rounded",
+            },
+        })
 
-    -- Completion (load on InsertEnter for better responsiveness)
-    {
-        "hrsh7th/nvim-cmp",
-        event = "InsertEnter",
-        dependencies = {
-            { "hrsh7th/cmp-nvim-lsp" }, -- Ensure it loads with nvim-cmp
-            { "hrsh7th/cmp-buffer" },
-            { "hrsh7th/cmp-path" },
-            { "hrsh7th/cmp-cmdline" },
-        },
-        config = function()
-            require("plugins.cmp")
-        end,
-    },
+        -- Setup Mason and Mason-LSPConfig
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = { "ts_ls", "lua_ls", "zls" },
+            automatic_installation = true,
+        })
 
-    -- Treesitter (optimize with specific parsers)
-    {
-        "nvim-treesitter/nvim-treesitter",
-        event = "BufReadPost",
-        build = ":TSUpdate",
-        config = function()
-            require("plugins.treesitter")
-        end,
-    },
-    {
-        "nvim-treesitter/playground",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-    },
+        local capabilities = cmp_nvim_lsp.default_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- Utility libraries
-    { "nvim-lua/plenary.nvim" },
-    { "MunifTanjim/nui.nvim" },
-})
+        -- Common on_attach function
+        local on_attach = function(client, bufnr)
+            local bufopts = { noremap = true, silent = true, buffer = bufnr }
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+            vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+            vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
+            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set("n", "<leader>f", function()
+                vim.lsp.buf.format({ async = true })
+            end, bufopts)
+        end
+
+        -- TypeScript Server
+        lspconfig.ts_ls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            root_dir = lspconfig.util.root_pattern("package.json"),
+            filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+        })
+
+        -- Lua Server
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = {
+                Lua = {
+                    runtime = { version = "LuaJIT" },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
+                    },
+                },
+            },
+        })
+
+        -- Zig Server
+        lspconfig.zls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
+    end,
+}
 

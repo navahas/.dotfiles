@@ -1,6 +1,5 @@
--- init.lua
 require('settings')
 require('keymaps')
-require('plugins')
+require('config.lazy')
 require('colorscheme')
 require('launch')

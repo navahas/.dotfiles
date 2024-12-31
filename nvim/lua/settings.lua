@@ -48,3 +48,8 @@ vim.o.statusline = vim.o.statusline .. " %{&fileencoding?&fileencoding:&encoding
 vim.o.statusline = vim.o.statusline .. " %= "      -- Right-align the rest
 vim.o.statusline = vim.o.statusline .. " %l:%c"    -- Line and column
 vim.o.statusline = vim.o.statusline .. " %p%%"     -- Percentage through the file
+
+vim.opt.swapfile = false -- Disable swap files
+vim.opt.backup = false   -- Disable backups
+vim.opt.undofile = true  -- Enable persistent undo
+
