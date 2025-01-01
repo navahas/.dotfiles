@@ -1,0 +1,49 @@
+* {
+    font-family: "Inter";
+    font-size: 14px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0.8);
+    color: #cdd6f4;
+}
+
+#workspaces {
+    background: transparent;
+    margin: 5px;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: #6c7086;
+    background: transparent;
+}
+
+#workspaces button.active {
+    color: #f5e0dc;
+}
+
+#cpu, #memory, #clock, #battery, #pulseaudio, #network, #custom-power {
+    padding: 0 10px;
+    margin: 3px 0;
+    color: #cdd6f4;
+    background: transparent;
+}
+
+#custom-power {
+    color: #f38ba8;
+    margin-right: 5px;
+}
+
+#battery.charging {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #f38ba8;
+}

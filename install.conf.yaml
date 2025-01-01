@@ -1,3 +1,8 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      force: true
 - link:
    ~/.config/nvim: nvim
    ~/.config/aerospace: aerospace
@@ -7,3 +12,5 @@
    ~/.tmux.conf: tmux/.tmux.conf
    ~/.p10k.zsh: p10k/.p10k.zsh
    ~/.local/scripts: scripts
+   ~/.config/hypr: linux/hypr
+   ~/.config/waybar: linux/waybar
