@@ -8,6 +8,7 @@ local mode_map = {
     V = " ──> VISUAL LINE",
     ["\22"] = " ──> VISUAL BLOCK",
     s = " ──> SELECT",
+    c = ""
     -- c = " ──> COMMAND",
     -- t = " ──> TERMINAL",
 }
@@ -17,8 +18,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     pattern = "*",
     callback = function()
         local mode = vim.fn.mode()
-        local msg = mode_map[mode] or " ── UNKNOWN ──"
-        vim.cmd("echomsg '" .. msg .. "'")
+        local msg = mode_map[mode] or ""
+        if msg ~= "" then
+            vim.cmd("echo '" .. msg .. "'")
+        end
     end,
 })
 
