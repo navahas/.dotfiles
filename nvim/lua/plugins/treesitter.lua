@@ -21,6 +21,8 @@ return {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
+            modules = {},
+            ignore_install = {}
         })
     end,
 }

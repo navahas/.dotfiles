@@ -9,20 +9,18 @@ local mode_map = {
     ["\22"] = " ──> VISUAL BLOCK",
     s = " ──> SELECT",
     c = ""
-    -- c = " ──> COMMAND",
     -- t = " ──> TERMINAL",
 }
 
--- Custom mode display in the command area
-vim.api.nvim_create_autocmd("ModeChanged", {
+local function update_mode_display()
+    local current_mode = vim.api.nvim_get_mode().mode
+    local msg = mode_map[current_mode] or ""
+    vim.api.nvim_echo({{msg, "ModeMsg"}}, false, {})
+end
+
+vim.api.nvim_create_autocmd({"ModeChanged", "CmdlineEnter", "CmdlineLeave"}, {
     pattern = "*",
-    callback = function()
-        local mode = vim.fn.mode()
-        local msg = mode_map[mode] or ""
-        if msg ~= "" then
-            vim.cmd("echo '" .. msg .. "'")
-        end
-    end,
+    callback = update_mode_display
 })
 
 -- settings.lua

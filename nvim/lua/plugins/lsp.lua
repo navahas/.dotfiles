@@ -42,6 +42,16 @@ return {
             vim.keymap.set("n", "<leader>f", function()
                 vim.lsp.buf.format({ async = true })
             end, bufopts)
+
+            -- Extra
+            vim.keymap.set('n', '<leader>vws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', bufopts)
+            vim.keymap.set('n', '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
+            vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_next()<CR>', bufopts)
+            vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', bufopts)
+            vim.keymap.set('n', '<leader>vca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
+            vim.keymap.set('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
+            vim.keymap.set('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+            vim.keymap.set('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
         end
 
         -- TypeScript Server
@@ -77,4 +87,3 @@ return {
         })
     end,
 }
-
