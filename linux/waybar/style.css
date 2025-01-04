@@ -1,49 +1,79 @@
 * {
-    font-family: "Inter";
-    font-size: 14px;
-    min-height: 0;
-    border: none;
-    border-radius: 0;
-    margin: 0;
-    padding: 0;
+  font-family: "JetBrainsMono NF", monospace;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
 }
 
 window#waybar {
-    background: rgba(21, 18, 27, 0.8);
-    color: #cdd6f4;
-}
-
-#workspaces {
-    background: transparent;
-    margin: 5px;
+  background: #000000;
+  color: #ffffff;
+  padding: 4px;
 }
 
 #workspaces button {
-    padding: 0 5px;
-    color: #6c7086;
-    background: transparent;
+  color: #666666;
+  padding: 0 8px;
+  margin: 0 2px;
+  border-radius: 6px;
 }
 
 #workspaces button.active {
-    color: #f5e0dc;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 #cpu, #memory, #clock, #battery, #pulseaudio, #network, #custom-power {
-    padding: 0 10px;
-    margin: 3px 0;
-    color: #cdd6f4;
-    background: transparent;
+  padding: 0 12px;
+  margin: 0 4px;
+  color: #ffffff;
 }
 
 #custom-power {
-    color: #f38ba8;
-    margin-right: 5px;
+  color: #ff6666;
 }
 
-#battery.charging {
-    color: #a6e3a1;
+#battery.charging { color: #66ff66; }
+#battery.warning:not(.charging) { color: #ff6666; }
+
+tooltip {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 8px;
 }
 
-#battery.warning:not(.charging) {
-    color: #f38ba8;
+#clock {
+  color: #ffffff;
+}
+
+calendar {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+calendar:selected {
+  background: #ffffff;
+  color: #000000;
+  font-weight: bold;
+}
+
+calendar.header {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+calendar.highlight {
+  background: #303030;
+  color: #ffffff;
+  border-radius: 4px;
+}
+
+calendar:indeterminate {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+calendar.button {
+  color: #ffffff;
+  border-radius: 4px;
 }

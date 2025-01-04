@@ -1,11 +1,17 @@
 {
     "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "ipc": true,
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "network", "pulseaudio", "battery", "custom/power"],
+    "modules-center": ["custom/time", "clock"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "network", "battery", "custom/power"],
     
     "hyprland/workspaces": {
-        "format": "{name}",
+        "format": "●",
         "persistent-workspaces": {
             "1": [],
             "2": [],
@@ -15,33 +21,52 @@
             "6": []
         }
     },
+
     "cpu": {
-        "format": "{usage}% ",
-        "interval": 1
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "clock": {
-        "format": "{:%H:%M %d/%m}",
+        "format": "󰍛 CPU {usage}%",
+        "interval": 1,
         "tooltip": true
     },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+
+    "memory": {
+        "format": "󰡀 RAM {percentage}%",
+        "interval": 1
     },
-    "network": {
-        "format-wifi": "直 {signalStrength}%",
-        "format-disconnected": "睊"
-    },
+
     "pulseaudio": {
-        "format": "{volume}% {icon}",
+        "format": "  {volume}%",
+        "format-muted": "󰝟",
         "format-icons": {
             "default": ["", "", ""]
         }
     },
+
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-disconnected": "󱛅 ",
+        "tooltip-format": "{essid}"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "custom/time": {
+       "format": "󰅐 {:%H:%M}",
+       "interval": 60
+    },
+
+    "clock": {
+        "format": "󰃮 {:%d-%m-%Y  󰅐 %H:%M}",
+        "format-alt": "󰃭 {:%d/%m/%Y}",
+        "tooltip-format": "<tt>{calendar}</tt>"
+    },
+
     "custom/power": {
         "format": "⏻",
-        "on-click": "wlogout"
+        "on-click": "wlogout",
+        "tooltip": false
     }
 }
