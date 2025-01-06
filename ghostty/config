@@ -1,8 +1,5 @@
 theme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
-link-url = true
-
 keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+k=goto_split:top
@@ -28,6 +25,7 @@ window-padding-y = 11
 adjust-cell-height = 30%
 
 font-thicken = true
+mouse-hide-while-typing = true
 
 unfocused-split-opacity = 1
 
