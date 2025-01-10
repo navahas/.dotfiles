@@ -25,7 +25,7 @@ return {
         -- Setup Mason and Mason-LSPConfig
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "ts_ls", "lua_ls", "zls" },
+            ensure_installed = { "ts_ls", "lua_ls", "rust_analyzer", "zls" },
             automatic_installation = true,
         })
 
@@ -78,6 +78,12 @@ return {
                     },
                 },
             },
+        })
+
+        -- Rust Server
+        lspconfig.rust_analyzer.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
         })
 
         -- Zig Server
