@@ -70,6 +70,8 @@ alt-shift-l = 'move right'
 
 alt-shift-n = 'resize smart -50'
 alt-shift-m = 'resize smart +50'
+alt-shift-p = 'resize smart +350'
+alt-shift-o = 'resize smart -350'
 
 alt-q = 'workspace 1'
 alt-w = 'workspace 2'

@@ -20,6 +20,5 @@ search_dirs+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
      [[ -z $TMUX ]] && tmux attach-session -t $session_name || tmux switch-client -t $session_name
  else
      tmux new-session -d -s $session_name -c "$selected_dir"
-     tmux send-keys -t $session_name:0 "nvim ." C-m
      [[ -z $TMUX ]] && tmux attach-session -t $session_name || tmux switch-client -t $session_name
  fi
