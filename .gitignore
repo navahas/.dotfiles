@@ -1,4 +1,5 @@
 dotbot/
 install
 nvim.backup
+nvim/lazy-lock.json
 .sync_timestamp
