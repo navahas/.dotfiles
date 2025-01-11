@@ -12,7 +12,8 @@ vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99  -- Open all folds by default
 vim.api.nvim_exec2('language en_US', { output = true })
 
-_G.statuspath = function()
+_G.mystatus = {}
+_G.mystatus.getPath = function()
   local filename = vim.fn.expand('%:t')  -- Get the filename (tail)
   if filename == '' or filename == '[No Name]' then
     -- Return the current directory, replacing the home directory with ~
@@ -30,7 +31,7 @@ vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 -- Status Line
 vim.o.statusline = ""
 vim.o.statusline = vim.o.statusline .. "%#LineNr#" -- Highlight group
-vim.o.statusline = vim.o.statusline .. " %{%v:lua.statuspath()%}"
+vim.o.statusline = vim.o.statusline .. " %{%v:lua.mystatus.getPath()%}"
 -- vim.o.statusline = vim.o.statusline .. " %f" -- File name
 vim.o.statusline = vim.o.statusline .. " %{&fileencoding?&fileencoding:&encoding}" -- File encoding (e.g., UTF-8)
 vim.o.statusline = vim.o.statusline .. " %= "      -- Right-align the rest
