@@ -6,6 +6,7 @@ bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 bind \en 'nvim .'
 bind \e\[118\;6u 'ghosttymux'
 bind \e\[110\;6u 'ghosttymux-normal'
+bind \cx edit_command_buffer
 
 # Environment variables
 set -gx EDITOR nvim
