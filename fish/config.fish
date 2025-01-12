@@ -4,8 +4,8 @@ set -x SHELL /opt/homebrew/bin/fish
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 bind \en 'nvim .'
-bind \e\[118\;6u 'ghosttymux'
-bind \e\[110\;6u 'ghosttymux-normal'
+bind \e\[118\;6u 'tmux-sessionizer-v2-vim'
+bind \e\[110\;6u 'tmux-sessionizer-v2-normal'
 bind \cx edit_command_buffer
 
 # Environment variables
@@ -44,8 +44,8 @@ alias src='source ~/.dotfiles/fish/config.fish'
 alias dirsync='bash ~/.local/scripts/sync-state.sh'
 alias dirsync-dev='dirsync -l ~/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
 alias neo='neofetch --kitty && ~/.local/techstack.sh'
-alias ghosttymux='~/.local/scripts/ghosttymux.sh'
-alias ghosttymux-normal='~/.local/scripts/ghosttymux-normal.sh'
+alias tmux-sessionizer-v2-vim='~/.local/scripts/tmux-sessionizer-v2-vim.sh'
+alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh'
 alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
@@ -59,11 +59,3 @@ source (dirname (status --current-filename))/config-osx.fish
 if test -n "$GHOSTTY_RESOURCES_DIR"
     source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
 end
-
-# set fish_color_command white
-# set fish_color_autosuggestion 808080
-# set fish_color_valid_path --no-underline  # Remove directory underlining
-# set fish_color_option yellow
-# set fish_color_param normal
-# set fish_color_error normal
-# set fish_color_operator normal
