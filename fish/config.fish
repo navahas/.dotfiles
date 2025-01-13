@@ -46,12 +46,13 @@ alias dirsync-dev='dirsync -l ~/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
 alias neo='neofetch --kitty && ~/.local/techstack.sh'
 alias tmux-sessionizer-v2-vim='~/.local/scripts/tmux-sessionizer-v2-vim.sh'
 alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh'
+alias cd-='~/.local/scripts/cd-fzf.sh'
+alias ssh-='~/.local/scripts/ssh-fzf.sh'
 alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
 alias fcd='cd "$(fzf)"'
-alias fman="compgen -c | fzf | xargs man"
 alias ta="tmux attach"
 
 source (dirname (status --current-filename))/config-osx.fish
