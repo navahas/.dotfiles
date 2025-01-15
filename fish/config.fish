@@ -59,3 +59,5 @@ source (dirname (status --current-filename))/config-osx.fish
 if test -n "$GHOSTTY_RESOURCES_DIR"
     source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
 end
+
+export BAT_THEME="Visual Studio Dark+"
