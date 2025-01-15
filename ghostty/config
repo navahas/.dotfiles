@@ -1,4 +1,7 @@
 theme = Custom
+auto-update = off
+auto-update-channel = stable
+
 
 command = /opt/homebrew/bin/fish --login --interactive
 
