@@ -4,9 +4,9 @@ set -x SHELL /opt/homebrew/bin/fish
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 bind \en 'nvim .'
-bind \e\[118\;6u 'tmux-sessionizer-v2-vim'
-bind \e\[110\;6u 'tmux-sessionizer-v2-normal'
-bind \e\[116\;6u 'ta'
+bind \e\[118\;6u 'tmux-sessionizer-v2-vim; commandline -f repaint'
+bind \e\[110\;6u 'tmux-sessionizer-v2-normal; commandline -f repaint'
+bind \e\[116\;6u 'tmux attach; commandline -f repaint'
 bind \cx edit_command_buffer
 
 # Environment variables
