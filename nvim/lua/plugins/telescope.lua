@@ -13,6 +13,13 @@ return {
                     "node_modules/.*",
                     "package%-lock.json",
                     "dist/.*",
+                    -- Rust-specific ignores
+                    "target/.*",           -- Build output directory
+                    "Cargo.lock",          -- Lock file
+                    ".rustup/.*",          -- Rust toolchain
+                    ".cargo/.*",           -- Cargo cache
+                    "*.rlib",              -- Rust library files
+                    "*.rmeta",             -- Rust metadata files
                 },
             },
         })
