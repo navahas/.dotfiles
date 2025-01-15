@@ -12,6 +12,12 @@ vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99  -- Open all folds by default
 vim.api.nvim_exec2('language en_US', { output = true })
 
+vim.cmd([[
+  cnoreabbrev W w
+  cnoreabbrev Wq wq
+  cnoreabbrev WQ wq
+]])
+
 _G.mystatus = {}
 _G.mystatus.getPath = function()
   local filename = vim.fn.expand('%:t')  -- Get the filename (tail)
