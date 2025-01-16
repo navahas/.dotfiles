@@ -6,7 +6,9 @@ command = /opt/homebrew/bin/fish --login --interactive
 
 font-size = 13
 font-thicken = true
-font-feature = -calt, -liga, -dlig
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
 adjust-cell-height = 22%
 
 keybind = super+ctrl+h=goto_split:left
@@ -17,7 +19,7 @@ keybind = super+ctrl+j=goto_split:bottom
 window-inherit-font-size = true
 window-inherit-working-directory = true
 window-save-state = always
-window-padding-color = extend-always
+# window-padding-color = extend-always
 
 shell-integration = fish
 shell-integration-features = no-cursor, no-sudo
