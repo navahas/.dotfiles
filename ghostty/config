@@ -2,7 +2,6 @@ theme = Custom
 auto-update = off
 auto-update-channel = stable
 
-
 command = /opt/homebrew/bin/fish --login --interactive
 
 font-size = 13
@@ -15,14 +14,10 @@ keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+k=goto_split:top
 keybind = super+ctrl+j=goto_split:bottom
 
-keybind = super+l=new_split:right
-keybind = super+h=new_split:left
-keybind = super+j=new_split:down
-keybind = super+k=new_split:up
-
 window-inherit-font-size = true
 window-inherit-working-directory = true
 window-save-state = always
+window-padding-color = extend-always
 
 shell-integration = fish
 shell-integration-features = no-cursor, no-sudo
