@@ -6,6 +6,7 @@ bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 bind \en 'nvim .'
 bind \e\[118\;6u 'tmux-sessionizer-v2-vim; commandline -f repaint'
 bind \e\[110\;6u 'tmux-sessionizer-v2-normal; commandline -f repaint'
+bind \e\[115\;6u 'tmux-fzf-sessions; commandline -f repaint'
 bind \e\[116\;6u 'tmux attach; commandline -f repaint'
 bind \cx edit_command_buffer
 
@@ -47,6 +48,7 @@ alias dirsync-dev='dirsync -l ~/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
 alias neo='neofetch --kitty && ~/.local/techstack.sh'
 alias tmux-sessionizer-v2-vim='~/.local/scripts/tmux-sessionizer-v2-vim.sh'
 alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh'
+alias tmux-fzf-sessions='~/.local/scripts/tmux-fzf-sessions.sh'
 alias ssh-='~/.local/scripts/ssh-fzf.sh'
 alias ls "ls -p -G"
 alias la "ls -A"

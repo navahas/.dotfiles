@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 selected_session=$(tmux list-sessions -F "#{session_name}" | \
+   grep -v "^_manager$" | \
    fzf --preview 'tmux capture-pane -e -t {}:$(tmux list-windows -t {} -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2) -p' \
    --preview-window=right:50%)
 
