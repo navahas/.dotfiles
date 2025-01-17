@@ -49,6 +49,7 @@ alias neo='neofetch --kitty && ~/.local/techstack.sh'
 alias tmux-sessionizer-v2-vim='~/.local/scripts/tmux-sessionizer-v2-vim.sh'
 alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh'
 alias tmux-fzf-sessions='~/.local/scripts/tmux-fzf-sessions.sh'
+alias dfzf='~/.local/scripts/docker-fzf-id.sh'
 alias ssh-='~/.local/scripts/ssh-fzf.sh'
 alias ls "ls -p -G"
 alias la "ls -A"
