@@ -49,7 +49,19 @@ return {
                     Folded = { fg = '#B2B2B2', bg = '#333333', italic = true },
                 }
             })
-            require('vscode').load()
+            -- require('vscode').load()
+        end,
+    },
+    {
+        "rebelot/kanagawa.nvim",
+        lazy = false, -- Load immediately
+        priority = 1000, -- Ensure it loads first
+        config = function()
+            require('kanagawa').setup({
+                -- Optional: Customize theme settings
+                transparent = true -- Enable transparent background
+            })
+            vim.cmd("colorscheme kanagawa") -- Apply the theme
         end,
     }
 }
