@@ -64,3 +64,4 @@ if test -n "$GHOSTTY_RESOURCES_DIR"
 end
 
 export BAT_THEME="Visual Studio Dark+"
+export FZF_DEFAULT_OPTS='--reverse'
