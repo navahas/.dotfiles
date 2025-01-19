@@ -20,7 +20,7 @@ require("lazy").setup({
         lazy = true, -- All plugins lazy-loaded by default
     },
     install = {
-        colorscheme = { "vscode" },
+        colorscheme = { "kanagawa", "vscode" },
     },
     ui = {
         border = "rounded",

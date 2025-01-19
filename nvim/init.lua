@@ -1,6 +1,6 @@
 require('config.settings')
 require('config.keymaps')
 require('config.lazy')
-require('config.colorscheme')
 require('config.launch')
 require('config.custom_mode')
+require('config.theme_switcher')
