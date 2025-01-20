@@ -79,16 +79,16 @@ return {
                         highlights.TelescopeNormal = { bg = "NONE" }
                         highlights.TelescopePromptNormal = { bg = "NONE" }
                         highlights.TelescopePromptBorder = { fg = colors.grey, bg = "NONE" }
-                        highlights.TelescopePromptTitle = { fg = colors.white, bg = "NONE" }
+                        highlights.TelescopePromptTitle = { fg = colors.grey, bg = "NONE" }
                         highlights.TelescopePromptPrefix = { fg = colors.koromiko, bg = "NONE" }
                         highlights.TelescopePromptCounter = { fg = colors.yellow, bg = "NONE" }
                         -- highlights.TelescopeResultsNormal = { bg = "NONE" }
                         highlights.TelescopeResultsBorder = { fg = colors.grey, bg = "NONE" }
-                        highlights.TelescopeResultsTitle = { fg = colors.white, bg = "NONE" }
+                        highlights.TelescopeResultsTitle = { fg = "#B0D0F0", bg = "NONE" }
                         -- highlights.TelescopeResultsStats = { fg = colors.yellow, bg = "NONE" }
                         -- highlights.TelescopePreviewNormal = { bg = "NONE" }
                         highlights.TelescopePreviewBorder = { fg = colors.grey, bg = "NONE" }
-                        highlights.TelescopePreviewTitle = { fg = colors.white, bg = "NONE" }
+                        highlights.TelescopePreviewTitle = { fg = "#CC88A3", bg = "NONE" }
                         highlights.TelescopeSelection = { fg = colors.koromiko, bg = "NONE", bold = true }
                         -- highlights.TelescopeSelectionCaret = { fg = colors.koromiko, bg = "NONE" }
                         highlights.TelescopeMatching = { fg = colors.koromiko, bold = true }
@@ -139,7 +139,9 @@ return {
                         -- highlights.IncSearch = { bg = colors.wewak, fg = colors.total_white }
 
                         -- Line number and cursor line
-                        highlights.LineNr = { fg = "#5a5a5a" }
+                        highlights.LineNrAbove = { fg = "#5a5a5a" }
+                        highlights.LineNr = { fg = colors.white }
+                        highlights.LineNrBelow = { fg = "#5a5a5a" }
                         highlights.CursorLine = { bg = "NONE" }
 
                         -- Folding

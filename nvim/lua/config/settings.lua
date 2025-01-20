@@ -36,7 +36,7 @@ vim.g.netrw_banner = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 -- Status Line
 vim.o.statusline = ""
-vim.o.statusline = vim.o.statusline .. "%#LineNr#" -- Highlight group
+vim.o.statusline = vim.o.statusline .. "%#LineNrAbove#" -- Highlight group
 vim.o.statusline = vim.o.statusline .. " %{%v:lua.mystatus.getPath()%}"
 -- vim.o.statusline = vim.o.statusline .. " %f" -- File name
 vim.o.statusline = vim.o.statusline .. " %{&fileencoding?&fileencoding:&encoding}" -- File encoding (e.g., UTF-8)
