@@ -20,7 +20,7 @@ set -gx NVM_DIR $HOME/.nvm
 set -gx PATH
 
 # Add paths in the correct order
-set -gx PATH /Users/usuario00/.nvm/versions/node/v20.14.0/bin $PATH
+set -gx PATH $HOME/.nvm/versions/node/v22.13.0/bin $PATH
 set -gx PATH /Applications/Docker.app/Contents/Resources/bin $PATH
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH

@@ -1,4 +1,5 @@
-background = #1e1e1e
+# background = #1e1e1e
+background = #181616
 foreground = #dcdccc
 selection-background = #363636
 selection-foreground = #ffffff

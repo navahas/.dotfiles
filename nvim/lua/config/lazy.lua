@@ -13,6 +13,9 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup Lazy.nvim to load all plugin specs from `lua/plugins/`
 require("lazy").setup({
+    git = {
+        url_format = 'git@github.com:%s.git'
+    },
     spec = {
         { import = "plugins" }, -- Import all files from `lua/plugins/`
     },
@@ -20,7 +23,7 @@ require("lazy").setup({
         lazy = true, -- All plugins lazy-loaded by default
     },
     install = {
-        colorscheme = { "vscode" },
+        colorscheme = { "jellybeans", "vscode" },
     },
     ui = {
         border = "rounded",

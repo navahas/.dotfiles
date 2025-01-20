@@ -1,5 +1,5 @@
 require('config.settings')
 require('config.keymaps')
-require('config.lazy')
 require('config.launch')
 require('config.custom_mode')
+require('config.lazy')
