@@ -123,6 +123,10 @@ return {
                         highlights.LspInfoBorder = { fg = colors.grey, bg = "NONE" }
                         highlights.PmenuDocBorder = { fg = colors.grey, bg = "NONE" }
 
+                        highlights.CmpBorder = { fg = '#5a5a5a', bg = '#1E1E1E' }
+                        highlights.CmpPmenuBorder = { link = 'CmpBorder' }
+                        highlights.CmpDocBorder = { link = 'CmpBorder' }
+
                         -- For hover documentation
                         highlights.LspSignatureActiveParameter = { fg = colors.magenta, bg = "NONE", bold = true }
                         highlights.LspInlayHint = { fg = colors.grey, bg = "NONE" }

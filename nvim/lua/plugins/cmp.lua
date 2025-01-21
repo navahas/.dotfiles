@@ -11,6 +11,16 @@ return {
         local cmp = require("cmp")
 
         cmp.setup({
+            window = {
+                completion = {
+                    border = "rounded",
+                    winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+                },
+                documentation = {
+                    border = "rounded",
+                    winhighlight = "Normal:CmpDoc",
+                }
+            },
             completion = {
                 autocomplete = false,
             },
