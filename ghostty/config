@@ -1,4 +1,5 @@
 theme = Custom
+# theme = JellyBeans
 auto-update = off
 auto-update-channel = stable
 
@@ -9,6 +10,17 @@ font-thicken = true
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
+font-feature = zero
+
+# alernate w
+font-feature = cv07
+# alternate 1
+font-feature = cv11
+# alternate *
+# font-feature = cv12
+# alternate 0
+font-feature = cv16
+
 adjust-cell-height = 22%
 
 keybind = super+ctrl+h=goto_split:left
