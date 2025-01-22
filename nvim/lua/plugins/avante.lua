@@ -15,7 +15,11 @@ return {
           },
       },
       hints = { enabled = false },
-      -- windows = { ask = { floating = true } }
+      windows = {
+          ask = {
+              start_insert = false,
+          }
+      }
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
   build = "make",
@@ -41,7 +45,7 @@ return {
           embed_image_as_base64 = false,
           prompt_for_file_name = false,
           drag_and_drop = {
-            insert_mode = true,
+            insert_mode = false,
           },
           -- required for Windows users
           use_absolute_path = true,
