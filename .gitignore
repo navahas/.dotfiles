@@ -2,4 +2,5 @@ dotbot/
 install
 nvim.backup
 nvim/lazy-lock.json
+fish/fish_secrets.fish
 .sync_timestamp

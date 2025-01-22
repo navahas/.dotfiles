@@ -106,10 +106,10 @@ return {
                         highlights.LspDiagnosticsUnderlineHint = { undercurl = true, sp = colors.hint }
 
                         -- Virtual text diagnostics
-                        highlights.DiagnosticVirtualTextError = { fg = colors.error, bg = "NONE" }
-                        highlights.DiagnosticVirtualTextWarn = { fg = colors.warning, bg = "NONE" }
-                        highlights.DiagnosticVirtualTextInfo = { fg = colors.info, bg = "NONE" }
-                        highlights.DiagnosticVirtualTextHint = { fg = colors.hint, bg = "NONE" }
+                        highlights.DiagnosticVirtualTextError = { fg = colors.error }
+                        highlights.DiagnosticVirtualTextWarn = { fg = colors.warning }
+                        highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
+                        highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
 
                         -- Floating diagnostics
                         highlights.DiagnosticFloatingError = { fg = colors.error, bg = "NONE" }
@@ -143,9 +143,9 @@ return {
                         -- highlights.IncSearch = { bg = colors.wewak, fg = colors.total_white }
 
                         -- Line number and cursor line
-                        highlights.LineNrAbove = { fg = "#5a5a5a" }
-                        highlights.LineNr = { fg = colors.white }
-                        highlights.LineNrBelow = { fg = "#5a5a5a" }
+                        highlights.LineNrAbove = { fg = "#5a5a5a", bg = "NONE" }
+                        highlights.LineNr = { fg = colors.white, bg = "NONE" }
+                        highlights.LineNrBelow = { fg = "#5a5a5a", bg = "NONE" }
                         highlights.CursorLine = { bg = "NONE" }
 
                         -- Folding
@@ -157,12 +157,14 @@ return {
                         -- Error message
                         highlights.ErrorMsg = { fg = colors.error, bg = "NONE", bold = true }
 
-                        -- RenderMarkdown For Avante
-                        highlights.RenderMarkdownCode = { bg = "NONE" }
-                        highlights.ColorColumn = { bg = "NONE" }
+                        -- RenderMarkdown
+                        -- highlights.RenderMarkdownCode = { link = "NONE" }
+                        highlights.ColorColumn = { bg = "#202020" }
+
                     end,
                 })
                 vim.cmd.colorscheme("jellybeans")
             end,
         }
+        -- https://github.com/yetone/avante.nvim/wiki
 }
