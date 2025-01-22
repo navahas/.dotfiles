@@ -156,6 +156,10 @@ return {
 
                         -- Error message
                         highlights.ErrorMsg = { fg = colors.error, bg = "NONE", bold = true }
+
+                        -- RenderMarkdown For Avante
+                        highlights.RenderMarkdownCode = { bg = "NONE" }
+                        highlights.ColorColumn = { bg = "NONE" }
                     end,
                 })
                 vim.cmd.colorscheme("jellybeans")
