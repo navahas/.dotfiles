@@ -63,5 +63,8 @@ if test -n "$GHOSTTY_RESOURCES_DIR"
     source "$GHOSTTY_RESOURCES_DIR/shell-integration/fish/vendor_conf.d/ghostty-shell-integration.fish"
 end
 
+# Secrets
+source "$HOME/.config/fish/fish_secrets.fish"
+
 export BAT_THEME="Visual Studio Dark+"
 export FZF_DEFAULT_OPTS='--reverse'
