@@ -27,6 +27,10 @@ map('n', '<leader>Y', 'magg"*yG`a', opts)
 map('n', '<leader>nh', ':nohl<CR>', opts)
 map('n', '<leader>\'', '<C-^>', opts)
 
+-- Custom Commands
+vim.keymap.set('n', '<C-Space>', ':ToggleDiagnostics<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>hn', ':ToggleColorizer<CR>', { noremap = true, silent = true })
+
 -- Wrapped lines
 vim.keymap.set({'n', 'v'}, 'j', function()
   return vim.v.count == 0 and 'gj' or 'j'

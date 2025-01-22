@@ -12,4 +12,14 @@ vim.api.nvim_create_user_command('ToggleDiagnostics', function()
    end
 end, {})
 
-vim.keymap.set('n', '<C-Space>', ':ToggleDiagnostics<CR>', { noremap = true, silent = true })
+vim.g.colorizer_on = false
+
+vim.api.nvim_create_user_command('ToggleColorizer', function()
+    if vim.g.colorizer_on then
+        vim.cmd('ColorizerDetachFromBuffer')
+        vim.g.colorizer_on = false
+    else
+        vim.cmd('ColorizerAttachToBuffer')
+        vim.g.colorizer_on = true
+    end
+end, {})
