@@ -15,6 +15,15 @@ return {
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
 
+        local function get_input()
+            local ok, input_word = pcall(vim.fn.input, {
+                prompt =  "Grep —> ",
+                cancelreturn = nil,
+            })
+            if not ok or not input_word then return end
+            return input_word
+        end
+
         local function grep_word()
             local word
             if vim.fn.mode() == 'v' then
@@ -25,7 +34,8 @@ return {
                 vim.fn.setreg('v', saved_reg)
             else
                 -- Get word under cursor
-                word = vim.fn.expand("<cword>")
+                -- word = vim.fn.expand("<cword>")
+                get_input()
             end
             return word
         end
@@ -67,13 +77,13 @@ return {
         vim.keymap.set({ "n", "v" }, "<leader>pe", function()
             local search_word = grep_word()
             builtin.grep_string({ search = search_word })
-        end, { desc = "Search word under cursor/selection" })
+        end, { desc = "Search seleceted cursor/section in vmode" })
 
         vim.keymap.set("n", "<leader>px", function()
-            -- local query = vim.fn.input("Live Grep Exact > ")
-            local query = grep_word()
+            -- local query = vim.fn.input("Grep —> ")
+            get_input()
             builtin.live_grep({
-                default_text = query,
+                default_text = "",
                 additional_args = function()
                     return { "--fixed-strings" }
                 end,
