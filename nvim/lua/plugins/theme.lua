@@ -68,9 +68,10 @@ return {
                     on_colors = function(colors)
                         -- You can adjust these colors to match your VSCode theme
                         colors.error = "#D98870"
-                        colors.warning = "#8FBFDC"
+                        colors.warning = colors.perano
+                        -- colors.warning = "#8FBFDC"
                         -- colors.info = "#9CDCFE" 
-                        colors.hint = colors.perano
+                        -- colors.hint = colors.perano
                     end,
                     -- Customize highlight groups
                     on_highlights = function(highlights, colors)
@@ -136,6 +137,12 @@ return {
 
                         -- Customize netrw directory color (orange)
                         highlights.netrwDir = { fg = colors.koromiko, bold = true }
+
+                        -- Tabs
+                         highlights.TabLine = { fg = colors.grey, bg = "NONE" } -- Inactive tabs
+                         highlights.TabLineSel = { fg = colors.wewak, bg = "NONE", bold = true } -- Active tab
+                         highlights.TabLineFill = { fg = colors.grey, bg = "NONE" } -- Background of the tabline
+                         highlights.TabLineSep = { fg = colors.grey, bg = "NONE" } -- Separator between tabs
 
                         -- Search
                         -- highlights.Search = { fg = colors.total_black, bg = colors.wewak, bold = true }

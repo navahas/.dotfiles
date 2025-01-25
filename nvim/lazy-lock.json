@@ -9,6 +9,7 @@
   "img-clip.nvim": { "branch": "main", "commit": "5ff183655ad98b5fc50c55c66540375bbd62438c" },
   "jellybeans.nvim": { "branch": "main", "commit": "754ba120cb4342ba5d4428c9bf8a78667cadb328" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },
+  "lspkind.nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "e942edf5c85b6a2ab74059ea566cac5b3e1514a4" },
   "mason.nvim": { "branch": "main", "commit": "e2f7f9044ec30067bc11800a9e266664b88cda22" },
   "mini.pick": { "branch": "main", "commit": "c71983579d1ea86158d3285a36d3a1688c75bae7" },

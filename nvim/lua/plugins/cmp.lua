@@ -14,7 +14,7 @@ return {
             window = {
                 completion = {
                     border = "rounded",
-                    winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+                    winhighlight = "Normal:CmpPmenu" -- ",FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
                 },
                 documentation = {
                     border = "rounded",
