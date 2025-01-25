@@ -6,7 +6,7 @@ function fish_prompt
     # set -l color_red (set_color D70000)
     set -l color_red (set_color red)
 
-    set -l color_blue (set_color blue)
+    set -l color_blue (set_color 4E6672)
     set -l color_grey (set_color 5A5A5A)
     set -l color_reset (set_color normal)
 

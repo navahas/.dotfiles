@@ -24,10 +24,10 @@ set -gx PATH $HOME/.nvm/versions/node/v22.13.0/bin $PATH
 set -gx PATH /Applications/Docker.app/Contents/Resources/bin $PATH
 set -gx PATH /opt/homebrew/bin $PATH
 set -gx PATH /opt/homebrew/sbin $PATH
-set -gx PATH /Users/usuario00/.cargo/bin $PATH
+set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH /Applications/Ghostty.app/Contents/MacOS $PATH
 set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
-set -gx PATH /Users/usuario00/.foundry/bin $PATH
+set -gx PATH $HOME.foundry/bin $PATH
 
 # System paths (should already be included, but just in case)
 set -gx PATH /usr/local/bin $PATH

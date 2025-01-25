@@ -80,10 +80,9 @@ return {
         end, { desc = "Search seleceted cursor/section in vmode" })
 
         vim.keymap.set("n", "<leader>px", function()
-            -- local query = vim.fn.input("Grep —> ")
-            get_input()
+            local query = vim.fn.input("Grep —> ")
             builtin.live_grep({
-                default_text = "",
+                default_text = query,
                 additional_args = function()
                     return { "--fixed-strings" }
                 end,
