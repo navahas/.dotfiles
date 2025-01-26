@@ -167,6 +167,12 @@ return {
                         -- RenderMarkdown
                         -- highlights.RenderMarkdownCode = { link = "NONE" }
                         highlights.ColorColumn = { bg = "#202020" }
+                        highlights.RenderMarkdownH6Bg = { fg = colors.background, bg = '#cc8a83' }
+                        highlights.RenderMarkdownH5Bg = { fg = colors.background, bg = '#d98870' }
+                        highlights.RenderMarkdownH4Bg = { fg = colors.background, bg = colors.ship_cove }
+                        highlights.RenderMarkdownH3Bg = { fg = colors.background, bg = colors.biloba_flower }
+                        highlights.RenderMarkdownH2Bg = { fg = colors.background, bg = colors.brandy }
+                        highlights.RenderMarkdownH1Bg = { fg = colors.foreground, bg = colors.background }
 
                     end,
                 })
