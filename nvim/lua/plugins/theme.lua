@@ -91,7 +91,7 @@ return {
                         highlights.TelescopePreviewBorder = { fg = colors.grey, bg = "NONE" }
                         highlights.TelescopePreviewTitle = { fg = "#CC88A3", bg = "NONE" }
                         highlights.TelescopeSelection = { fg = colors.koromiko, bg = "NONE", bold = true }
-                        -- highlights.TelescopeSelectionCaret = { fg = colors.koromiko, bg = "NONE" }
+                        highlights.TelescopeSelectionCaret = { fg = colors.koromiko, bg = "NONE" }
                         highlights.TelescopeMatching = { fg = colors.koromiko, bold = true }
 
                         -- LSP diagnostic highlights without backgrounds
