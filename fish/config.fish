@@ -51,6 +51,7 @@ alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh
 alias tmux-fzf-sessions='~/.local/scripts/tmux-fzf-sessions.sh'
 alias dfzf='~/.local/scripts/docker-fzf-id.sh'
 alias ssh-='~/.local/scripts/ssh-fzf.sh'
+alias uag='~/.local/scripts/update_aerospace_gap.sh'
 alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
