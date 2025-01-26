@@ -34,14 +34,6 @@ run = 'layout floating'
 [key-mapping]
 preset = 'qwerty'
 
-[gaps]
-inner.horizontal = 24
-inner.vertical =   24
-outer.left =       24
-outer.bottom =     24
-outer.top =        24
-outer.right =      24
-
 [mode.main.binding]
 
 cmd-h = [] # Disable "hide application"
