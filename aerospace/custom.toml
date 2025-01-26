@@ -1,0 +1,7 @@
+[gaps]
+inner.horizontal = 11
+inner.vertical = 11
+outer.left = 11
+outer.bottom = 11
+outer.top = 11
+outer.right = 11
