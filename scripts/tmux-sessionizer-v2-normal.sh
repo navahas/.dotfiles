@@ -6,7 +6,12 @@ search_dirs+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
  
  # Select a directory
  selected_dir=$(
-     find "${search_dirs[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null | fzf
+     find "${search_dirs[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null |
+         fzf --color fg:dim,fg+:regular \
+         --list-border --input-border --input-label '  tmux sessionizer — normal ' \
+         --preview '$HOME/.local/scripts/fzf-preview-01.sh {}' \
+         --preview-window 'bottom:30%' --preview-label ' files '
+
  )
  [[ -z $selected_dir || ! -d $selected_dir ]] && exit 1
  
