@@ -3,7 +3,14 @@
 manager_session="_buoyshell-manager"
 selected_sessions=$(tmux list-sessions -F "#{session_name}" | \
     grep -v "^$manager_session$" | \
-    fzf -m --preview 'tmux capture-pane -e -t {}:$(tmux list-windows -t {} -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2) -p')
+    fzf -m \
+    --color fg:dim,fg+:regular \
+    --style minimal \
+    --list-border --list-label '  tmux sessions ' \
+    --preview-window "bottom:70%" \
+    --preview-border \
+    --preview 'tmux capture-pane -e -t {}:$(tmux list-windows -t {} -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2) -p'
+)
 
 [ -z "$selected_sessions" ] && exit 0
 
