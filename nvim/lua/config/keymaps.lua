@@ -7,7 +7,17 @@ map('n', '<leader>pv', ':Ex<CR>', opts)
 map('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>:lua print(" Nvim: source reloaded")<CR>', opts)
 
 -- Motions
-map('n', '<C-k>', ':cnext<CR>', opts)
+-- Scroll down a quarter screen and center
+vim.keymap.set("n", "<C-f>", function()
+  vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "j")
+end, { noremap = true })
+
+-- Scroll up a quarter screen and center
+vim.keymap.set("n", "<C-i>", function()
+  vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "k")
+end, { noremap = true })
+
+map('n', '<c-k>', ':cnext<cr>', opts)
 map('n', '<C-j>', ':cprev<CR>', opts)
 map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
