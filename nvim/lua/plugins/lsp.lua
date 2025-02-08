@@ -40,7 +40,13 @@ return {
         -- Setup Mason and Mason-LSPConfig
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "ts_ls", "lua_ls", "rust_analyzer", "zls" },
+            ensure_installed = {
+                "ts_ls",
+                "denols",
+                "lua_ls",
+                "rust_analyzer",
+                "zls"
+            },
             automatic_installation = true,
         })
 
@@ -70,12 +76,33 @@ return {
         end
 
         -- TypeScript Server
-        lspconfig.ts_ls.setup({
-            capabilities = capabilities,
-            on_attach = on_attach,
-            root_dir = lspconfig.util.root_pattern("package.json"),
-            filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-        })
+        local ts_ls = function()
+            lspconfig.ts_ls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                root_dir = lspconfig.util.root_pattern("package.json"),
+                -- filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+            })
+        end
+
+        -- Deno Typescript Server
+        local deno_ls = function()
+            lspconfig.denols.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+            })
+        end
+
+        local tslsp = function ()
+            local cwd = vim.fn.getcwd()
+            if lspconfig.util.root_pattern("package.json")(cwd) then
+                ts_ls()
+            elseif lspconfig.util.root_pattern("deno.json", "deno.jsonc")(cwd) then
+                deno_ls()
+            end
+        end
+        tslsp()
 
         -- Lua Server
         lspconfig.lua_ls.setup({
