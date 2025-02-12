@@ -35,6 +35,7 @@ map('n', '<leader>Y', 'magg"*yG`a', opts)
 
 -- Misc key mappings
 map('n', '<leader>nh', ':nohl<CR>', opts)
+map('n', '<leader>nw', ':set wrap!<CR>', opts)
 map('n', '<leader>\'', '<C-^>', opts)
 
 -- Custom Commands
