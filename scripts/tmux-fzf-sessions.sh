@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-manager_session="_buoyshell-manager"
+# Not needed due to buoyshell plugin update there's no persistent session
 selected_sessions=$(tmux list-sessions -F "#{session_name}" | \
-    grep -v "^$manager_session$" | \
     fzf -m \
     --color fg:dim,fg+:regular \
     --style minimal \
@@ -17,8 +16,6 @@ selected_sessions=$(tmux list-sessions -F "#{session_name}" | \
 if [ $(echo "$selected_sessions" | wc -l) -gt 1 ]; then
     echo "$selected_sessions" | while read -r session; do
         tmux kill-session -t "$session"
-        tmux list-windows -t "$manager_session" -F "#{window_name}" | grep -q "^$session$" && \
-            tmux kill-window -t "$manager_session:$session"
     done
 else
     [ -z "$TMUX" ] && tmux attach-session -t "$selected_sessions" || tmux switch-client -t "$selected_sessions"
