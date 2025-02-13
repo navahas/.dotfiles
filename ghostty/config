@@ -40,7 +40,7 @@ shell-integration-features = no-cursor, no-sudo
 cursor-style = block
 cursor-style-blink = true
 macos-titlebar-style = hidden
-macos-option-as-alt = left
+# macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
 background-opacity = 0.92
