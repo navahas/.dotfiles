@@ -8,12 +8,12 @@ map('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>:lua print(" Nvim: sour
 
 -- Motions
 -- Scroll down a quarter screen and center
-vim.keymap.set("n", "<C-f>", function()
+vim.keymap.set({"n", "v"}, "<C-f>", function()
   vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "j")
 end, { noremap = true })
 
 -- Scroll up a quarter screen and center
-vim.keymap.set("n", "<C-i>", function()
+vim.keymap.set({"n", "v"}, "<C-i>", function()
   vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "k")
 end, { noremap = true })
 
