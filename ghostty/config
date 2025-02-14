@@ -55,7 +55,8 @@ mouse-hide-while-typing = true
 
 unfocused-split-opacity = 1
 
-macos-icon = custom-style
-macos-icon-frame = plastic
-macos-icon-ghost-color = white
-macos-icon-screen-color = dark sea green,dark slate grey
+macos-icon = chalkboard
+# macos-icon = custom-style
+# macos-icon-frame = plastic
+# macos-icon-ghost-color = white
+# macos-icon-screen-color = dark sea green,dark slate grey
