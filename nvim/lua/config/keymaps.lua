@@ -39,7 +39,8 @@ map('n', '<leader>nw', ':set wrap!<CR>', opts)
 map('n', '<leader>\'', '<C-^>', opts)
 
 -- Custom Commands
-vim.keymap.set('n', '<C-Space>', ':ToggleDiagnostics<CR>', { noremap = true, silent = true })
+-- vim.keymap.set('n', '<C-Space>', ':ToggleDiagnostics<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Space>', ':ShowDiagnostics<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>hn', ':ToggleColorizer<CR>', { noremap = true, silent = true })
 
 -- Wrapped lines
