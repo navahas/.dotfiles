@@ -27,7 +27,7 @@ set -gx PATH /opt/homebrew/sbin $PATH
 set -gx PATH $HOME/.cargo/bin $PATH
 set -gx PATH /Applications/Ghostty.app/Contents/MacOS $PATH
 set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
-set -gx PATH $HOME.foundry/bin $PATH
+set -gx PATH $HOME/.foundry/bin $PATH
 
 # System paths (should already be included, but just in case)
 set -gx PATH /usr/local/bin $PATH
@@ -70,3 +70,4 @@ source "$HOME/.config/fish/fish_secrets.fish"
 
 export BAT_THEME="Visual Studio Dark+"
 export FZF_DEFAULT_OPTS='--reverse'
+
