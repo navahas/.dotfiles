@@ -4,6 +4,7 @@ set -x SHELL /opt/homebrew/bin/fish
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 bind \en 'nvim .'
+bind \cn 'nvim .'
 bind \e\[118\;6u 'tmux-sessionizer-v2-vim; commandline -f repaint'
 bind \e\[110\;6u 'tmux-sessionizer-v2-normal; commandline -f repaint'
 bind \e\[115\;6u 'tmux-fzf-sessions; commandline -f repaint'
@@ -70,4 +71,3 @@ source "$HOME/.config/fish/fish_secrets.fish"
 
 export BAT_THEME="Visual Studio Dark+"
 export FZF_DEFAULT_OPTS='--reverse'
-
