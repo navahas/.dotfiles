@@ -3,11 +3,11 @@ set -x SHELL /opt/homebrew/bin/fish
 
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
-bind \e\[241\;5u 'nvim .'
-bind \e\[118\;6u 'tmux-sessionizer-v2-vim; commandline -f repaint'
-bind \e\[110\;6u 'tmux-sessionizer-v2-normal; commandline -f repaint'
-bind \e\[115\;6u 'tmux-fzf-sessions; commandline -f repaint'
-bind \e\[116\;6u 'tmux list-sessions 2>/dev/null | grep -q . && tmux attach || echo "no tmux sessions found"; commandline -f repaint'
+bind ctrl-ñ 'nvim .'
+bind ctrl-V 'tmux-sessionizer-v2-vim; commandline -f repaint'
+bind ctrl-N 'tmux-sessionizer-v2-normal; commandline -f repaint'
+bind ctrl-S 'tmux-fzf-sessions; commandline -f repaint'
+bind ctrl-T 'tmux list-sessions 2>/dev/null | grep -q . && tmux attach || echo "no tmux sessions found"; commandline -f repaint'
 bind \cx edit_command_buffer
 
 # Environment variables
@@ -58,6 +58,7 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
+alias grep="ggrep"
 
 source (dirname (status --current-filename))/config-osx.fish
 
@@ -70,3 +71,5 @@ source "$HOME/.config/fish/fish_secrets.fish"
 
 export BAT_THEME="Visual Studio Dark+"
 export FZF_DEFAULT_OPTS='--reverse'
+
+set -gx WASMTIME_HOME "$HOME/.wasmtime"
