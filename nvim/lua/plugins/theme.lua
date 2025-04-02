@@ -174,10 +174,12 @@ return {
                         highlights.RenderMarkdownH2Bg = { fg = colors.background, bg = colors.brandy }
                         highlights.RenderMarkdownH1Bg = { fg = colors.foreground, bg = colors.background }
 
+                        -- Avante
+                        highlights.AvanteSidebarWinSeparator = { fg = "#5a5a5a" }
+
                     end,
                 })
                 vim.cmd.colorscheme("jellybeans")
             end,
         }
-        -- https://github.com/yetone/avante.nvim/wiki
 }

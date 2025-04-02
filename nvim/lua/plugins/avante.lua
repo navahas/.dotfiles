@@ -5,7 +5,17 @@ return {
   lazy = true,
   version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
   opts = {
-      provider = "deepseek",
+      provider = "claude",
+      ollama = {
+          endpoint = "http://127.0.0.1:11434",
+          model = "deepseek-r1",
+      },
+      claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-7-sonnet-20250219",
+          temperature = 0,
+          max_tokens = 4096,
+      },
       vendors = {
           deepseek = {
               __inherited_from = "openai",
@@ -13,6 +23,17 @@ return {
               endpoint = "https://api.deepseek.com",
               model = "deepseek-chat",
           },
+      },
+      behaviour = {
+          auto_suggestions = false, -- Experimental stage
+          auto_set_highlight_group = true,
+          auto_set_keymaps = true,
+          auto_apply_diff_after_generation = false,
+          support_paste_from_clipboard = false,
+          minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+          enable_token_counting = true, -- Whether to enable token counting. Default to true.
+          enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
+          enable_claude_text_editor_tool_mode = true, -- Whether to enable Claude Text Editor Tool Mode.
       },
       hints = { enabled = false },
       windows = {
