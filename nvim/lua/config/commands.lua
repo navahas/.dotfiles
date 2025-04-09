@@ -31,3 +31,25 @@ vim.api.nvim_create_user_command('ToggleColorizer', function()
         vim.g.colorizer_on = true
     end
 end, {})
+
+local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+vim.api.nvim_create_augroup('@RustPrint', { clear = true })
+vim.api.nvim_create_augroup('@TypeScriptPrint', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = '@RustPrint',
+    pattern = { 'rust' },
+    callback = function()
+        local macro = 'yo' .. 'println!("@ ----> {}", ' .. esc .. 'pa);' .. esc
+        vim.fn.setreg("l", macro)
+    end
+})
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = '@TypeScriptPrint',
+    pattern = { 'javascript', 'typescript' },
+    callback = function()
+        local macro = 'yo' .. 'console.log("@ ----> ", ' .. esc .. 'pa);' .. esc
+        vim.fn.setreg("l", macro)
+    end
+})
