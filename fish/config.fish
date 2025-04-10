@@ -60,7 +60,6 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
-alias grep="ggrep"
 
 source (dirname (status --current-filename))/config-osx.fish
 
