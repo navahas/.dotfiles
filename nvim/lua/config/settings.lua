@@ -44,7 +44,16 @@ vim.g.netrw_banner = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 
 -- Status Line
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = function()
+    vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
+    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", fg = "#3A3A3A" })
+  end,
+})
+
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", fg = "#3A3A3A" })
 vim.o.statusline = "%#MyStatusLine# %{%v:lua.getStatusString()%}"
 -- vim.o.statusline = vim.o.statusline .. " %f" -- File name
 
