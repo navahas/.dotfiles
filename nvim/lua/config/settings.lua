@@ -17,8 +17,7 @@ vim.cmd([[
   cnoreabbrev WQ wq
 ]])
 
-_G.mystatus = {}
-_G.mystatus.getPath = function()
+local getPath = function()
   local filename = vim.fn.expand('%:t')  -- Get the filename (tail)
   if filename == '' or filename == '[No Name]' then
     -- Return the current directory, replacing the home directory with ~
@@ -30,8 +29,8 @@ _G.mystatus.getPath = function()
   end
 end
 
-_G.mystatus.getStatusString = function()
-    local path = _G.mystatus.getPath()
+_G.getStatusString = _G.getStatusString or function()
+    local path = getPath()
     if path == '' then
         return ''
     else
@@ -45,10 +44,8 @@ vim.g.netrw_banner = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 
 -- Status Line
-vim.cmd([[
-  highlight MyStatusLine guibg=NONE guifg=#5A5A5A
-]])
-vim.o.statusline = "%#MyStatusLine# %{%v:lua.mystatus.getStatusString()%}"
+vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
+vim.o.statusline = "%#MyStatusLine# %{%v:lua.getStatusString()%}"
 -- vim.o.statusline = vim.o.statusline .. " %f" -- File name
 
 vim.opt.swapfile = false -- Disable swap files
