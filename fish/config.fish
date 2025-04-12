@@ -29,7 +29,7 @@ set -gx PATH /Applications/Ghostty.app/Contents/MacOS $PATH
 set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
 set -gx PATH $HOME/.foundry/bin $PATH
 set -gx PATH $HOME/.local/share/solana/install/active_release/bin $PATH
-
+set -gx PATH $HOME/.local/bin $PATH
 
 # System paths (should already be included, but just in case)
 set -gx PATH /usr/local/bin $PATH
