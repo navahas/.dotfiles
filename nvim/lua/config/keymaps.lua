@@ -8,17 +8,20 @@ map('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>:lua print(" Nvim: sour
 
 -- Motions
 -- Scroll down a quarter screen and center
-vim.keymap.set({"n", "v"}, "<C-f>", function()
+local function scroll_down_small()
   vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "j")
-end, { noremap = true })
+end
 
 -- Scroll up a quarter screen and center
-vim.keymap.set({"n", "v"}, "<C-i>", function()
+local function scroll_up_small()
   vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "k")
-end, { noremap = true })
+end
 
-map('n', '<C-j>', ':cnext<cr>', opts)
-map('n', '<C-k>', ':cprev<CR>', opts)
+vim.keymap.set({"n", "v"}, "<C-j>", scroll_down_small, { noremap = true })
+vim.keymap.set({"n", "v"}, "<C-k>", scroll_up_small, { noremap = true })
+
+map('n', '<C-l>', ':cnext<CR>', opts)
+map('n', '<C-h>', ':cprev<CR>', opts)
 map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 map('n', 'J', 'mzJ`z', opts)
@@ -51,3 +54,4 @@ end, {expr = true})
 vim.keymap.set({'n', 'v'}, 'k', function()
   return vim.v.count == 0 and 'gk' or 'k'
 end, {expr = true})
+
