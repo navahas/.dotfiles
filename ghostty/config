@@ -5,7 +5,7 @@ auto-update-channel = stable
 
 command = /opt/homebrew/bin/fish --login --interactive
 
-font-size = 13
+font-size = 15
 font-thicken = true
 font-thicken-strength = 255
 font-feature = -calt
