@@ -55,11 +55,12 @@ alias dfzf='~/.local/scripts/docker-fzf-id.sh'
 alias ssh-='~/.local/scripts/ssh-fzf.sh'
 alias uag='~/.local/scripts/update_aerospace_gap.sh'
 alias ls "ls -p -G"
-alias la "ls -A"
-alias ll "ls -l"
-alias lla "ll -A"
+alias la "ls -Ah"
+alias ll "ls -lh"
+alias lla "ll -Ah"
 alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
+alias ghub-repo="$HOME/.local/scripts/gh-repo-view.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
@@ -74,3 +75,7 @@ export BAT_THEME="Visual Studio Dark+"
 export FZF_DEFAULT_OPTS='--reverse'
 
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
