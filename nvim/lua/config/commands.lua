@@ -53,3 +53,27 @@ vim.api.nvim_create_autocmd('FileType', {
         vim.fn.setreg("l", macro)
     end
 })
+
+-- Open last N commits of the current file in quickfix list
+-- Call with number of versions you want
+-- :lua OpenFileHistoryInQuickfix(5)
+function OpenFileHistoryInQuickfix(n)
+  local file = vim.fn.expand('%')
+  local commits = vim.fn.systemlist("git log -n " .. n .. " --pretty=format:%H -- " .. file)
+  local qf_entries = {}
+
+  for _, sha in ipairs(commits) do
+    local temp_path = "/tmp/" .. sha .. "_" .. vim.fn.fnamemodify(file, ":t")
+    vim.fn.system("git show " .. sha .. ":" .. file .. " > " .. temp_path)
+    table.insert(qf_entries, {
+      filename = temp_path,
+      lnum = 1,
+      col = 1,
+      text = "Commit: " .. sha
+    })
+  end
+
+  vim.fn.setqflist(qf_entries, 'r')
+  vim.cmd("copen")
+end
+
