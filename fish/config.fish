@@ -60,7 +60,7 @@ alias ll "ls -lh"
 alias lla "ll -Ah"
 alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
-alias ghub-repo="$HOME/.local/scripts/gh-repo-view.sh"
+alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
