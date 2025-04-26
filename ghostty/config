@@ -36,10 +36,11 @@ window-save-state = always
 # window-padding-color = extend-always
 
 shell-integration = fish
-shell-integration-features = no-cursor, no-sudo
+shell-integration-features = no-cursor, no-sudo, no-title
 cursor-style = block
 cursor-style-blink = true
 macos-titlebar-style = hidden
+title = " "
 # macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
