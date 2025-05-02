@@ -1,30 +1,62 @@
 #!/usr/bin/env bash
 
-# Not needed due to buoyshell plugin update there's no persistent session
 if [ -z "$(tmux list-sessions 2>/dev/null)" ]; then
     echo "no tmux sessions found"
     exit 0
 fi
 
-selected_sessions=$(tmux list-sessions -F "#{session_name}" | \
-    fzf -m \
-    --color fg:dim,fg+:regular \
-    --style minimal \
-    --list-border --list-label '  tmux sessions ' \
-    --preview-window "bottom:70%" \
-    --preview-border \
-    --preview 'tmux capture-pane -e -t {}:$(tmux list-windows -t {} -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2) -p'
+header="
+████████╗███╗   ███╗██╗   ██╗██╗   ██╗
+╚══██╔══╝████╗ ████║██║   ██║ ██╗ ██╔╝
+   ██║   ██╔████╔██║██║   ██║  ████╔╝ 
+   ██║   ██║╚██╔╝██║██║   ██║ ██╔═██╗ 
+   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝  ██╗
+   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝"
+
+session_windows=$(tmux list-windows -a -F "#{session_name}:#{window_index} - #{window_name}")
+
+selected=$(echo "$session_windows" | fzf -m \
+    --header="$header" \
+    --header-first \
+    --prompt='[picker]> ' \
+    --layout=reverse \
+    --input-border --input-label-pos=bottom --input-label '  tmux session — fzf ' \
+    --list-border \
+    --preview-window="right:65%" \
+    --preview='
+          session_window=$(echo {1} | cut -d" " -f1)
+          session=$(echo "$session_window" | cut -d: -f1)
+        
+          active_window=$(tmux list-windows -t "$session" -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2)
+        
+          if [ -n "$active_window" ]; then
+            tmux capture-pane -e -t "$session:$active_window" -p
+          else
+            tmux capture-pane -e -t "$session:0" -p 2>/dev/null || echo "No window to preview"
+          fi
+        ' \
+    --tiebreak=begin \
+    --preview='tmux capture-pane -e -t {1} -p' \
+    --color=header:#dcdccc,prompt:#c67c67,input-label:#e7e7d3,list-border:#c67c67,preview-label:#e7e7d3,pointer:#c67c67
 )
 
-if [ -z "$selected_sessions" ]; then
+if [ -z "$selected" ]; then
     echo "no tmux session selected"
     exit 0
 fi
 
-if [ $(echo "$selected_sessions" | wc -l) -gt 1 ]; then
-    echo "$selected_sessions" | while read -r session; do
-        tmux kill-session -t "$session"
+selected_count=$(echo "$selected" | wc -l)
+
+if [ "$selected_count" -gt 1 ]; then
+    echo "$selected" | while read -r line; do
+        target=$(echo "$line" | cut -d' ' -f1)
+        tmux kill-window -t "$target"
     done
 else
-    [ -z "$TMUX" ] && tmux attach-session -t "$selected_sessions" || tmux switch-client -t "$selected_sessions"
+    target=$(echo "$selected" | cut -d' ' -f1)
+    if [ -z "$TMUX" ]; then
+        tmux attach-session -t "$target"
+    else
+        tmux switch-client -t "$target"
+    fi
 fi
