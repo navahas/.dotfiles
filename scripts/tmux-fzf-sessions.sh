@@ -23,18 +23,8 @@ selected=$(echo "$session_windows" | fzf -m \
     --input-border --input-label-pos=bottom --input-label '  tmux session — fzf ' \
     --list-border \
     --preview-window="right:65%" \
-    --preview='
-          session_window=$(echo {1} | cut -d" " -f1)
-          session=$(echo "$session_window" | cut -d: -f1)
-        
-          active_window=$(tmux list-windows -t "$session" -F "#{window_active} #{window_index}" | grep "^1" | cut -d" " -f2)
-        
-          if [ -n "$active_window" ]; then
-            tmux capture-pane -e -t "$session:$active_window" -p
-          else
-            tmux capture-pane -e -t "$session:0" -p 2>/dev/null || echo "No window to preview"
-          fi
-        ' \
+    --preview-border --preview-label ' preview ' \
+    --bind '?:toggle-preview' \
     --tiebreak=begin \
     --preview='tmux capture-pane -e -t {1} -p' \
     --color=header:#dcdccc,prompt:#c67c67,input-label:#e7e7d3,list-border:#c67c67,preview-label:#e7e7d3,pointer:#c67c67
@@ -48,9 +38,9 @@ fi
 selected_count=$(echo "$selected" | wc -l)
 
 if [ "$selected_count" -gt 1 ]; then
-    echo "$selected" | while read -r line; do
+    echo "$selected" | tac | while read -r line; do
         target=$(echo "$line" | cut -d' ' -f1)
-        tmux kill-window -t "$target"
+        tmux kill-window -t "$target" 2>/dev/null || true
     done
 else
     target=$(echo "$selected" | cut -d' ' -f1)
