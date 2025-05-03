@@ -14,4 +14,4 @@ size=$(du -sh "$dir" 2>/dev/null | cut -f1)
 printf "${dim}┌ %s%s${reset}\n" "$(basename "$dir")" " $size"
 
 # Directory contents
-eza --color=always --icons --git --group-directories-first "$dir"
+eza -a --color=always --icons --git --group-directories-first --oneline "$dir"
