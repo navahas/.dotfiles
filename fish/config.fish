@@ -42,18 +42,18 @@ set -gx PATH /sbin $PATH
 alias vim='nvim'
 alias ovim='vim'
 alias v.='nvim .'
-alias tpv='~/.local/scripts/tmux-sessionizer.sh'
-alias tpn='~/.local/scripts/tmux-sessionizer.sh --n'
-alias src='source ~/.dotfiles/fish/config.fish'
-alias dirsync='bash ~/.local/scripts/sync-state.sh'
-alias dirsync-dev='dirsync -l ~/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
-alias neo='neofetch --kitty && ~/.local/techstack.sh'
-alias tmux-sessionizer-v2-vim='~/.local/scripts/tmux-sessionizer-v2-vim.sh'
-alias tmux-sessionizer-v2-normal='~/.local/scripts/tmux-sessionizer-v2-normal.sh'
-alias tmux-fzf-sessions='~/.local/scripts/tmux-fzf-sessions.sh'
-alias dfzf='~/.local/scripts/docker-fzf-id.sh'
-alias ssh-='~/.local/scripts/ssh-fzf.sh'
-alias uag='~/.local/scripts/update_aerospace_gap.sh'
+alias tpv='$HOME/.local/scripts/tmux-sessionizer.sh'
+alias tpn='$HOME/.local/scripts/tmux-sessionizer.sh --n'
+alias src='source $HOME/.dotfiles/fish/config.fish'
+alias dirsync='bash $HOME/.local/scripts/sync-state.sh'
+alias dirsync-dev='dirsync -l $HOME/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
+alias neo='neofetch --kitty && $HOME/.local/techstack.sh'
+alias tmux-sessionizer-v2-vim='$HOME/.local/scripts/tmux-sessionizer-v2-vim.sh'
+alias tmux-sessionizer-v2-normal='$HOME/.local/scripts/tmux-sessionizer-v2-normal.sh'
+alias tmux-fzf-sessions='$HOME/.local/scripts/tmux-fzf-sessions.sh'
+alias dfzf='$HOME/.local/scripts/docker-fzf-id.sh'
+alias ssh-='$HOME/.local/scripts/ssh-fzf.sh'
+alias uag='$HOME/.local/scripts/update_aerospace_gap.sh'
 alias ls "ls -p -G"
 alias la "ls -Ah"
 alias ll "ls -lh"
@@ -62,6 +62,7 @@ alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
 alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
 alias ghrepo-user="$HOME/.local/scripts/gh-user-view.sh"
+alias obs="$HOME/.local/scripts/obsidian-tmux-vim.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
@@ -79,4 +80,4 @@ set -gx WASMTIME_HOME "$HOME/.wasmtime"
 
 # Added by OrbStack: command-line tools and integration
 # This won't be added again if you remove it.
-source ~/.orbstack/shell/init2.fish 2>/dev/null || :
+source $HOME/.orbstack/shell/init2.fish 2>/dev/null || :
