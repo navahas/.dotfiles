@@ -63,6 +63,7 @@ alias gl="git log --oneline --graph --decorate --all"
 alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
 alias ghrepo-user="$HOME/.local/scripts/gh-user-view.sh"
 alias obs="$HOME/.local/scripts/obsidian-tmux-vim.sh"
+alias git-treexplorer="$HOME/.local/scripts/git-tree-explorer.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
