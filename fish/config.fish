@@ -64,6 +64,8 @@ alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
 alias ghrepo-user="$HOME/.local/scripts/gh-user-view.sh"
 alias obs="$HOME/.local/scripts/obsidian-tmux-vim.sh"
 alias git-treexplorer="$HOME/.local/scripts/git-tree-explorer.sh"
+alias nu='nu -c'
+alias sh-bm="$HOME/.local/scripts/shell-benchmark.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
