@@ -2,14 +2,19 @@ function fish_prompt
     set -l last_status $status
 
     # Colors
-    set -l color_green (set_color 87D7AE)
-    # set -l color_red (set_color D70000)
-    set -l color_red (set_color red)
-
+    # set -l color_green (set_color 87D7AE)
+    # # set -l color_red (set_color D70000)
+    # set -l color_red (set_color red)
     # set -l color_blue (set_color 4E6672)
-    # set -l color_grey (set_color 5a5a5a)
-    set -l color_blue (set_color 81a1c1)
+    # # set -l color_grey (set_color 5a5a5a)
+    # # set -l color_blue (set_color 81a1c1)
+    # set -l color_grey (set_color 868686)
+
+    set -l color_green (set_color green)
+    set -l color_red (set_color red)
+    set -l color_blue (set_color blue)
     set -l color_grey (set_color 868686)
+
     set -l color_reset (set_color normal)
 
     # Current directory
@@ -32,8 +37,10 @@ function fish_prompt
 
     # Prompt symbol with your custom arrow
     if test $last_status -ne 0
-       echo -n "$color_red"\["$last_status"\]"   $color_reset"
+       echo -n "$color_red"\["$last_status"\]"   $color_reset"
+       # echo -n "$color_red"\["$last_status"\]"   $color_reset"
     else
-       echo -n "$color_green  $color_reset"
+       echo -n "$color_green  $color_reset"
+       # echo -n "$color_green  $color_reset"
     end
 end

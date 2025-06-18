@@ -1,4 +1,4 @@
-config-file = ./themes/Ext-00
+config-file = ./themes/Custom-01
 
 auto-update = off
 auto-update-channel = stable
