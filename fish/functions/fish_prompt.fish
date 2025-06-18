@@ -6,10 +6,11 @@ function fish_prompt
     # set -l color_red (set_color D70000)
     set -l color_red (set_color red)
 
-    set -l color_blue (set_color 4E6672)
-    set -l color_grey (set_color 5A5A5A)
+    # set -l color_blue (set_color 4E6672)
+    # set -l color_grey (set_color 5a5a5a)
+    set -l color_blue (set_color 81a1c1)
+    set -l color_grey (set_color 868686)
     set -l color_reset (set_color normal)
-
 
     # Current directory
     set -l current_dir (string replace -r "^$HOME" "~" $PWD)

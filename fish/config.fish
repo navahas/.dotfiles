@@ -30,6 +30,7 @@ set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
 set -gx PATH $HOME/.foundry/bin $PATH
 set -gx PATH $HOME/.local/share/solana/install/active_release/bin $PATH
 set -gx PATH $HOME/.local/bin $PATH
+set -gx PATH /nix/var/nix/profiles/default/bin $PATH
 
 # System paths (should already be included, but just in case)
 set -gx PATH /usr/local/bin $PATH
@@ -62,7 +63,7 @@ alias ta="tmux attach"
 alias gl="git log --oneline --graph --decorate --all"
 alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
 alias ghrepo-user="$HOME/.local/scripts/gh-user-view.sh"
-alias obs="$HOME/.local/scripts/obsidian-tmux-vim.sh"
+alias ob="$HOME/.local/scripts/obsidian-tmux-vim.sh"
 alias git-treexplorer="$HOME/.local/scripts/git-tree-explorer.sh"
 alias nu='nu -c'
 alias sh-bm="$HOME/.local/scripts/shell-benchmark.sh"
