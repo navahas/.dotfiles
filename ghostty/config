@@ -1,5 +1,5 @@
-theme = Custom
-# theme = JellyBeans
+config-file = ./themes/Ext-00
+
 auto-update = off
 auto-update-channel = stable
 
