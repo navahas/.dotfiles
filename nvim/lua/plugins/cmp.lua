@@ -14,11 +14,14 @@ return {
             window = {
                 completion = {
                     border = "rounded",
-                    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel" -- ",FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
+                    winhighlight = "Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
+                    -- winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel"
+                    -- ",FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
                 },
                 documentation = {
                     border = "rounded",
-                    winhighlight = "Normal:CmpDoc",
+                    -- winhighlight = "Normal:CmpDoc",
+                    winhighlight = "Normal:CmpDoc,FloatBorder:CmpDocBorder",
                 }
             },
             completion = {

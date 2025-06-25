@@ -1,9 +1,9 @@
 return {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
+        "neovim/nvim-lspconfig",
         "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
@@ -48,6 +48,7 @@ return {
                 "zls"
             },
             automatic_installation = true,
+            automatic_enable = false
         })
 
         local capabilities = cmp_nvim_lsp.default_capabilities()
@@ -130,6 +131,13 @@ return {
 
         -- Zig Server
         lspconfig.zls.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+
+        })
+
+        -- C server
+        lspconfig.clangd.setup({
             capabilities = capabilities,
             on_attach = on_attach,
         })

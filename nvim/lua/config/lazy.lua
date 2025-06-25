@@ -1,32 +1,32 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
-        lazypath,
-    })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({
+            { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+            { out, "WarningMsg" },
+            { "\nPress any key to exit..." },
+        }, true, {})
+        vim.fn.getchar()
+        os.exit(1)
+    end
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Setup Lazy.nvim to load all plugin specs from `lua/plugins/`
+-- Setup lazy.nvim
 require("lazy").setup({
     git = {
-        url_format = 'git@github.com:%s.git'
+    	url_format = 'git@github.com:%s.git'
     },
     spec = {
-        { import = "plugins" }, -- Import all files from `lua/plugins/`
+        -- import your plugins
+        { import = "plugins" },
     },
-    defaults = {
-        lazy = true, -- All plugins lazy-loaded by default
-    },
-    install = {
-        colorscheme = { "jellybeans", "vscode" },
-    },
-    ui = {
-        border = "rounded",
-    },
+    -- Configure any other settings here. See the documentation for more details.
+    -- colorscheme that will be used when installing plugins.
+    install = { colorscheme = { "jellybeans" } },
+    -- automatically check for plugin updates
+    checker = { enabled = true },
 })
-
