@@ -12,6 +12,9 @@ return {
         local cmp = require("cmp")
         local lspkind = require("lspkind")
 
+        -- Optional: Add custom highlight for Supermaven
+        vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#91A465" })
+
         cmp.setup({
             window = {
                 completion = {
@@ -35,6 +38,7 @@ return {
             sources = {
                 { name = "nvim_lsp" }, -- LSP completions
                 { name = "buffer" },   -- Buffer completions
+                { name = "supermaven" }, -- Maven completions
             },
             formatting = {
                 format = lspkind.cmp_format({
@@ -45,6 +49,11 @@ return {
                     menu = {
                         buffer = "[BUF]",
                         nvim_lsp = "[LSP]",
+                        supermaven = "[MVN]",
+                    },
+                    symbol_map = {
+                        Buffer = "﬘",
+                        Supermaven = "󰀘",
                     },
                 }),
             },
