@@ -1,7 +1,7 @@
--- Create command to toggle lsp diagnostics
-
+-- ╭──────────────────────────────────────────────╮
+-- │ LSP DIAGNOSTICS                              │
+-- ╰──────────────────────────────────────────────╯
 vim.g.diagnostics_visible = true
-
 vim.api.nvim_create_user_command('ShowDiagnostics', function()
     if vim.g.diagnostics_visible then
         vim.api.nvim_echo({{ " ——> LSP diagnostics are visible", "" }}, true, {});
@@ -20,8 +20,10 @@ vim.api.nvim_create_user_command('ToggleDiagnostics', function()
     end
 end, {})
 
+-- ╭──────────────────────────────────────────────╮
+-- │ COLORIZER                                    │
+-- ╰──────────────────────────────────────────────╯
 vim.g.colorizer_on = false
-
 vim.api.nvim_create_user_command('ToggleColorizer', function()
     if vim.g.colorizer_on then
         vim.cmd('ColorizerDetachFromBuffer')
@@ -32,6 +34,10 @@ vim.api.nvim_create_user_command('ToggleColorizer', function()
     end
 end, {})
 
+
+-- ╭──────────────────────────────────────────────╮
+-- │ SUPERMAVEN                                   │
+-- ╰──────────────────────────────────────────────╯
 vim.api.nvim_create_user_command("ToggleSupermaven", function()
     local supermaven_api = require("supermaven-nvim.api")
     if supermaven_api.is_running() then
@@ -42,7 +48,13 @@ vim.api.nvim_create_user_command("ToggleSupermaven", function()
         print("Supermaven: ON.")
     end
 end, {})
+vim.keymap.set("n", "<Tab>o", "<cmd>ToggleSupermaven<CR>", {
+  desc = "Toggle Supermaven",
+})
 
+-- ╭──────────────────────────────────────────────╮
+-- │ MACROS: AUTO FILETYPE SETUP                  │
+-- ╰──────────────────────────────────────────────╯
 local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
 vim.api.nvim_create_augroup('@RustPrint', { clear = true })
 vim.api.nvim_create_augroup('@TypeScriptPrint', { clear = true })
@@ -65,6 +77,9 @@ vim.api.nvim_create_autocmd('FileType', {
     end
 })
 
+-- ╭──────────────────────────────────────────────╮
+-- │ GIT FILE HISTORY                             │
+-- ╰──────────────────────────────────────────────╯
 -- Open last N commits of the current file in quickfix list
 -- Call with number of versions you want
 -- :lua OpenFileHistoryInQuickfix(5)
