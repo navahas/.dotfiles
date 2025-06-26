@@ -71,7 +71,7 @@ return {
                     colors.warning = colors.perano
                     -- colors.warning = "#8FBFDC"
                     -- colors.info = "#9CDCFE" 
-                    -- colors.hint = colors.perano
+                    colors.hint = colors.perano
                 end,
                 -- Customize highlight groups
                 on_highlights = function(highlights, colors)
@@ -124,9 +124,12 @@ return {
                     highlights.LspInfoBorder = { fg = colors.grey, bg = "NONE" }
                     highlights.PmenuDocBorder = { fg = colors.grey, bg = "NONE" }
 
-                    highlights.CmpBorder = { fg = '#5a5a5a', bg = '#1E1E1E' }
+                    highlights.CmpBorder = { fg = '#333333', bg = '#1E1E1E' }
                     highlights.CmpPmenuBorder = { link = 'CmpBorder' }
                     highlights.CmpDocBorder = { link = 'CmpBorder' }
+                    highlights.CmpPmenu = { fg = "#858585", bg = "#333333" }
+                    highlights.PmenuSel = { fg = colors.koromiko, bg = "#333333", bold = true }
+                    highlights.Pmenu = { fg = "#858585", bg = "#333333" }
 
                     -- For hover documentation
                     highlights.LspSignatureActiveParameter = { fg = colors.magenta, bg = "NONE", bold = true }
@@ -166,23 +169,16 @@ return {
 
                     -- RenderMarkdown
                     -- highlights.RenderMarkdownCode = { link = "NONE" }
-                    highlights.ColorColumn = { bg = "#202020" }
-                    highlights.RenderMarkdownH6Bg = { fg = colors.background, bg = '#cc8a83' }
-                    highlights.RenderMarkdownH5Bg = { fg = colors.background, bg = '#d98870' }
-                    highlights.RenderMarkdownH4Bg = { fg = colors.background, bg = colors.ship_cove }
-                    highlights.RenderMarkdownH3Bg = { fg = colors.background, bg = colors.biloba_flower }
-                    highlights.RenderMarkdownH2Bg = { fg = colors.background, bg = colors.brandy }
-                    highlights.RenderMarkdownH1Bg = { fg = colors.foreground, bg = colors.background }
+                    -- highlights.ColorColumn = { bg = "#202020" }
+                    -- highlights.RenderMarkdownH6Bg = { fg = colors.background, bg = '#cc8a83' }
+                    -- highlights.RenderMarkdownH5Bg = { fg = colors.background, bg = '#d98870' }
+                    -- highlights.RenderMarkdownH4Bg = { fg = colors.background, bg = colors.ship_cove }
+                    -- highlights.RenderMarkdownH3Bg = { fg = colors.background, bg = colors.biloba_flower }
+                    -- highlights.RenderMarkdownH2Bg = { fg = colors.background, bg = colors.brandy }
+                    -- highlights.RenderMarkdownH1Bg = { fg = colors.foreground, bg = colors.background }
 
                     -- Avante
                     highlights.AvanteSidebarWinSeparator = { fg = "#5a5a5a" }
-
-                    -- Cmp
-                    highlights.CmpPmenu = { fg = colors.foreground, bg = "#1E1E1E" }
-                    highlights.CmpBorder = { fg = "#5a5a5a", bg = "#1E1E1E" }
-                    highlights.CmpDoc = { fg = colors.foreground, bg = "#1E1E1E" }
-                    highlights.CmpDocBorder = { fg = "#5a5a5a", bg = "#1E1E1E" }
-                    highlights.PmenuSel = { fg = colors.koromiko, bg = "NONE", bold = true }
 
                 end,
             })
