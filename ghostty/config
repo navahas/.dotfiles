@@ -1,5 +1,7 @@
 config-file = ./themes/Custom-01
 
+custom-shader = shaders/cursor_smear_fade.glsl
+
 auto-update = off
 auto-update-channel = stable
 
