@@ -31,6 +31,8 @@ keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+k=goto_split:top
 keybind = super+ctrl+j=goto_split:bottom
+keybind = super+-=increase_font_size:1
+keybind = super+.=decrease_font_size:1
 
 window-inherit-font-size = true
 window-inherit-working-directory = true
