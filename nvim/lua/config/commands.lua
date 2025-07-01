@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = '@RustPrint',
     pattern = { 'rust' },
     callback = function()
-        local macro = 'yo' .. 'println!("@ ----> {}", ' .. esc .. 'pa);' .. esc
+        local macro = 'yiWo' .. 'println!("{}", ' .. esc .. 'pa);' .. esc
         vim.fn.setreg("l", macro)
     end
 })
@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd('FileType', {
     group = '@TypeScriptPrint',
     pattern = { 'javascript', 'typescript' },
     callback = function()
-        local macro = 'yo' .. 'console.log("@ ----> ", ' .. esc .. 'pa);' .. esc
+        local macro = 'yiWo' .. 'console.log("", ' .. esc .. 'pa);' .. esc
         vim.fn.setreg("l", macro)
     end
 })
