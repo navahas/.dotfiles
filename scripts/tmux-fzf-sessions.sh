@@ -5,29 +5,31 @@ if [ -z "$(tmux list-sessions 2>/dev/null)" ]; then
     exit 0
 fi
 
-header="
-████████╗███╗   ███╗██╗   ██╗██╗   ██╗
-╚══██╔══╝████╗ ████║██║   ██║ ██╗ ██╔╝
-   ██║   ██╔████╔██║██║   ██║  ████╔╝ 
-   ██║   ██║╚██╔╝██║██║   ██║ ██╔═██╗ 
-   ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝  ██╗
-   ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝"
+# header="
+# ████████╗███╗   ███╗██╗   ██╗██╗   ██╗
+# ╚══██╔══╝████╗ ████║██║   ██║ ██╗ ██╔╝
+#    ██║   ██╔████╔██║██║   ██║  ████╔╝ 
+#    ██║   ██║╚██╔╝██║██║   ██║ ██╔═██╗ 
+#    ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝  ██╗
+#    ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝"
+
 
 session_windows=$(tmux list-windows -a -F "#{session_name}:#{window_index} - #{window_name}")
 
 selected=$(echo "$session_windows" | fzf -m \
-    --header="$header" \
+    --style full \
+    --header="" --header-label-pos=bottom --header-label '  tmux session — fzf ' \
     --header-first \
     --prompt='[picker]> ' \
     --layout=reverse \
-    --input-border --input-label-pos=bottom --input-label '  tmux session — fzf ' \
+    --input-border \
     --list-border \
-    --preview-window="right:65%" \
+    --preview-window="right:75%" \
     --preview-border --preview-label ' preview ' \
     --bind '?:toggle-preview' \
     --tiebreak=begin \
     --preview='tmux capture-pane -e -t {1} -p' \
-    --color=header:#dcdccc,prompt:#c67c67,input-label:#e7e7d3,list-border:#c67c67,preview-label:#e7e7d3,pointer:#c67c67
+    --color=header:#dcdccc,prompt:#c67c67,header-label:#e7e7d3,list-border:#c67c67,preview-label:#e7e7d3,pointer:#c67c67
 )
 
 if [ -z "$selected" ]; then
