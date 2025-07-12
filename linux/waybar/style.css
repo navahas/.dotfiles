@@ -1,79 +1,79 @@
 * {
-  font-family: "JetBrainsMono NF", monospace;
-  font-size: 15px;
-  margin: 0;
-  padding: 0;
+    font-family: "JetBrainsMono NF", monospace;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 window#waybar {
-  background: #000000;
-  color: #ffffff;
-  padding: 4px;
+    background: #000000;
+    color: #ffffff;
+    padding: 4px;
 }
 
 #workspaces button {
-  color: #666666;
-  padding: 0 8px;
-  margin: 0 2px;
-  border-radius: 6px;
+    color: #5a5a5a;
+    padding: 0 8px;
+    margin: 0 2px;
+    border-radius: 6px;
 }
 
 #workspaces button.active {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    /*background: rgba(255, 255, 255, 0.1);*/
 }
 
 #cpu, #memory, #clock, #battery, #pulseaudio, #network, #custom-power {
-  padding: 0 12px;
-  margin: 0 4px;
-  color: #ffffff;
+    padding: 0 12px;
+    margin: 0 4px;
+    color: #ffffff;
 }
 
 #custom-power {
-  color: #ff6666;
+    color: #ff6666;
 }
 
 #battery.charging { color: #66ff66; }
 #battery.warning:not(.charging) { color: #ff6666; }
 
 tooltip {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  padding: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 8px;
 }
 
 #clock {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 calendar {
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 8px;
-  padding: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 8px;
+    padding: 8px;
 }
 
 calendar:selected {
-  background: #ffffff;
-  color: #000000;
-  font-weight: bold;
+    background: #ffffff;
+    color: #000000;
+    font-weight: bold;
 }
 
 calendar.header {
-  color: #ffffff;
-  font-weight: bold;
+    color: #ffffff;
+    font-weight: bold;
 }
 
 calendar.highlight {
-  background: #303030;
-  color: #ffffff;
-  border-radius: 4px;
+    background: #303030;
+    color: #ffffff;
+    border-radius: 4px;
 }
 
 calendar:indeterminate {
-  color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 calendar.button {
-  color: #ffffff;
-  border-radius: 4px;
+    color: #ffffff;
+    border-radius: 4px;
 }

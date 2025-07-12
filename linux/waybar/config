@@ -5,7 +5,6 @@
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
-    "ipc": true,
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["custom/time", "clock"],
     "modules-right": ["cpu", "memory", "bluetooth", "pulseaudio", "network", "battery", "custom/power"],
@@ -60,11 +59,6 @@
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
         "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-
-    "custom/time": {
-       "format": "󰅐 {:%H:%M}",
-       "interval": 60
     },
 
     "clock": {
