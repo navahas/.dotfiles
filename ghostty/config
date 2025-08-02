@@ -25,7 +25,7 @@ font-feature = cv11
 # alternate 0
 font-feature = cv16
 
-adjust-cell-height = 22%
+adjust-cell-height = 11%
 
 keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
@@ -48,7 +48,7 @@ title = " "
 # macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
-background-opacity = 0.92
+background-opacity = 0.9
 background-blur-radius = 20
 
 quick-terminal-position = bottom
