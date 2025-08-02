@@ -9,6 +9,7 @@
    ~/.config/ghostty: ghostty
    ~/.config/kitty: kitty
    ~/.config/fish: fish
+   ~/.config/eza: eza
    ~/.tmux.conf: tmux/.tmux.conf
    ~/.p10k.zsh: p10k/.p10k.zsh
    ~/.local/scripts: scripts

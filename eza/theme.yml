@@ -1,0 +1,12 @@
+colourful: true
+
+filekinds:
+  directory: {foreground: "#F0DFAE", is_bold: false}
+
+users:
+  user_you: {foreground: "#dcdccd", is_bold: false}
+  user_root: {foreground: "#dcdccd", is_bold: false}
+  user_other: {foreground: "#dcdccd", is_bold: false}
+  group_yours: {foreground: "#dcdccd", is_bold: false}
+  group_other: {foreground: "#dcdccd", is_bold: false}
+  group_root: {foreground: "#dcdccd", is_bold: false}
