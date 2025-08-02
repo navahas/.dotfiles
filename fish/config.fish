@@ -15,6 +15,7 @@ set -gx EDITOR nvim
 set -gx VISUAL nvim
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx NVM_DIR $HOME/.nvm
+set -gx EZA_CONFIG_DIR $HOME/.config/eza
 
 # Clear existing PATH
 set -gx PATH
@@ -40,33 +41,35 @@ set -gx PATH /usr/sbin $PATH
 set -gx PATH /sbin $PATH
 
 # Aliases
-alias vim='nvim'
-alias ovim='vim'
-alias v.='nvim .'
-alias tpv='$HOME/.local/scripts/tmux-sessionizer.sh'
-alias tpn='$HOME/.local/scripts/tmux-sessionizer.sh --n'
-alias src='source $HOME/.dotfiles/fish/config.fish'
-alias dirsync='bash $HOME/.local/scripts/sync-state.sh'
-alias dirsync-dev='dirsync -l $HOME/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
-alias neo='neofetch --kitty && $HOME/.local/techstack.sh'
-alias tmux-sessionizer-v2-vim='$HOME/.local/scripts/tmux-sessionizer-v2-vim.sh'
-alias tmux-sessionizer-v2-normal='$HOME/.local/scripts/tmux-sessionizer-v2-normal.sh'
-alias tmux-fzf-sessions='$HOME/.local/scripts/tmux-fzf-sessions.sh'
-alias dfzf='$HOME/.local/scripts/docker-fzf-id.sh'
-alias ssh-='$HOME/.local/scripts/ssh-fzf.sh'
-alias uag='$HOME/.local/scripts/update_aerospace_gap.sh'
+alias vim 'nvim'
+alias ovim 'vim'
+alias v. 'nvim .'
+alias tpv '$HOME/.local/scripts/tmux-sessionizer.sh'
+alias tpn '$HOME/.local/scripts/tmux-sessionizer.sh --n'
+alias src 'source $HOME/.dotfiles/fish/config.fish'
+alias dirsync 'bash $HOME/.local/scripts/sync-state.sh'
+alias dirsync-dev 'dirsync -l $HOME/dev/ -r pvps:~/dev/ -e "build/,*.tmp"'
+alias neo 'neofetch --kitty && $HOME/.local/techstack.sh'
+alias tmux-sessionizer-v2-vim '$HOME/.local/scripts/tmux-sessionizer-v2-vim.sh'
+alias tmux-sessionizer-v2-normal '$HOME/.local/scripts/tmux-sessionizer-v2-normal.sh'
+alias tmux-fzf-sessions '$HOME/.local/scripts/tmux-fzf-sessions.sh'
+alias dfzf '$HOME/.local/scripts/docker-fzf-id.sh'
+alias ssh- '$HOME/.local/scripts/ssh-fzf.sh'
+alias uag '$HOME/.local/scripts/update_aerospace_gap.sh'
 alias ls "ls -p -G"
 alias la "ls -Ah"
-alias ll "ls -lh"
-alias lla "ll -Ah"
-alias ta="tmux attach"
-alias gl="git log --oneline --graph --decorate --all"
-alias ghrepo="$HOME/.local/scripts/gh-repo-view.sh"
-alias ghrepo-user="$HOME/.local/scripts/gh-user-view.sh"
-alias ob="$HOME/.local/scripts/obsidian-tmux-vim.sh"
-alias git-treexplorer="$HOME/.local/scripts/git-tree-explorer.sh"
-alias nu='nu -c'
-alias sh-bm="$HOME/.local/scripts/shell-benchmark.sh"
+#alias ll "ls -lh"
+#alias lla "ll -Ah"
+alias ll "eza -l -g --icons"
+alias lla "ell -a"
+alias ta "tmux attach"
+alias gl "git log --oneline --graph --decorate --all"
+alias ghrepo "$HOME/.local/scripts/gh-repo-view.sh"
+alias ghrepo-user "$HOME/.local/scripts/gh-user-view.sh"
+alias ob "$HOME/.local/scripts/obsidian-tmux-vim.sh"
+alias git-treexplorer "$HOME/.local/scripts/git-tree-explorer.sh"
+alias nu 'nu -c'
+alias sh-bm "$HOME/.local/scripts/shell-benchmark.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
 
