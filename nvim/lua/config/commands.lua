@@ -34,24 +34,6 @@ vim.api.nvim_create_user_command('ToggleColorizer', function()
     end
 end, {})
 
-
--- ╭──────────────────────────────────────────────╮
--- │ SUPERMAVEN                                   │
--- ╰──────────────────────────────────────────────╯
-vim.api.nvim_create_user_command("ToggleSupermaven", function()
-    local supermaven_api = require("supermaven-nvim.api")
-    if supermaven_api.is_running() then
-        supermaven_api.stop()
-        print("Supermaven: OFF.")
-    else
-        supermaven_api.start()
-        print("Supermaven: ON.")
-    end
-end, {})
-vim.keymap.set("n", "<Tab>o", "<cmd>ToggleSupermaven<CR>", {
-  desc = "Toggle Supermaven",
-})
-
 -- ╭──────────────────────────────────────────────╮
 -- │ MACROS: AUTO FILETYPE SETUP                  │
 -- ╰──────────────────────────────────────────────╯
