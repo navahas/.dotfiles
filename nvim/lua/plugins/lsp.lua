@@ -58,22 +58,20 @@ return {
         local on_attach = function(client, bufnr)
             local bufopts = { noremap = true, silent = true, buffer = bufnr }
             vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+            vim.keymap.set("n", "<leader>vd", vim.diagnostic.open_float, bufopts)
             vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
             vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-            vim.keymap.set("n", "<leader>f", function()
+            vim.keymap.set("n", "<C-F>", function()
                 vim.lsp.buf.format({ async = true })
             end, bufopts)
+            vim.keymap.set("n", "[d", vim.diagnostic.goto_next, bufopts)
+            vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, bufopts)
 
-            -- Extra
-            vim.keymap.set('n', '<leader>vws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', bufopts)
-            vim.keymap.set('n', '<leader>vd', '<cmd>lua vim.diagnostic.open_float()<CR>', bufopts)
-            vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_next()<CR>', bufopts)
-            vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', bufopts)
-            vim.keymap.set('n', '<leader>vca', '<cmd>lua vim.lsp.buf.code_action()<CR>', bufopts)
-            vim.keymap.set('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
-            vim.keymap.set('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
-            vim.keymap.set('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
+            -- vim.keymap.set('n', '<leader>vws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', bufopts)
+            -- vim.keymap.set('n', '<leader>vrr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
+            -- vim.keymap.set('n', '<leader>vrn', '<cmd>lua vim.lsp.buf.rename()<CR>', bufopts)
+            -- vim.keymap.set('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
         end
 
         -- TypeScript Server

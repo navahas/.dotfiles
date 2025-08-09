@@ -40,7 +40,7 @@ map('n', '<leader>Y', 'magg"*yG`a', opts)
 map('n', '<leader>nh', ':nohl<CR>', opts)
 map('n', '<leader>nw', ':set wrap!<CR>', opts)
 map('n', '<leader>\'', '<C-^>', opts)
-map('n', '<C-F>', 'magg=G`a', opts)
+-- map('n', '<C-F>', 'magg=G`a', opts)
 
 -- Custom Commands
 -- vim.keymap.set('n', '<C-Space>', ':ToggleDiagnostics<CR>', { noremap = true, silent = true })
