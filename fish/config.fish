@@ -20,20 +20,28 @@ set -gx EZA_CONFIG_DIR $HOME/.config/eza
 # Clear existing PATH
 set -gx PATH
 
-# Add paths in the correct order
-set -gx PATH $HOME/.nvm/versions/node/v22.13.0/bin $PATH
-set -gx PATH /Applications/Docker.app/Contents/Resources/bin $PATH
-set -gx PATH /opt/homebrew/bin $PATH
-set -gx PATH /opt/homebrew/sbin $PATH
+# Add paths in the correct order (most specific first)
+# Local binaries
+set -gx PATH $HOME/.local/bin $PATH
+
+# Development tools
 set -gx PATH $HOME/.cargo/bin $PATH
-set -gx PATH /Applications/Ghostty.app/Contents/MacOS $PATH
-set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
 set -gx PATH $HOME/.foundry/bin $PATH
 set -gx PATH $HOME/.local/share/solana/install/active_release/bin $PATH
-set -gx PATH $HOME/.local/bin $PATH
+
+# Homebrew
+set -gx PATH /opt/homebrew/bin $PATH
+set -gx PATH /opt/homebrew/sbin $PATH
+
+# Applications
+set -gx PATH /Applications/Docker.app/Contents/Resources/bin $PATH
+set -gx PATH /Applications/Ghostty.app/Contents/MacOS $PATH
+set -gx PATH /Applications/Ghostty.app/Contents/ghostty $PATH
+
+# Package managers
 set -gx PATH /nix/var/nix/profiles/default/bin $PATH
 
-# System paths (should already be included, but just in case)
+# System paths
 set -gx PATH /usr/local/bin $PATH
 set -gx PATH /usr/bin $PATH
 set -gx PATH /bin $PATH
