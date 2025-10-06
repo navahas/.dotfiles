@@ -32,7 +32,7 @@ function fish_prompt
             set git_dirty "*"
         end
 
-        echo -n "$color_grey $git_branch$git_dirty $color_reset"
+        echo -n "$color_grey$git_branch$git_dirty $color_reset"
     end
 
     # Prompt symbol with your custom arrow
