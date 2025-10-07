@@ -1,5 +1,5 @@
 set fish_greeting ""
-set -x SHELL /opt/homebrew/bin/fish
+set -x SHELL /usr/local/bin/fish
 
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
@@ -9,6 +9,8 @@ bind ctrl-N 'tmux-sessionizer-v2-normal; commandline -f repaint'
 bind ctrl-S 'tmux-fzf-sessions; commandline -f repaint'
 bind ctrl-T 'tmux list-sessions 2>/dev/null | grep -q . && tmux attach || echo "no tmux sessions found"; commandline -f repaint'
 bind \cx edit_command_buffer
+
+set -U fish_autosuggestion_enabled 0
 
 # Environment variables
 set -gx EDITOR nvim
