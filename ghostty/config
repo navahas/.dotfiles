@@ -5,7 +5,8 @@ custom-shader = shaders/cursor_smear_fade.glsl
 auto-update = off
 auto-update-channel = stable
 
-command = /opt/homebrew/bin/fish --login --interactive
+command = /usr/local/bin/fish --login --interactive
+# command = /usr/local/bin/bash --noprofile --rcfile ~/.bashrc -i
 
 font-size = 15
 font-thicken = true
