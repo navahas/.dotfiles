@@ -78,6 +78,7 @@ alias gcm "$HOME/.local/scripts/commit-guidelines.sh"
 alias ob "$HOME/.local/scripts/obsidian-tmux-vim.sh"
 alias git-treexplorer "$HOME/.local/scripts/git-tree-explorer.sh"
 alias nu 'nu -c'
+alias bash '/usr/local/bin/bash'
 alias sh-bm "$HOME/.local/scripts/shell-benchmark.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
