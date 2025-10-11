@@ -5,14 +5,14 @@ function fish_prompt
     # set -l color_green (set_color 87D7AE)
     # # set -l color_red (set_color D70000)
     # set -l color_red (set_color red)
-    # set -l color_blue (set_color 4E6672)
+     set -l color_blue (set_color 6A7B99)
     # # set -l color_grey (set_color 5a5a5a)
     # # set -l color_blue (set_color 81a1c1)
     # set -l color_grey (set_color 868686)
 
     set -l color_green (set_color green)
     set -l color_red (set_color red)
-    set -l color_blue (set_color blue)
+    #set -l color_blue (set_color blue)
     set -l color_grey (set_color 868686)
 
     set -l color_reset (set_color normal)
