@@ -2,15 +2,14 @@ config-file = ./themes/Custom-01
 
 # custom-shader = shaders/cursor_smear_fade.glsl
 
-auto-update = off
+auto-update = download
 auto-update-channel = stable
+command = /usr/bin/fish --login --interactive
 
-command = /run/current-system/sw/bin/fish --login --interactive
 # command = /usr/local/bin/bash --noprofile --rcfile ~/.bashrc -i
-
 font-size = 15
 font-thicken = true
-font-thicken-strength = 255
+# font-thicken-strength = 255
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
@@ -29,11 +28,17 @@ font-feature = cv16
 adjust-cell-height = 11%
 
 keybind = super+ctrl+h=goto_split:left
-keybind = super+ctrl+l=goto_split:right
-keybind = super+ctrl+k=goto_split:top
-keybind = super+ctrl+j=goto_split:bottom
-keybind = super+-=increase_font_size:1
-keybind = super+.=decrease_font_size:1
+keybind = super+l=goto_split:right
+keybind = super+k=goto_split:top
+keybind = super+j=goto_split:bottom
+keybind = super+v=paste_from_clipboard
+keybind = super+c=copy_to_clipboard
+keybind = super+shift+,=reload_config
+
+keybind = super+ctrl+n=new_window
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+w=close_surface
 
 window-inherit-font-size = true
 window-inherit-working-directory = true
@@ -44,25 +49,24 @@ shell-integration = fish
 shell-integration-features = no-cursor, no-sudo, no-title
 cursor-style = block
 cursor-style-blink = true
+
 macos-titlebar-style = tabs
 title = " "
-# macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
 background-opacity = 0.9
 background-blur-radius = 20
+window-decoration = true
+gtk-titlebar = false
 
-quick-terminal-position = bottom
+linux-cgroup = single-instance
+gtk-single-instance = true
 
 window-padding-x = 11
 window-padding-y = 11
 
 mouse-hide-while-typing = true
-
 unfocused-split-opacity = 1
 
-macos-icon = chalkboard
-# macos-icon = custom-style
-# macos-icon-frame = plastic
-# macos-icon-ghost-color = white
-# macos-icon-screen-color = dark sea green,dark slate grey
+# font-thicken = true
+unfocused-split-opacity = 1

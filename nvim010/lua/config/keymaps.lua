@@ -32,9 +32,9 @@ map('n', 'N', 'Nzzzv', opts)
 map('v', '<leader>p', '"_dP', opts)
 
 -- Yank to system clipboard
-map('v', '<leader>y', '"*y', opts)
-map('n', '<leader>y', '"*y', opts)
-map('n', '<leader>Y', 'magg"*yG`a', opts)
+map('v', '<leader>y', '"+y', opts)
+map('n', '<leader>y', '"+y', opts)
+map('n', '<leader>Y', 'magg"+yG`a', opts)
 
 -- Misc key mappings
 map('n', '<leader>nh', ':nohl<CR>', opts)
