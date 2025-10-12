@@ -12,13 +12,13 @@ bind -x '"\eu":"clear; date \"+%H:%M %d-%m-%Y\""'
 bind -x '"\C-ñ":"nvim ."'
 
 # Ctrl+v: Run tmux-sessionizer-v2-vim
-bind -x '"\C-v":"$HOME/.local/scripts/tmux-sessionizer-v2-vim.sh"'
+bind -x '"\C-v":"$HOME/.local/scripts/tmux/tmux-sessionizer-vim.sh"'
 
 # Ctrl+n: Run tmux-sessionizer-v2-normal
-bind -x '"\C-n":"$HOME/.local/scripts/tmux-sessionizer-v2-normal.sh"'
+bind -x '"\C-n":"$HOME/.local/scripts/tmux/tmux-sessionizer-normal.sh"'
 
 # Ctrl+s: Run tmux-fzf-sessions
-bind -x '"\C-s":"$HOME/.local/scripts/tmux-fzf-sessions.sh"'
+bind -x '"\C-s":"$HOME/.local/scripts/tmux/tmux-fzf-sessions.sh"'
 
 # Ctrl+t: Attach to tmux or show message
 bind -x '"\C-t":"tmux list-sessions 2>/dev/null | grep -q . && tmux attach || echo \"no tmux sessions found\""'

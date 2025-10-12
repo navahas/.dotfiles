@@ -24,7 +24,7 @@ selected_dir=$(
         --prompt='[picker]> ' \
         --header="" --header-first --header-label="$header" --header-label-pos=bottom \
         --list-border --input-border \
-        --preview '$HOME/.local/scripts/fzf-preview-01.sh {}' \
+        --preview '$HOME/.local/scripts/fzf/fzf-preview-01.sh {}' \
         --preview-window 'right:30%:wrap' --preview-label ' files ' \
         --color=header:#A2A197,header-label:#e7e7d3,header-border:,input-label:#e7e7d3,list-border:#c67c67,pointer:#c67c67,prompt:#c67c67,preview-label:#e7e7d3
 

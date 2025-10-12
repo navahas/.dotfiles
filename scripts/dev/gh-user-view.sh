@@ -10,4 +10,4 @@ fi
 
 gh api -X GET "search/users?q=$gh_username+in:login" --jq '.items[].login' \
       | fzf --prompt="Select GitHub user: " \
-      | xargs -r -I {} "$HOME/.local/scripts/gh-repo-view.sh" {}
+      | xargs -r -I {} "$HOME/.local/scripts/dev/gh-repo-view.sh" {}
