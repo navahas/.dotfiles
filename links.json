@@ -1,0 +1,16 @@
+{
+    "links": {
+        "~/.config/nvim": "nvim",
+        "~/.config/aerospace": "aerospace",
+        "~/.config/ghostty": "ghostty",
+        "~/.config/kitty": "kitty",
+        "~/.config/fish": "fish",
+        "~/.config/eza": "eza",
+        "~/.bashrc": "bash/.bashrc",
+        "~/.tmux.conf": "tmux/.tmux.conf",
+        "~/.p10k.zsh": "p10k/.p10k.zsh",
+        "~/.local/scripts": "scripts",
+        "~/.config/hypr": "linux/hypr",
+        "~/.config/waybar": "linux/waybar"
+    }
+}
