@@ -22,6 +22,13 @@ set -gx EZA_CONFIG_DIR $HOME/.config/eza
 # Clear existing PATH
 set -gx PATH
 
+# Nix stuff
+set -gx PATH $HOME/.nix-profile/bin $PATH
+set -gx PATH $HOME/.local/share/nix/profile/bin $PATH
+set -gx PATH /nix/var/nix/profiles/default/bin $PATH
+# (after you enable nix-darwin, this one may exist too)
+set -gx PATH /run/current-system/sw/bin $PATH
+
 # Add paths in the correct order (most specific first)
 # Local binaries
 set -gx PATH $HOME/.local/bin $PATH
