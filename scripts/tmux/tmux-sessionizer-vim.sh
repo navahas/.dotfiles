@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 # Define search directories
-search_dirs=("$HOME/.dotfiles" "$HOME/.config")
-search_dirs+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
+# For .dotfiles and .config, we'll search inside them
+search_inside=("$HOME/.dotfiles" "$HOME/.config")
+# For these dirs, we want them directly selectable
+direct_dirs=("$HOME/nix-config")
+# Add dev subdirectories
+search_inside+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
  
 # header="
 # ███████╗███████╗███████╗███████╗██╗ ██████╗ ███╗   ██╗██╗███████╗███████╗██████╗ 
@@ -14,20 +18,22 @@ search_dirs+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
 
 session_count=$(tmux list-sessions 2>/dev/null | wc -l | tr -d ' ')
 pane_count=$(tmux list-panes -a 2>/dev/null | wc -l | tr -d ' ')
-# header="tmux list-sessions: $session_count | tmux list-panes: $pane_count "
 header="  tmux sessionizer — vim | sessions: $session_count | panes: $pane_count "
 
 # Select a directory
 selected_dir=$(
-    find "${search_dirs[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null |
-        fzf --color fg:dim,fg+:regular \
-        --style full \
-        --prompt='[picker]> ' \
-        --header="" --header-first --header-label="$header" --header-label-pos=bottom \
-        --list-border --input-border \
-        --preview '$HOME/.local/scripts/fzf/fzf-preview-01.sh {}' \
-        --preview-window 'right:30%:wrap' --preview-label ' files ' \
-        --color=header:#A2A197,header-label:#e7e7d3,header-border:,input-label:#e7e7d3,list-border:#c67c67,pointer:#c67c67,prompt:#c67c67,preview-label:#e7e7d3
+{
+    find "${search_inside[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+    printf '%s\n' "${direct_dirs[@]}"
+} |
+    fzf --color fg:dim,fg+:regular \
+    --style full \
+    --prompt='[picker]> ' \
+    --header="" --header-first --header-label="$header" --header-label-pos=bottom \
+    --list-border --input-border \
+    --preview '$HOME/.local/scripts/fzf/fzf-preview-01.sh {}' \
+    --preview-window 'right:30%:wrap' --preview-label ' files ' \
+    --color=header:#A2A197,header-label:#e7e7d3,header-border:,input-label:#e7e7d3,list-border:#c67c67,pointer:#c67c67,prompt:#c67c67,preview-label:#e7e7d3
 )
 
 [[ -z $selected_dir || ! -d $selected_dir ]] && exit 1
