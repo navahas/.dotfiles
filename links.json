@@ -1,6 +1,5 @@
 {
     "links": {
-        "~/.config/nix": "nix",
         "~/.config/nvim": "nvim",
         "~/.config/aerospace": "aerospace",
         "~/.config/ghostty": "ghostty",
