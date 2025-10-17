@@ -1,0 +1,75 @@
+{
+    "description": "Swap quote and backslash keys: ´ and ç become default, { and } require Option modifier",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "quote",
+                "modifiers": { "optional": ["caps_lock", "shift", "control", "command"] }
+            },
+            "to": [
+                {
+                    "key_code": "quote",
+                    "modifiers": ["left_option"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "quote",
+                "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["caps_lock", "shift", "control", "command"]
+                }
+            },
+            "to": [{ "key_code": "quote" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "quote",
+                "modifiers": {
+                    "mandatory": ["right_option"],
+                    "optional": ["caps_lock", "shift", "control", "command"]
+                }
+            },
+            "to": [{ "key_code": "quote" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "backslash",
+                "modifiers": { "optional": ["caps_lock", "shift", "control", "command"] }
+            },
+            "to": [
+                {
+                    "key_code": "backslash",
+                    "modifiers": ["left_option"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "backslash",
+                "modifiers": {
+                    "mandatory": ["left_option"],
+                    "optional": ["caps_lock", "shift", "control", "command"]
+                }
+            },
+            "to": [{ "key_code": "backslash" }],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "backslash",
+                "modifiers": {
+                    "mandatory": ["right_option"],
+                    "optional": ["caps_lock", "shift", "control", "command"]
+                }
+            },
+            "to": [{ "key_code": "backslash" }],
+            "type": "basic"
+        }
+    ]
+}
