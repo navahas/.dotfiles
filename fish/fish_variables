@@ -44,3 +44,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
+SETUVAR fish_user_paths:/nix/store/0wr8m0xxmp6gx8xm76mba0j22mndzadh\x2dghostty\x2dbin\x2d1\x2e2\x2e2/Applications/Ghostty\x2eapp/Contents/MacOS

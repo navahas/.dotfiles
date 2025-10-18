@@ -20,7 +20,7 @@ set -gx NVM_DIR $HOME/.nvm
 set -gx EZA_CONFIG_DIR $HOME/.config/eza
 
 # Clear existing PATH
-set -gx PATH
+# set -gx PATH
 
 # Nix stuff
 set -gx PATH $HOME/.nix-profile/bin $PATH
