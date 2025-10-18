@@ -47,5 +47,5 @@ alias git-treexplorer="$HOME/.local/scripts/git/git-tree-explorer.sh"
 # Other tools
 alias ob="$HOME/.local/scripts/obsidian/obsidian-tmux-vim.sh"
 alias nu='nu -c'
-alias bash='/usr/local/bin/bash'
+# alias bash='/usr/local/bin/bash'
 alias sh-bm="$HOME/.local/scripts/system/shell-benchmark.sh"

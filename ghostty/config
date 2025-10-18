@@ -1,11 +1,11 @@
 config-file = ./themes/Custom-01
 
-custom-shader = shaders/cursor_smear_fade.glsl
+# custom-shader = shaders/cursor_smear_fade.glsl
 
 auto-update = off
 auto-update-channel = stable
 
-command = /usr/local/bin/fish --login --interactive
+command = /run/current-system/sw/bin/fish --login --interactive
 # command = /usr/local/bin/bash --noprofile --rcfile ~/.bashrc -i
 
 font-size = 15

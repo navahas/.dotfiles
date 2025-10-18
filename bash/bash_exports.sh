@@ -2,7 +2,7 @@
 # Environment variables and PATH configuration
 
 # Shell configuration
-export SHELL=/usr/local/bin/bash
+# export SHELL=/usr/local/bin/bash
 export EDITOR=nvim
 export VISUAL=nvim
 

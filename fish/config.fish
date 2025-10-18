@@ -1,5 +1,5 @@
 set fish_greeting ""
-set -x SHELL /usr/local/bin/fish
+# set -x SHELL /usr/local/bin/fish
 
 # Key bindings
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
@@ -87,7 +87,7 @@ alias gcm "$HOME/.local/scripts/git/commit-guidelines.sh"
 alias ob "$HOME/.local/scripts/obsidian/obsidian-tmux-vim.sh"
 alias git-treexplorer "$HOME/.local/scripts/git/git-tree-explorer.sh"
 alias nu 'nu -c'
-alias bash '/usr/local/bin/bash'
+#alias bash '/usr/local/bin/bash'
 alias sh-bm "$HOME/.local/scripts/system/shell-benchmark.sh"
 
 source (dirname (status --current-filename))/config-osx.fish
