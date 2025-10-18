@@ -146,5 +146,11 @@ return {
             capabilities = capabilities,
             on_attach = on_attach,
         })
+
+        -- Nix server
+        lspconfig.nixd.setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+        })
     end,
 }
