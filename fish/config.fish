@@ -28,6 +28,8 @@ set -gx PATH $HOME/.local/share/nix/profile/bin $PATH
 set -gx PATH /nix/var/nix/profiles/default/bin $PATH
 # (after you enable nix-darwin, this one may exist too)
 set -gx PATH /run/current-system/sw/bin $PATH
+# Home-manager user packages
+set -gx PATH /etc/profiles/per-user/$USER/bin $PATH
 
 # Add paths in the correct order (most specific first)
 # Local binaries
