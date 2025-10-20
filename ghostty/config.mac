@@ -1,6 +1,5 @@
 theme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
 link-url = true
 
 keybind = super+ctrl+h=goto_split:left
@@ -37,7 +36,6 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = dark sea green,dark slate grey
 heme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
 link-url = true
 
 keybind = super+ctrl+h=goto_split:left
@@ -74,7 +72,6 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = dark sea green,dark slate grey
 heme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
 link-url = true
 
 keybind = super+ctrl+h=goto_split:left
@@ -111,7 +108,6 @@ macos-icon-ghost-color = white
 macos-icon-screen-color = dark sea green,dark slate grey
 teme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
 link-url = true
 
 keybind = super+ctrl+h=goto_split:left

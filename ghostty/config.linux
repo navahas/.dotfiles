@@ -1,6 +1,5 @@
 theme = Custom
 
-# command = /bin/zsh -c "$HOME/.local/scripts/lazygit-ghostty.sh; exec /bin/zsh"
 link-url = true
 
 keybind = super+ctrl+h=goto_split:left

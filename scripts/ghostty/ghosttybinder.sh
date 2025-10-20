@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CONFIG_FILE="$HOME/.config/ghostty/config"
 BACKUP_FILE="$CONFIG_FILE.bak"

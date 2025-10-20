@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Define the session file
 SESSION_FILE="$HOME/.config/ghostty/ghostty_sessions"
@@ -28,6 +28,4 @@ else
   echo "Attaching to existing session for path: $CURRENT_PATH"
 fi
 
-# Export the session ID and launch zsh
 export GHOSTTY_SESSION_ID="$SESSION_ID"
-exec /bin/zsh

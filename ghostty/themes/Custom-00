@@ -21,5 +21,3 @@ palette = 12=#94bff3
 palette = 13=#ec93d3
 palette = 14=#93e0e3
 palette = 15=#ffffff
-
-# command = "zsh ~/.local/scripts/test_ghostty.sh"
