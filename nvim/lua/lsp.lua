@@ -19,8 +19,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "<C-F>", function()
             vim.lsp.buf.format({ async = true })
         end, opts)
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+        vim.keymap.set("n", "]d", vim.lsp.diagnostic.goto_next, opts)
+        vim.keymap.set("n", "[d", vim.lsp.diagnostic.goto_prev, opts)
     end,
 })
 

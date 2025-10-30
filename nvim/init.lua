@@ -1,10 +1,10 @@
+-- Enable Neovim's Lua module cache (:h vim.loader)
 vim.loader.enable()
 
 require('settings')
 require('keymaps')
-require('launch')
-require('custom_mode')
-require('commands')
+require('ui')
+require('autocmds')
 
 require('plugins')
 require('lsp')
