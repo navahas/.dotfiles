@@ -1,6 +1,10 @@
-require('config.settings')
-require('config.keymaps')
-require('config.launch')
-require('config.custom_mode')
-require('config.lazy')
-require('config.commands')
+vim.loader.enable()
+
+require('settings')
+require('keymaps')
+require('launch')
+require('custom_mode')
+require('commands')
+
+require('plugins')
+require('lsp')

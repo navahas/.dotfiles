@@ -1,0 +1,6 @@
+require('config.settings')
+require('config.keymaps')
+require('config.launch')
+require('config.custom_mode')
+require('config.lazy')
+require('config.commands')

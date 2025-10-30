@@ -5,6 +5,7 @@
 alias vim 'nvim'
 alias ovim 'vim'
 alias v. 'nvim .'
+alias nvim010 'NVIM_APPNAME=nvim010 nvim010 .'
 
 # Tmux sessionizers and utilities
 alias tpv '$HOME/.local/scripts/tmux/tmux-sessionizer-old.sh'
