@@ -95,13 +95,13 @@ local mode_map = {
     cvr = " " .. style_operator .. " EX (overstrike)",
 
     -- Prompt modes
-    r = " " .. style_operator .. " HIT-ENTER",
-    rm = " " .. style_operator .. " MORE",
-    ["r?"] = " " .. style_operator .. " CONFIRM",
+    -- r = " " .. style_operator .. " HIT-ENTER",
+    -- rm = " " .. style_operator .. " MORE",
+    -- ["r?"] = " " .. style_operator .. " CONFIRM",
 
     -- Other
-    ["!"] = " " .. style_operator .. " SHELL",
-    t = " " .. style_operator .. " TERMINAL",
+    -- ["!"] = " " .. style_operator .. " SHELL",
+    -- t = " " .. style_operator .. " TERMINAL",
 }
 
 -- Toggle function for mode display

@@ -1,20 +1,34 @@
 local bookmarks = {}
 
+-- Configuration (for future plugin)
+local config = {
+    toggle_key = "<C-e>",  -- Key to open/close bookmark list
+}
+
+-- Helper to print messages that auto-clear after duration
+local function print_timed(msg, duration)
+    duration = duration or 1110 -- default 2 seconds
+    print(msg)
+    vim.defer_fn(function()
+        vim.cmd('echon ""')
+    end, duration)
+end
+
 -- add or replace using a specific filename
 local function set_bookmark(slot, filename)
     if filename == "" then
-        print("No file name")
+        print_timed("No file name")
         return
     end
     bookmarks[slot] = filename
-    print("Bookmark [" .. slot .. "] = " .. vim.fn.fnamemodify(filename, ":~:."))
+    print_timed("Bookmark [" .. slot .. "] = " .. vim.fn.fnamemodify(filename, ":~:."))
 end
 
 -- Add current buffer as bookmark (append until 4)
 function _G.bookmark_add(slot)
     local name = vim.api.nvim_buf_get_name(0)
     if name == "" then
-        print("No file name")
+        print_timed("No file name")
         return
     end
 
@@ -27,24 +41,24 @@ function _G.bookmark_add(slot)
     -- avoid duplicates
     for _, b in ipairs(bookmarks) do
         if b == name then
-            print("Already bookmarked")
+            print_timed("Already bookmarked")
             return
         end
     end
 
     if #bookmarks >= 4 then
-        print("Max 4 bookmarks reached — replace one (open list and press r)")
+        print_timed("Max 4 bookmarks reached — replace one (open list and press r)")
         return
     end
 
     table.insert(bookmarks, name)
-    print("Bookmarked [" .. #bookmarks .. "]: " .. vim.fn.fnamemodify(name, ":~:."))
+    print_timed("Bookmarked [" .. #bookmarks .. "]: " .. vim.fn.fnamemodify(name, ":~:."))
 end
 
 function _G.bookmark_jump(i)
     local name = bookmarks[i]
     if not name then
-        print("No bookmark at [" .. i .. "]")
+        print_timed("No bookmark at [" .. i .. "]")
         return
     end
     vim.cmd("edit " .. vim.fn.fnameescape(name))
@@ -52,16 +66,16 @@ end
 
 function _G.bookmark_remove(i)
     if not bookmarks[i] then
-        print("No bookmark at [" .. i .. "]")
+        print_timed("No bookmark at [" .. i .. "]")
         return
     end
     table.remove(bookmarks, i)
-    print("Removed bookmark [" .. i .. "]")
+    print_timed("Removed bookmark [" .. i .. "]")
 end
 
 function _G.bookmark_clear()
     bookmarks = {}
-    print("All bookmarks cleared")
+    print_timed("All bookmarks cleared")
 end
 
 -- popup
@@ -82,7 +96,7 @@ function _G.bookmark_list()
         end
     end
     if not has_any then
-        print("No bookmarks")
+        print_timed("No bookmarks")
         return
     end
 
@@ -92,29 +106,40 @@ function _G.bookmark_list()
     vim.bo[buf].bufhidden = "wipe"
     vim.bo[buf].modifiable = false
 
-    local height = #lines
-    local width = 0
+    -- Calculate dimensions
+    local height = #lines + 1
+    -- Ensure width is wide enough for long paths (80% of screen or minimum 60)
+    local min_width = 60
+    local max_width = math.floor(vim.o.columns * 0.8)
+    local content_width = 0
     for _, l in ipairs(lines) do
-        if #l > width then width = #l end
+        if #l > content_width then content_width = #l end
     end
+    local width = math.max(min_width, math.min(content_width + 4, max_width))
 
+    -- Dim the footer text
+    vim.api.nvim_set_hl(0, "FloatFooter", { fg = "#7A7A7A", bg = "NONE" })
+
+    -- Position right above status line (bottom of screen)
     local win = vim.api.nvim_open_win(buf, true, {
         relative = "editor",
-        anchor = "SW",
         style = "minimal",
         border = "rounded",
-        title = " Buffmarks ",
-        title_pos = "center",
-        row = vim.o.lines - vim.o.cmdheight - height - 1,
-        col = 1,
-        width = width + 4,
-        height = height + 1,
+        title = "",
+        footer = " " .. config.toggle_key .. ": quit • r: replace • dd: delete • <CR>: jump ",
+        footer_pos = "center",
+        width = width,
+        height = height,
+        row = vim.o.lines - height - 4,  -- Right above status line
+        col = 0
+        -- col = math.floor((vim.o.columns - width) / 2),  -- Center horizontally
     })
 
     vim.wo[win].cursorline = true
 
-    -- q to close
+    -- q or toggle key to close
     vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = buf, silent = true })
+    vim.keymap.set("n", config.toggle_key, "<cmd>close<CR>", { buffer = buf, silent = true })
 
     -- <CR> to jump
     vim.keymap.set("n", "<CR>", function()
@@ -126,7 +151,7 @@ function _G.bookmark_list()
     end, { buffer = buf, silent = true })
 
     -- d to delete current slot
-    vim.keymap.set("n", "d", function()
+    vim.keymap.set("n", "dd", function()
         local idx = tonumber(vim.api.nvim_get_current_line():match("%[(%d+)%]"))
         if idx then
             _G.bookmark_remove(idx)
@@ -136,15 +161,20 @@ function _G.bookmark_list()
     end, { buffer = buf, silent = true })
 
     -- r to REPLACE selected slot with the buffer we had BEFORE the popup
-    -- r to REPLACE selected slot with the buffer we had BEFORE the popup
     vim.keymap.set("n", "r", function()
         local idx = tonumber(vim.api.nvim_get_current_line():match("%[(%d+)%]"))
         if not idx then return end
 
+        -- Only allow replacing occupied slots
+        if not bookmarks[idx] then
+            print_timed("Cannot replace empty slot")
+            return
+        end
+
         -- get filename from the buffer we were in before opening the popup
         local src_name = vim.api.nvim_buf_get_name(source_buf)
         if src_name == "" then
-            print("Original buffer had no file name")
+            print_timed("Original buffer had no file name")
             return
         end
 
@@ -160,15 +190,15 @@ function _G.bookmark_list()
         if existing then
             -- move existing bookmark to new slot
             if existing == idx then
-                print("Already at slot [" .. idx .. "]")
+                print_timed("Already at slot [" .. idx .. "]")
                 return
             end
             bookmarks[existing], bookmarks[idx] = bookmarks[idx], bookmarks[existing]
-            print("Moved bookmark to slot [" .. idx .. "]")
+            print_timed("Moved bookmark to slot [" .. idx .. "]")
         else
             -- normal replace
             bookmarks[idx] = src_name
-            print("Replaced slot [" .. idx .. "]")
+            print_timed("Replaced slot [" .. idx .. "]")
         end
 
         vim.cmd("close")
@@ -178,7 +208,7 @@ end
 
 -- keymaps
 vim.keymap.set("n", "<leader>a", _G.bookmark_add, { desc = "Bookmark current buffer" })
-vim.keymap.set("n", "<leader>bl", _G.bookmark_list, { desc = "List bookmarks" })
+vim.keymap.set("n", config.toggle_key, _G.bookmark_list, { desc = "Toggle bookmarks" })
 vim.keymap.set("n", "<leader>1", function() _G.bookmark_jump(1) end)
 vim.keymap.set("n", "<leader>2", function() _G.bookmark_jump(2) end)
 vim.keymap.set("n", "<leader>3", function() _G.bookmark_jump(3) end)
