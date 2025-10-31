@@ -9,6 +9,7 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
+    { src = "https://github.com/navahas/buffmark" },
 })
 
 -- Load plugins (required because vim.pack installs to opt/)
@@ -21,10 +22,11 @@ vim.cmd.packadd('jellybeans.nvim')
 vim.cmd.packadd('mason.nvim')
 vim.cmd.packadd('mason-lspconfig.nvim')
 vim.cmd.packadd('nvim-lspconfig')
+vim.cmd.packadd('buffmark')
 
 -- Load configurations
 require('plugins.telescope')
 require('plugins.treesitter')
 require('plugins.theme')
 require('plugins.lsp')
-require('plugins.marker')
+require('plugins.buffmark')
