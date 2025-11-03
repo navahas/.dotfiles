@@ -14,6 +14,8 @@ alias ta 'tmux attach'
 alias tmux-sessionizer-v2-vim '$HOME/.local/scripts/tmux/tmux-sessionizer-vim.sh'
 alias tmux-sessionizer-v2-normal '$HOME/.local/scripts/tmux/tmux-sessionizer-normal.sh'
 alias tmux-fzf-sessions '$HOME/.local/scripts/tmux/tmux-fzf-sessions.sh'
+alias swapn '$HOME/.local/scripts/tmux/tmux-swap-names.sh'
+alias swapmd '$HOME/.local/scripts/tmux/tmux-swap-names.sh main dev'
 
 # Config management
 alias src 'source $HOME/.dotfiles/fish/config.fish'
