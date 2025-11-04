@@ -18,6 +18,9 @@ limactl start vm-name
 limactl shell vm-name
 
 # Exit with: exit
+
+# Remove images caches
+rm -rf ~/Library/Caches/lima/
 ```
 
 ## Available Templates
