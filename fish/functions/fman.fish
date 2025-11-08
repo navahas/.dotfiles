@@ -1,9 +1,6 @@
 function fman
-    # man -k . | awk '{print $1}' | sed 's/(.*//' | sort -u | fzf | xargs man
-    man -k . | 
-    awk '{print $1}' | 
-    sed 's/(.*//' | 
-    sort -u | 
-    fzf | 
-    xargs -I {} sh -c 'man {} | col -bx | bat --style=plain --language=man --paging=always'
+    set query (rg --files $HOME/man/share/man | sed "s|$HOME/man/share/man/||" | fzf)
+    if test -n "$query"
+        man -l "$HOME/man/share/man/$query" | col -bx | bat --style=plain --language=man --paging=always
+    end
 end
