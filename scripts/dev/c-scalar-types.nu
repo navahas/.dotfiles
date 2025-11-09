@@ -14,5 +14,5 @@ let table = [
   { level: 2, name: "unsigned char", category: "Unsigned", where: "Built in", printf: "%hhu %02hhx" }
 ]
 
-$table
+$table | table --index false
 # $table | sort-by level name
