@@ -16,8 +16,9 @@ alias tmux-sessionizer-v2-normal '$HOME/.local/scripts/tmux/tmux-sessionizer-nor
 alias tmux-fzf-sessions '$HOME/.local/scripts/tmux/tmux-fzf-sessions.sh'
 alias swapn '$HOME/.local/scripts/tmux/tmux-swap-names.sh'
 alias swapmd '$HOME/.local/scripts/tmux/tmux-swap-names.sh main dev'
-alias man 'env MANPATH=/Users/navahas/man/share/man man'
 
+alias man 'env MANPATH=/Users/navahas/man/share/man man'
+alias ctypes '$HOME/.local/scripts/dev/c-scalar-types.nu'
 
 # Config management
 alias src 'source $HOME/.dotfiles/fish/config.fish'
