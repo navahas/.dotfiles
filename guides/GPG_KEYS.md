@@ -26,3 +26,10 @@ git config --global user.signingkey $KEY
 ## Restart GPG agent
 gpgconf --kill gpg-agent
 ```
+
+## REPO SCOPED
+```
+git config user.signingkey $KEY
+git config user.username Name
+git config user.email foo@mail.com
+```
