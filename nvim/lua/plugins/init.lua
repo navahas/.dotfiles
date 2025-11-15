@@ -10,7 +10,11 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/navahas/buffmark" },
-    { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }
+    { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
+    { src = "https://github.com/hrsh7th/nvim-cmp" },
+    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
+    { src = "https://github.com/hrsh7th/cmp-buffer" },
+    { src = "https://github.com/onsails/lspkind.nvim" }
 })
 
 -- Load plugins (required because vim.pack installs to opt/)
@@ -25,6 +29,10 @@ vim.cmd.packadd('mason-lspconfig.nvim')
 vim.cmd.packadd('nvim-lspconfig')
 vim.cmd.packadd('buffmark')
 vim.cmd.packadd('render-markdown.nvim')
+vim.cmd.packadd('nvim-cmp')
+vim.cmd.packadd('cmp-nvim-lsp')
+vim.cmd.packadd('cmp-buffer')
+vim.cmd.packadd('lspkind.nvim')
 
 -- Load configurations
 require('plugins.telescope')
@@ -32,3 +40,4 @@ require('plugins.treesitter')
 require('plugins.theme')
 require('plugins.lsp')
 require('plugins.buffmark')
+require('plugins.cmp')

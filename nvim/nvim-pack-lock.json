@@ -4,9 +4,21 @@
       "rev": "522a3a4",
       "src": "https://github.com/navahas/buffmark"
     },
+    "cmp-buffer": {
+      "rev": "b74fab3",
+      "src": "https://github.com/hrsh7th/cmp-buffer"
+    },
+    "cmp-nvim-lsp": {
+      "rev": "cbc7b02",
+      "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
+    },
     "jellybeans.nvim": {
       "rev": "28b8088",
       "src": "https://github.com/wtfox/jellybeans.nvim"
+    },
+    "lspkind.nvim": {
+      "rev": "3ddd1b4",
+      "src": "https://github.com/onsails/lspkind.nvim"
     },
     "mason-lspconfig.nvim": {
       "rev": "3590d66",
@@ -15,6 +27,10 @@
     "mason.nvim": {
       "rev": "ad7146a",
       "src": "https://github.com/williamboman/mason.nvim"
+    },
+    "nvim-cmp": {
+      "rev": "d78fb3b",
+      "src": "https://github.com/hrsh7th/nvim-cmp"
     },
     "nvim-lspconfig": {
       "rev": "87d3018",

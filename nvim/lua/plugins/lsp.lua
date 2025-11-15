@@ -42,6 +42,10 @@ mason_lspconfig.setup({
 -- But use vim.lsp.config for actual configuration (nvim 0.11+)
 require("lspconfig")
 
+-- Add nvim-cmp capabilities to LSP
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local capabilities = cmp_nvim_lsp.default_capabilities()
+
 -- Load custom LSP configurations from lsp/*.lua directory into vim.lsp.config
 local lsp_config_dir = vim.fn.stdpath('config') .. '/lsp'
 
@@ -50,6 +54,8 @@ if vim.fn.isdirectory(lsp_config_dir) == 1 then
         local server_name = vim.fn.fnamemodify(file, ':t:r')
         local ok, config = pcall(dofile, file)
         if ok and type(config) == 'table' then
+            -- Add cmp capabilities to the config
+            config.capabilities = capabilities
             vim.lsp.config[server_name] = config
         end
     end
