@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+sample_comands() {
+    echo "To run lima:"
+    echo "./script <name_vm> <name_lsp>"
+    echo "./script node1 clangd"
+    echo "Sample:"
+    echo "ssh -F ~/.lima/node1/ssh.config lima-node1 clangd --background-index"
+}
+
+run_lsp_lima() {
+    local name_vm="$1"
+    local name_lsp="$2"
+
+    if ! limactl ls | grep "$name_vm" > /dev/null; then
+        echo "Error Lima: $name_vm is not currently running" >&2
+        exit 1
+    fi
+    
+    if [[ "$name_lsp" == "c" ]] || [[ "$name_lsp" == "clangd" ]]; then
+        # ssh -F ~/.lima/"$name_vm"/ssh.config lima-"$name_vm" clangd --version
+        exec ssh -F ~/.lima/$name_vm/ssh.config lima-$name_vm clangd --background-index
+    else
+        # ssh -F ~/.lima/$name_vm/ssh.config lima-$name_vm $name_lsp
+        echo "other lsp here"
+        exit 1
+    fi
+}
+
+if [[ $# -ne 2 ]]; then
+    sample_comands
+    exit 1
+fi
+
+run_lsp_lima "$1" "$2"

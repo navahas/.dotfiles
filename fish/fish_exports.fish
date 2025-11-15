@@ -72,6 +72,9 @@ fish_add_path --path --move --prepend $HOME/.local/share/solana/install/active_r
 fish_add_path --path --move --prepend $HOME/.foundry/bin
 fish_add_path --path --move --prepend $HOME/.cargo/bin
 
+# Custom scripts as bin - useful for nvim or other apps
+fish_add_path --path --move --prepend $HOME/.local/scripts/bin
+
 # Nix package manager paths (declarative package management)
 # Priority among Nix (lowest to highest):
 #   1. System-wide default profile (all users)
