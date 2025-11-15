@@ -32,6 +32,10 @@
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
+    "render-markdown.nvim": {
+      "rev": "13bfaaa",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "telescope-fzf-native.nvim": {
       "rev": "1f08ed6",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"

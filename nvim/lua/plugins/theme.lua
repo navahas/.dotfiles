@@ -81,6 +81,8 @@ require("jellybeans").setup({
         highlights.ModeMsg = { fg = colors.yellow, bold = true, bg = "NONE" }
         highlights.ErrorMsg = { fg = colors.error, bg = "NONE", bold = true }
 
+        highlights.ColorColumn = { bg = "NONE" }
+
         -- Completion menu (popup menu)
         -- highlights.Pmenu = { fg = colors.white, bg = "NONE" }
         -- highlights.PmenuSel = { fg = colors.koromiko, bg = "NONE", bold = true }

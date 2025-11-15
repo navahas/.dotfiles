@@ -10,6 +10,7 @@ vim.pack.add({
     { src = "https://github.com/williamboman/mason-lspconfig.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/navahas/buffmark" },
+    { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }
 })
 
 -- Load plugins (required because vim.pack installs to opt/)
@@ -23,6 +24,7 @@ vim.cmd.packadd('mason.nvim')
 vim.cmd.packadd('mason-lspconfig.nvim')
 vim.cmd.packadd('nvim-lspconfig')
 vim.cmd.packadd('buffmark')
+vim.cmd.packadd('render-markdown.nvim')
 
 -- Load configurations
 require('plugins.telescope')
