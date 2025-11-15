@@ -22,6 +22,51 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- ============================================
+-- ATTACH LSP TO DIFFERENT SERVER
+-- ============================================
+
+vim.api.nvim_create_user_command("LspConnect", function(opts)
+    local args = vim.split(opts.args, " ")
+
+    if #args < 2 then
+        print("Usage: :LspConnect <server_name> <cmd> [args...]")
+        print("Example: :LspConnect clangd ssh -F ~/.lima/node1/ssh.config lima-node1 clangd")
+        return
+    end
+
+    local server_name = table.remove(args, 1)
+    local cmd = args
+
+    -- Expand ~ to home directory in all arguments
+    local home = os.getenv("HOME")
+    if home then
+        for i, arg in ipairs(cmd) do
+            cmd[i] = arg:gsub("^~", home)
+        end
+    end
+
+    -- Update the LSP config for the specified server
+    if vim.lsp.config[server_name] then
+        vim.lsp.config[server_name].cmd = cmd
+        print("LSP: overriding " .. server_name .. " cmd →", table.concat(cmd, " "))
+    else
+        print("Error: LSP server '" .. server_name .. "' not found in vim.lsp.config")
+        return
+    end
+
+    -- Stop all clients for this server
+    for _, client in ipairs(vim.lsp.get_clients({ name = server_name })) do
+        vim.lsp.stop_client(client.id)
+    end
+
+    -- Restart LSP on current buffer
+    vim.cmd("edit")
+end, {
+    nargs = "+",
+    complete = "shellcmd",
+})
+
+-- ============================================
 -- MACROS: AUTO FILETYPE SETUP
 -- ============================================
 

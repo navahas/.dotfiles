@@ -7,4 +7,3 @@ require('ui')
 require('autocmds')
 
 require('plugins')
-require('lsp')

@@ -1,7 +1,7 @@
 {
   "plugins": {
     "buffmark": {
-      "rev": "bea76af",
+      "rev": "522a3a4",
       "src": "https://github.com/navahas/buffmark"
     },
     "jellybeans.nvim": {
