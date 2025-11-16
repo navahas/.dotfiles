@@ -67,12 +67,27 @@ end, {
 })
 
 -- ============================================
--- MACROS: AUTO FILETYPE SETUP
+-- MACROS
 -- ============================================
 
+-- @c comment
+vim.fn.setreg("c", "jI*/kO/*j")
+
+-- @l - (LOG): FILETYPE SETUP
 local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+vim.api.nvim_create_augroup('@CPrint', { clear = true })
 vim.api.nvim_create_augroup('@RustPrint', { clear = true })
 vim.api.nvim_create_augroup('@TypeScriptPrint', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = '@CPrint',
+    pattern = { 'c' },
+    callback = function()
+        local macro = 'yiWo' .. 'printf("%s\\n' .. esc .. "la, " .. esc .. 'pA;' .. esc
+        -- local macro = 'yiWo' .. "printf('%s\\n', " .. esc .. 'pa);' .. esc
+        vim.fn.setreg("l", macro)
+    end
+})
 
 vim.api.nvim_create_autocmd('FileType', {
     group = '@RustPrint',
