@@ -4,6 +4,9 @@
 ## Generate new key
 gpg --quick-generate-key "User Name <email@example.com>" ed25519 sign 0
 
+## if pinentry error reload with
+gpg-connect-agent reloadagent /bye
+
 ## List keys
 gpg --list-keys "User Name <email@example.com>"
 gpg --list-secret-keys --keyid-format=long
