@@ -5,7 +5,7 @@
 bind \eu 'clear; date "+%H:%M %d-%m-%Y"'
 
 # Ctrl+ñ: Open nvim in current directory
-bind ctrl-ñ 'nvim .'
+bind ctrl-ñ 'tmux-sessionizer-v2-vim; commandline -f repaint'
 
 # Ctrl+v: Run tmux-sessionizer-v2-vim
 bind ctrl-V 'tmux-sessionizer-v2-vim; commandline -f repaint'
