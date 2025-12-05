@@ -56,8 +56,19 @@ telescope.setup({
 -- Load fzf extension for performance
 pcall(telescope.load_extension, 'fzf')
 
+local function with_winborder(border, fn)
+  return function(...)
+    local old = vim.opt.winborder:get()
+    vim.opt.winborder = border
+    fn(...)
+    vim.opt.winborder = old
+  end
+end
+
+vim.keymap.set("n", "<leader>pf", with_winborder("none", builtin.find_files))
+
 -- Telescope keymaps
-vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
+-- vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "Git files" })
 vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Live grep (ripgrep)" })
 
