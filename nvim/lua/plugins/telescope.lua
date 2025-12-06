@@ -65,19 +65,17 @@ local function with_winborder(border, fn)
   end
 end
 
-vim.keymap.set("n", "<leader>pf", with_winborder("none", builtin.find_files))
-
 -- Telescope keymaps
--- vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "Git files" })
-vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Live grep (ripgrep)" })
+vim.keymap.set("n", "<leader>pf", with_winborder("none", builtin.find_files), { desc = "Find files" })
+vim.keymap.set("n", "<leader>pg", with_winborder("none", builtin.git_files), { desc = "Git files" })
+vim.keymap.set("n", "<leader>ps", with_winborder("none", builtin.live_grep), { desc = "Live grep (ripgrep)" })
 
-vim.keymap.set({ "n", "v" }, "<leader>pe", function()
+vim.keymap.set({ "n", "v" }, "<leader>pe", with_winborder("none", function()
     local search_word = grep_word()
     builtin.grep_string({ search = search_word })
-end, { desc = "Search selected cursor/section in vmode" })
+end), { desc = "Search selected cursor/section in vmode" })
 
-vim.keymap.set("n", "<leader>px", function()
+vim.keymap.set("n", "<leader>px", with_winborder("none", function()
     local query = vim.fn.input("Grep —> ")
     builtin.live_grep({
         default_text = query,
@@ -85,4 +83,4 @@ vim.keymap.set("n", "<leader>px", function()
             return { "--fixed-strings" }
         end,
     })
-end, { desc = "Live grep exact match" })
+end), { desc = "Live grep exact match" })
