@@ -2,7 +2,8 @@
 # Environment variables and PATH configuration
 
 # Shell configuration
-# set -x SHELL /usr/local/bin/fish
+set -x SHELL /usr/local/bin/fish
+set -x SHELL $HOME/.nix-config/bin/fish
 
 # Editor configuration
 set -gx EDITOR nvim
