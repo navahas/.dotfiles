@@ -2,24 +2,32 @@ function fish_prompt
     set -l last_status $status
 
     # Colors
-    # set -l color_green (set_color 87D7AE)
-    # # set -l color_red (set_color D70000)
-    # set -l color_red (set_color red)
-     set -l color_blue (set_color 6A7B99)
-    # # set -l color_grey (set_color 5a5a5a)
-    # # set -l color_blue (set_color 81a1c1)
-    # set -l color_grey (set_color 868686)
-
+    set -l color_blue (set_color blue)
     set -l color_green (set_color green)
     set -l color_red (set_color red)
-    #set -l color_blue (set_color blue)
     set -l color_grey (set_color 868686)
 
     set -l color_reset (set_color normal)
 
     # Current directory
-    set -l current_dir (string replace -r "^$HOME" "~" $PWD)
-    echo -n $color_blue $current_dir $color_reset
+    # set -l current_dir (string replace -r "^$HOME" "~" $PWD)
+    # echo -n $color_blue $current_dir $color_reset
+
+    # Shorten path to last 2 dirs (~/…/dir1/dir2)
+    set -l path (string replace -r "^$HOME" "~" $PWD)
+    set -l parts (string split "/" $path)
+    set -l count (count $parts)
+
+    if test $count -le 3
+        set show $path
+    else
+        set -l last2 $parts[-2..-1]
+        # set show "~"/"…"/$last2[1]/$last2[2]
+        # set show "~"/"…"/$last2[2]
+        set show "[$last2[1]::$last2[2]]"
+    end
+
+    echo -n $color_blue$show $color_reset
 
     # Git status
     if command git rev-parse --is-inside-work-tree >/dev/null 2>&1
@@ -31,6 +39,16 @@ function fish_prompt
         if test -n "$git_status"
             set git_dirty "*"
         end
+
+        # set -l is_worktree (git rev-parse --git-path worktrees 2>/dev/null)
+        
+        # if test -d "$is_worktree"
+        #     # Worktree → omit branch name
+        #     echo -n "$color_grey$git_dirty $color_reset"
+        # else
+        #     # Normal repo → show branch name
+        #     echo -n "$color_grey$git_branch$git_dirty $color_reset"
+        # end
 
         echo -n "$color_grey$git_branch$git_dirty $color_reset"
     end

@@ -40,8 +40,18 @@ alias ssh- '$HOME/.local/scripts/ssh/ssh-fzf.sh'
 # File listing
 alias ls "ls -p -G"
 alias la "ls -Ah"
-alias ll "eza -l -g --icons"
-alias lla "ell -a"
+# alias ll "eza -l --no-user --icons"
+# alias lla "eza -la -io --all --no-user --icons"
+# set -Ux LS_COLORS ""
+
+function ll
+    ls -gFh --color --no-group $argv | sed '/^total/d'
+end
+
+function lla
+    ls -gFh --color --no-group -a $argv | sed '/^total/d'
+end
+set -Ux LS_COLORS "di=38;5;215:ln=4;34:ex=4;32"
 
 # Git
 alias gl "git log --oneline --graph --decorate --all"

@@ -1,7 +1,7 @@
 colourful: true
 
 filekinds:
-  directory: {foreground: "#F0DFAE", is_bold: false}
+  directory: {foreground: "#F1D8A5", is_bold: false}
 
 users:
   user_you: {foreground: "#dcdccd", is_bold: false}
@@ -10,3 +10,6 @@ users:
   group_yours: {foreground: "#dcdccd", is_bold: false}
   group_other: {foreground: "#dcdccd", is_bold: false}
   group_root: {foreground: "#dcdccd", is_bold: false}
+
+inode: {foreground: "#7690AC"}
+octal: {foreground: "#A3BE8C"}

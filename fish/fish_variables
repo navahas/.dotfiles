@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export LS_COLORS:di\x3d38\x3b5\x3b215\x3aln\x3d4\x3b34\x3aex\x3d4\x3b32
 SETUVAR __fish_initialized:3800
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_plugins:edc/bass
