@@ -8,7 +8,9 @@ palette = 0=#3b4252
 palette = 1=#bf616a
 palette = 2=#b9d29d
 palette = 3=#f0deae
-palette = 4=#506070
+#b0 palette = 4=#506070
+#b1 palette = 4=#6A7B99
+palette = 4=#7690ab
 palette = 5=#b48ead
 palette = 6=#88c0d0
 palette = 7=#dcdccc

@@ -11,9 +11,9 @@ command = /run/current-system/sw/bin/fish --login --interactive
 font-size = 15
 font-thicken = true
 font-thicken-strength = 255
-font-feature = -calt
-font-feature = -liga
-font-feature = -dlig
+# font-feature = -calt
+# font-feature = -liga
+# font-feature = -dlig
 font-feature = zero
 cursor-text = #000000
 
