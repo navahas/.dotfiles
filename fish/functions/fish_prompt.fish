@@ -14,16 +14,23 @@ function fish_prompt
     # echo -n $color_blue $current_dir $color_reset
 
     # Shorten path to last 2 dirs (~/…/dir1/dir2)
-    set -l path (string replace -r "^$HOME" "~" $PWD)
+    set -l path (string replace -r "^$HOME" "HOME" $PWD)
     set -l parts (string split "/" $path)
     set -l count (count $parts)
 
-    if test $count -le 3
-        set show $path
+    # if test $count -le 3
+    #     set show $path
+    # else
+    #     set -l last2 $parts[-2..-1]
+    #     # set show "~"/"…"/$last2[1]/$last2[2]
+    #     # set show "~"/"…"/$last2[2]
+    #     set show "[$last2[1]::$last2[2]]"
+    # end
+
+    if test $count -le 1
+        set show "[$path]"
     else
         set -l last2 $parts[-2..-1]
-        # set show "~"/"…"/$last2[1]/$last2[2]
-        # set show "~"/"…"/$last2[2]
         set show "[$last2[1]::$last2[2]]"
     end
 
