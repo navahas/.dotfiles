@@ -44,14 +44,27 @@ alias la "ls -Ah"
 # alias lla "eza -la -io --all --no-user --icons"
 # set -Ux LS_COLORS ""
 
-function ll
-    ls -gFh --color --no-group $argv | sed '/^total/d'
-end
+# function ll
+#     ls -gFh --color --no-group $argv | sed '/^total/d'
+# end
+#
+# function lla
+#     ls -gFh --color --no-group -a $argv | sed '/^total/d'
+# end
 
-function lla
-    ls -gFh --color --no-group -a $argv | sed '/^total/d'
-end
-set -Ux LS_COLORS "di=38;5;215:ln=4;34:ex=4;32"
+set -Ux LS_COLORS \
+"di=38;5;215:"\
+"ln=4;34:"\
+"or=4;93:"\
+"ex=4;32:"\
+"*.md=3;94:"\
+"*.git=38;5;247:"\
+"*.gitignore=38;5;247:"\
+"*.gitmodules=38;5;247"
+
+alias lsc "$HOME/.local/scripts/system/lsc.sh"
+alias ll "lsc"
+alias lla "lsc -a"
 
 # Git
 alias gl "git log --oneline --graph --decorate --all"
