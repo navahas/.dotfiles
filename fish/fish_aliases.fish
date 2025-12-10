@@ -36,6 +36,7 @@ alias dfzf '$HOME/.local/scripts/docker/docker-fzf-id.sh'
 
 # SSH
 alias ssh- '$HOME/.local/scripts/ssh/ssh-fzf.sh'
+alias fasts3 'ssh fasts3 -t tmux attach'
 
 # File listing
 alias ls "ls -p -G"
@@ -58,6 +59,8 @@ set -Ux LS_COLORS \
 "or=4;93:"\
 "ex=4;32:"\
 "*.md=3;94:"\
+"*README=3;94:"\
+"*.txt=3;:"\
 "*.git=38;5;247:"\
 "*.gitignore=38;5;247:"\
 "*.gitmodules=38;5;247"
