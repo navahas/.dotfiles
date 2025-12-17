@@ -31,8 +31,14 @@ gpgconf --kill gpg-agent
 ```
 
 ## REPO SCOPED
-```
+```bash
 git config user.signingkey $KEY
 git config user.username Name
 git config user.email foo@mail.com
+
+git config --global commit.gpgsign true
+
+
+# for ssh
+git config --global gpg.format ssh
 ```

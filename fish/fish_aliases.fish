@@ -2,8 +2,8 @@
 # Aliases
 
 # Basic editors
-alias vim 'nvim'
-alias ovim 'vim'
+alias vim 'vim'
+# alias ovim 'vim'
 alias v. 'nvim .'
 alias nvim010 'env NVIM_APPNAME=nvim010 command nvim010'
 
