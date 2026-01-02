@@ -32,13 +32,14 @@ map('n', 'N', 'Nzzzv', opts)
 map('v', '<leader>p', '"_dP', opts)
 
 -- Smart closing: skip over closing character if it's already there
-local function smart_close(char)
+local function smart_close(char, current)
     return function()
         local line = vim.api.nvim_get_current_line()
         local col = vim.api.nvim_win_get_cursor(0)[2]
+        local current_char = line:sub(col, col)
         local next_char = line:sub(col + 1, col + 1)
 
-        if next_char == char then
+        if next_char == char and current_char == current then
             -- Skip over the existing closing character
             return '<Right>'
         else
@@ -49,13 +50,13 @@ local function smart_close(char)
 end
 
 -- Smart opening: skip autopair if closing character is already there
-local function smart_open(open_char, close_char)
+local function smart_open(open_char, close_char, smart)
     return function()
         local line = vim.api.nvim_get_current_line()
         local col = vim.api.nvim_win_get_cursor(0)[2]
         local next_char = line:sub(col + 1, col + 1)
 
-        if next_char == close_char then
+        if smart and next_char == close_char then
             return open_char
         else
             -- Insert the pair
@@ -65,15 +66,15 @@ local function smart_open(open_char, close_char)
 end
 
 -- Smart autopairing
-vim.keymap.set('i', '(', smart_open('(', ')'), { noremap = true, expr = true })
-vim.keymap.set('i', '{', smart_open('{', '}'), { noremap = true, expr = true })
-vim.keymap.set('i', '[', smart_open('[', ']'), { noremap = true, expr = true })
-vim.keymap.set('i', '"', smart_open('"', '"'), { noremap = true, expr = true })
-vim.keymap.set('i', '\'', smart_open('\'', '\''), { noremap = true, expr = true })
+vim.keymap.set('i', '(', smart_open('(', ')', false), { noremap = true, expr = true })
+vim.keymap.set('i', '{', smart_open('{', '}', false), { noremap = true, expr = true })
+vim.keymap.set('i', '[', smart_open('[', ']', false), { noremap = true, expr = true })
+vim.keymap.set('i', '"', smart_open('"', '"', false), { noremap = true, expr = true })
+vim.keymap.set('i', '\'', smart_open('\'', '\'', false), { noremap = true, expr = true })
 
-vim.keymap.set('i', ')', smart_close(')'), { noremap = true, expr = true })
-vim.keymap.set('i', '}', smart_close('}'), { noremap = true, expr = true })
-vim.keymap.set('i', ']', smart_close(']'), { noremap = true, expr = true })
+-- vim.keymap.set('i', ')', smart_close(')', '('), { noremap = true, expr = true })
+-- vim.keymap.set('i', '}', smart_close('}', '{'), { noremap = true, expr = true })
+-- vim.keymap.set('i', ']', smart_close(']', '['), { noremap = true, expr = true })
 
 -- Smart newline indentation
 vim.keymap.set('i', '<CR>', function()
