@@ -31,6 +31,7 @@ gpgconf --kill gpg-agent
 ```
 
 ## REPO SCOPED
+https://git-scm.com/docs/git-config.html#_variables
 ```bash
 git config user.signingkey $KEY
 git config user.username Name
@@ -41,4 +42,10 @@ git config --global commit.gpgsign true
 
 # for ssh
 git config --global gpg.format ssh
+git config --global user.signingkey ~/.ssh/id_ed25519.pub
+
+git log --pretty=format:'%h %G? %s'
+
+echo "mail@key.com $(cat ~/.ssh/key.pub)" >> allowed_signers
+git config --global gpg.ssh.allowedSignersFile ~/.config/git/allowed_signers
 ```

@@ -7,6 +7,8 @@ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 ls -lt /nix/var/nix/profiles/system-*-link
 
 
+nix flake update
+
 # Delete all but the last 10 generations
 sudo nix-collect-garbage --delete-older-than 10
 ##### Or delete generations older than 30 days
