@@ -15,7 +15,7 @@ bind -x '"\C-ñ":"nvim ."'
 bind -x '"\C-v":"$HOME/.local/scripts/tmux/tmux-sessionizer-vim.sh"'
 
 # Ctrl+n: Run tmux-sessionizer-v2-normal
-bind -x '"\C-n":"$HOME/.local/scripts/tmux/tmux-sessionizer-normal.sh"'
+# bind -x '"\C-n":"$HOME/.local/scripts/tmux/tmux-sessionizer-normal.sh"'
 
 # Ctrl+s: Run tmux-fzf-sessions
 bind -x '"\C-s":"$HOME/.local/scripts/tmux/tmux-fzf-sessions.sh"'
