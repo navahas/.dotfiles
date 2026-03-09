@@ -2,8 +2,7 @@
 # Aliases
 
 # Basic editors
-alias vim='nvim'
-alias ovim='vim'
+alias vim='vim'
 alias v.='nvim .'
 
 # Tmux sessionizers and utilities
@@ -13,6 +12,8 @@ alias ta='tmux attach'
 alias tmux-sessionizer-v2-vim="$HOME/.local/scripts/tmux/tmux-sessionizer-vim.sh"
 alias tmux-sessionizer-v2-normal="$HOME/.local/scripts/tmux/tmux-sessionizer-normal.sh"
 alias tmux-fzf-sessions="$HOME/.local/scripts/tmux/tmux-fzf-sessions.sh"
+
+alias man="env MANPATH=/Users/navahas/man/share/man man"
 
 # Config management
 alias src='source ~/.bashrc'
@@ -34,8 +35,24 @@ alias ssh-="$HOME/.local/scripts/ssh/ssh-fzf.sh"
 # File listing
 alias ls="ls -p -G"
 alias la="ls -Ah"
-alias ll="eza -l -g --icons"
-alias lla="ell -a"
+# alias ll="eza -l -g --icons"
+# alias lla="ell -a"
+LS_COLORS="di=38;5;215:"
+LS_COLORS+="ln=4;34:"
+LS_COLORS+="or=4;93:"
+LS_COLORS+="ex=4;32:"
+LS_COLORS+="*.md=3;94:"
+LS_COLORS+="*README=3;94:"
+LS_COLORS+="*.txt=3:"
+LS_COLORS+="*.git=38;5;247:"
+LS_COLORS+="*.gitignore=38;5;247:"
+LS_COLORS+="*.gitmodules=38;5;247"
+export LS_COLORS
+
+alias lsc="$HOME/.local/scripts/system/lsc.sh"
+alias ll="lsc"
+alias lla="lsc -a"
+
 
 # Git
 alias gl="git log --oneline --graph --decorate --all"

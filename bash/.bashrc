@@ -14,4 +14,4 @@ DOTFILES_BASH="$HOME/.dotfiles/bash"
 [ -f "$DOTFILES_BASH/bash_osx.sh" ] && source "$DOTFILES_BASH/bash_osx.sh"
 
 # Source secrets if available
-[ -f "$DOTFILES_BASH/bash_secrets.sh" ] && source "$DOTFILES_BASH/bash_secrets.sh"
+[ -f "$DOTFILES_BASH/bash_secrets.sh" ] && source "$DOTFILES_BASH/bash_secrets.sh" || true
