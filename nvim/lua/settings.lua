@@ -21,6 +21,7 @@ vim.cmd([[
 vim.g.mapleader = " "
 vim.g.netrw_banner = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
+vim.g.netrw_sort_sequence = '[/]$,*'
 
 vim.opt.swapfile = false -- Disable swap files
 vim.opt.backup = false   -- Disable backups

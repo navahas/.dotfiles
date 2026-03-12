@@ -46,12 +46,13 @@ LS_COLORS+="*README=3;94:"
 LS_COLORS+="*.txt=3:"
 LS_COLORS+="*.git=38;5;247:"
 LS_COLORS+="*.gitignore=38;5;247:"
+LS_COLORS+="*.gitattributes=38;5;247:"
 LS_COLORS+="*.gitmodules=38;5;247"
 export LS_COLORS
 
 alias lsc="$HOME/.local/scripts/system/lsc.sh"
-alias ll="lsc"
-alias lla="lsc -a"
+alias ll="lsc --group-directories-first"
+alias lla="lsc -a --group-directories-first"
 
 
 # Git

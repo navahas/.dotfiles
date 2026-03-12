@@ -62,12 +62,13 @@ set -Ux LS_COLORS \
 "*README=3;94:"\
 "*.txt=3;:"\
 "*.git=38;5;247:"\
+"*.gitattributes=38;5;247:"\
 "*.gitignore=38;5;247:"\
 "*.gitmodules=38;5;247"
 
 alias lsc "$HOME/.local/scripts/system/lsc.sh"
-alias ll "lsc"
-alias lla "lsc -a"
+alias ll "lsc --group-directories-first"
+alias lla "lsc -a --group-directories-first"
 
 # Git
 alias gl "git log --oneline --graph --decorate --all"
