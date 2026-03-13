@@ -22,6 +22,9 @@ vim.keymap.set({ "n", "v" }, "<C-k>", scroll_up_small, { noremap = true })
 
 map('n', '<C-l>', ':cnext<CR>', opts)
 map('n', '<C-h>', ':cprev<CR>', opts)
+-- map('n', '<C-n>', ':lnext<CR>', opts)
+-- map('n', '<C-p>', ':lprev<CR>', opts)
+
 map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 map('n', 'J', 'mzJ`z', opts)

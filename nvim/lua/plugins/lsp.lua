@@ -1,7 +1,7 @@
 -- Configure completion popup
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.opt.pumheight = 10  -- Max items in popup
-vim.opt.pumblend = 0    -- No transparency
+vim.opt.pumheight = 10 -- Max items in popup
+vim.opt.pumblend = 0   -- No transparency
 
 -- Set up keymaps when LSP attaches to buffer
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -18,6 +18,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts)
+
+        vim.keymap.set("n", "<leader>ds", vim.lsp.buf.document_symbol, { desc = "Document symbols (loclist)" })
     end,
 })
 
