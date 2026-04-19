@@ -20,6 +20,15 @@ end
 vim.keymap.set({ "n", "v" }, "<C-j>", scroll_down_small, { noremap = true })
 vim.keymap.set({ "n", "v" }, "<C-k>", scroll_up_small, { noremap = true })
 
+vim.keymap.set("n", "<C-F>", function()
+    if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
+        vim.lsp.buf.format({ async = true })
+    else
+        vim.cmd("normal! mzvap=`z")
+    end
+end, opts)
+
+
 map('n', '<C-l>', ':cnext<CR>', opts)
 map('n', '<C-h>', ':cprev<CR>', opts)
 -- map('n', '<C-n>', ':lnext<CR>', opts)
@@ -33,6 +42,9 @@ map('n', 'J', 'mzJ`z', opts)
 map('n', 'n', 'nzzzv', opts)
 map('n', 'N', 'Nzzzv', opts)
 map('v', '<leader>p', '"_dP', opts)
+
+map('n', '<Space>]', ']<Space>', { silent = true })
+map('n', '<Space>[', '[<Space>', { silent = true })
 
 -- Smart closing: skip over closing character if it's already there
 local function smart_close(char, current)
