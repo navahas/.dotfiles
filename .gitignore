@@ -5,3 +5,6 @@ fish/fish_secrets.fish
 bash/bash_secrets.sh
 aerospace/aerospace.toml
 .sync_timestamp
+fish/fish_variables
+fish/conf.d/fish_frozen_theme.fish**
+fish/conf.d/fish_frozen_key_bindings.fish**
