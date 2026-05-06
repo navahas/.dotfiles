@@ -83,6 +83,8 @@ require("jellybeans").setup({
 
         highlights.ColorColumn = { bg = "NONE" }
 
+        highlights.Visual = { bg = "#585755" }
+
         -- Completion menu (popup menu)
         -- highlights.Pmenu = { fg = colors.white, bg = "NONE" }
         -- highlights.PmenuSel = { fg = colors.koromiko, bg = "NONE", bold = true }

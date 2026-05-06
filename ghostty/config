@@ -49,7 +49,7 @@ title = " "
 # macos-option-as-alt = left
 keybind = alt+left=esc:b
 keybind = alt+right=esc:f
-background-opacity = 0.9
+background-opacity = 0.89
 background-blur-radius = 20
 
 quick-terminal-position = bottom
