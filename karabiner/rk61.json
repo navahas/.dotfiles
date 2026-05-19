@@ -1,0 +1,37 @@
+{
+    "description": "RK61 International Fix: Right Shift + Escape to Tilde (~), Right Option + Escape to Backtick (`)",
+    "manipulators": [
+        {
+            "from": {
+                "key_code": "escape",
+                "modifiers": {
+                    "mandatory": ["right_shift"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "non_us_backslash",
+                    "modifiers": ["left_shift"]
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "escape",
+                "modifiers": {
+                    "mandatory": ["right_option"],
+                    "optional": ["any"]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "non_us_backslash",
+                    "modifiers": []
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}
