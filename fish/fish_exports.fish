@@ -16,6 +16,7 @@ set -gx BAT_THEME "Visual Studio Dark+"
 set -gx FZF_DEFAULT_OPTS '--reverse'
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
 set -gx MANPATH "$HOME/man/share/man" $MANPATH
+set -gx MANPAGER "nvim +Man!"
 
 #  Highest Priority
 #      ↑
