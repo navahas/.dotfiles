@@ -86,11 +86,13 @@ require("jellybeans").setup({
         highlights.Visual = { bg = "#585755" }
 
         -- Completion menu (popup menu)
-        -- highlights.Pmenu = { fg = colors.white, bg = "NONE" }
-        -- highlights.PmenuSel = { fg = colors.koromiko, bg = "NONE", bold = true }
-        -- highlights.PmenuSbar = { bg = "NONE" }
-        -- highlights.PmenuThumb = { bg = colors.grey }
-        -- highlights.PmenuBorder = { fg = colors.grey, bg = "NONE" }
+        highlights.Pmenu = { fg = colors.white, bg = "NONE" }
+        highlights.PmenuSel = { fg = colors.koromiko, bg = "NONE", bold = true }
+        highlights.PmenuSbar = { bg = "NONE" }
+        highlights.PmenuThumb = { bg = colors.grey }
+        highlights.PmenuBorder = { fg = colors.grey, bg = "NONE" }
+        highlights.PmenuKind = { fg = colors.biloba_flower, bg = "NONE" }
+        highlights.PmenuKindSel = { fg = colors.biloba_flower, bg = "NONE", bold = true }
     end,
 })
 

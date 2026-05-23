@@ -13,14 +13,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
         vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
-        -- this is in keymaps.lua
-        -- vim.keymap.set("n", "<C-F>", function()
-        --     vim.lsp.buf.format({ async = true })
-        -- end, opts)
         vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts)
         vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts)
-
         vim.keymap.set("n", "<leader>ds", vim.lsp.buf.document_symbol, { desc = "Document symbols (loclist)" })
+
+        vim.lsp.completion.enable(true, args.data.client_id, args.buf, {
+            autotrigger = false,
+            convert = function(item) return { abbr = item.label:gsub('%b()', ''), menu = '' } end,
+        })
+        vim.keymap.set('i', '<C-Space>', function() vim.lsp.completion.get() end, opts)
     end,
 })
 
@@ -41,13 +42,9 @@ mason_lspconfig.setup({
     automatic_installation = true,
 })
 
--- Load nvim-lspconfig for commands (:LspStart, :LspStop, etc.)
--- But use vim.lsp.config for actual configuration (nvim 0.11+)
 require("lspconfig")
 
--- Add nvim-cmp capabilities to LSP
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
-local capabilities = cmp_nvim_lsp.default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 -- Load custom LSP configurations from lsp/*.lua directory into vim.lsp.config
 local lsp_config_dir = vim.fn.stdpath('config') .. '/lsp'

@@ -10,6 +10,8 @@ vim.o.smartindent = true
 vim.o.foldmethod = 'indent'
 vim.o.foldlevelstart = 99 -- Open all folds by default
 vim.o.winborder = "rounded"
+vim.o.pumborder = "rounded"
+vim.o.pummaxwidth = 80
 
 vim.cmd([[
   cnoreabbrev W w
