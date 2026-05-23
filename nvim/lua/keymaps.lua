@@ -1,26 +1,24 @@
 -- keymaps.lua
+local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
-local map = vim.api.nvim_set_keymap
 
 -- General mappings
 map('n', '<leader>pv', ':Ex<CR>', opts)
 map('n', '<leader><CR>', ':so ~/.config/nvim/init.lua<CR>:lua print(" Nvim: source reloaded")<CR>', opts)
 
 -- Motions
--- Scroll down a quarter screen and center
 local function scroll_down_small()
     vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "j")
 end
 
--- Scroll up a quarter screen and center
 local function scroll_up_small()
     vim.cmd("normal! " .. math.floor(vim.api.nvim_win_get_height(0) / 6) .. "k")
 end
 
-vim.keymap.set({ "n", "v" }, "<C-j>", scroll_down_small, { noremap = true })
-vim.keymap.set({ "n", "v" }, "<C-k>", scroll_up_small, { noremap = true })
+map({ "n", "v" }, "<C-j>", scroll_down_small, { noremap = true })
+map({ "n", "v" }, "<C-k>", scroll_up_small, { noremap = true })
 
-vim.keymap.set("n", "<C-F>", function()
+map("n", "<C-F>", function()
     if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
         vim.lsp.buf.format({ async = true })
     else
@@ -28,17 +26,12 @@ vim.keymap.set("n", "<C-F>", function()
     end
 end, opts)
 
-
 map('n', '<C-l>', ':cnext<CR>', opts)
 map('n', '<C-h>', ':cprev<CR>', opts)
--- map('n', '<C-n>', ':lnext<CR>', opts)
--- map('n', '<C-p>', ':lprev<CR>', opts)
 
 map('v', 'J', ":m '>+1<CR>gv=gv", opts)
 map('v', 'K', ":m '<-2<CR>gv=gv", opts)
 map('n', 'J', 'mzJ`z', opts)
--- map('n', '<C-u>', '<C-u>zz', opts)
--- map('n', '<C-d>', '<C-d>zz', opts)
 map('n', 'n', 'nzzzv', opts)
 map('n', 'N', 'Nzzzv', opts)
 map('v', '<leader>p', '"_dP', opts)
@@ -46,44 +39,27 @@ map('v', '<leader>p', '"_dP', opts)
 map('n', '<Space>]', ']<Space>', { silent = true })
 map('n', '<Space>[', '[<Space>', { silent = true })
 
--- Smart opening: skip autopair if closing character is already there
-local function smart_open(open_char, close_char, smart)
+-- Autopairing
+local function auto_pair(open_char, close_char)
     return function()
-        local line = vim.api.nvim_get_current_line()
-        local col = vim.api.nvim_win_get_cursor(0)[2]
-        local next_char = line:sub(col + 1, col + 1)
-
-        if smart and next_char == close_char then
-            return open_char
-        else
-            -- Insert the pair
-            return open_char .. close_char .. '<Left>'
-        end
+        return open_char .. close_char .. '<Left>'
     end
 end
 
--- Smart autopairing
-vim.keymap.set('i', '(', smart_open('(', ')', false), { noremap = true, expr = true })
-vim.keymap.set('i', '{', smart_open('{', '}', false), { noremap = true, expr = true })
-vim.keymap.set('i', '[', smart_open('[', ']', false), { noremap = true, expr = true })
-vim.keymap.set('i', '"', smart_open('"', '"', false), { noremap = true, expr = true })
-vim.keymap.set('i', '\'', smart_open('\'', '\'', false), { noremap = true, expr = true })
+map('i', '(', auto_pair('(', ')'), { noremap = true, expr = true })
+map('i', '{', auto_pair('{', '}'), { noremap = true, expr = true })
+map('i', '[', auto_pair('[', ']'), { noremap = true, expr = true })
+map('i', '"', auto_pair('"', '"'), { noremap = true, expr = true })
+map('i', "'", auto_pair("'", "'"), { noremap = true, expr = true })
 
 -- Smart newline indentation
-vim.keymap.set('i', '<CR>', function()
+map('i', '<CR>', function()
     local line = vim.api.nvim_get_current_line()
     local col = vim.api.nvim_win_get_cursor(0)[2]
     local before = col > 0 and line:sub(col, col) or ''
     local after = line:sub(col + 1, col + 1)
 
-    -- Check if cursor is between matching pairs
-    local pairs = {
-        ['{'] = '}',
-        ['('] = ')',
-        ['['] = ']',
-        ['"'] = '"',
-        ["'"] = "'"
-    }
+    local pairs = { ['{'] = '}', ['('] = ')', ['['] = ']', ['"'] = '"', ["'"] = "'" }
 
     if pairs[before] == after then
         return '<CR><C-o>O'
@@ -92,25 +68,18 @@ vim.keymap.set('i', '<CR>', function()
 end, { noremap = true, expr = true })
 
 -- Yank to system clipboard
-map('v', '<leader>y', '"*y', opts)
-map('n', '<leader>y', '"*y', opts)
+map({ 'v', 'n' }, '<leader>y', '"*y', opts)
 map('n', '<leader>Y', 'magg"*yG`a', opts)
 
 -- Marks: swap ' and ` (' jumps to line+column, ` jumps to line only)
 map('n', "'", '`', opts)
 map('n', '`', "'", opts)
 
--- Misc key mappings
+-- Misc
 map('n', '<leader>nh', ':nohl<CR>', opts)
 map('n', '<leader>nw', ':set wrap!<CR>', opts)
-map('n', '<leader>\'', '<C-^>', opts)
--- map('n', '<C-F>', 'magg=G`a', opts)
+map('n', "<leader>'", '<C-^>', opts)
 
 -- Wrapped lines
-vim.keymap.set({ 'n', 'v' }, 'j', function()
-    return vim.v.count == 0 and 'gj' or 'j'
-end, { expr = true })
-
-vim.keymap.set({ 'n', 'v' }, 'k', function()
-    return vim.v.count == 0 and 'gk' or 'k'
-end, { expr = true })
+map({ 'n', 'v' }, 'j', function() return vim.v.count == 0 and 'gj' or 'j' end, { expr = true })
+map({ 'n', 'v' }, 'k', function() return vim.v.count == 0 and 'gk' or 'k' end, { expr = true })
