@@ -7,15 +7,15 @@
 -- ============================================
 
 local getPath = function()
-  local filename = vim.fn.expand('%:t')  -- Get the filename (tail)
-  if filename == '' or filename == '[No Name]' then
-    -- Return the current directory, replacing the home directory with ~
-    -- return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
-    return ''
-  else
-    -- Return the file path, replacing the home directory with ~
-    return vim.fn.fnamemodify(vim.fn.expand('%:p'), ':~')
-  end
+    local filename = vim.fn.expand('%:t') -- Get the filename (tail)
+    if filename == '' or filename == '[No Name]' then
+        -- Return the current directory, replacing the home directory with ~
+        -- return vim.fn.fnamemodify(vim.fn.getcwd(), ':~')
+        return ''
+    else
+        -- Return the file path, replacing the home directory with ~
+        return vim.fn.fnamemodify(vim.fn.expand('%:p'), ':~')
+    end
 end
 
 _G.getStatusString = _G.getStatusString or function()
@@ -29,11 +29,11 @@ end
 
 -- StatusLine highlight colors
 vim.api.nvim_create_autocmd("ColorScheme", {
-  pattern = "*",
-  callback = function()
-    vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
-    vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", fg = "#3A3A3A" })
-  end,
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
+        vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE", fg = "#3A3A3A" })
+    end,
 })
 
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE", fg = "#5A5A5A" })
@@ -48,14 +48,14 @@ local mode_display_enabled = true
 
 vim.opt.showmode = false
 
-local style_operator = "——>"
+local style_operator = "-->"
 local mode_map = {
     -- Normal modes
     n = " ",
     no = " " .. style_operator .. " OPERATOR-PENDING",
     nov = " " .. style_operator .. " OPERATOR-PENDING (charwise)",
     noV = " " .. style_operator .. " OPERATOR-PENDING (linewise)",
-    ["\22"] = " " .. style_operator .. " VISUAL BLOCK",  -- CTRL-V
+    ["\22"] = " " .. style_operator .. " VISUAL BLOCK", -- CTRL-V
     ["no\22"] = " " .. style_operator .. " OPERATOR-PENDING (blockwise)",
     niI = " " .. style_operator .. " NORMAL (insert)",
     niR = " " .. style_operator .. " NORMAL (replace)",
@@ -68,12 +68,12 @@ local mode_map = {
     vs = " " .. style_operator .. " VISUAL (select)",
     V = " " .. style_operator .. " VISUAL LINE",
     Vs = " " .. style_operator .. " VISUAL LINE (select)",
-    ["\22s"] = " " .. style_operator .. " VISUAL BLOCK (select)",  -- CTRL-Vs
+    ["\22s"] = " " .. style_operator .. " VISUAL BLOCK (select)", -- CTRL-Vs
 
     -- Select modes
     s = " " .. style_operator .. " SELECT",
     S = " " .. style_operator .. " SELECT LINE",
-    ["\19"] = " " .. style_operator .. " SELECT BLOCK",  -- CTRL-S
+    ["\19"] = " " .. style_operator .. " SELECT BLOCK", -- CTRL-S
 
     -- Insert modes
     i = " " .. style_operator .. " INSERT",
@@ -129,6 +129,5 @@ vim.api.nvim_create_autocmd("ModeChanged", {
         if not msg then return end
         if msg == "" then return end
         vim.cmd("echomsg '" .. msg .. "'")
-
     end,
 })

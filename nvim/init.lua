@@ -5,5 +5,4 @@ require('settings')
 require('keymaps')
 require('ui')
 require('autocmds')
-
 require('plugins')

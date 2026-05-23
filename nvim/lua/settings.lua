@@ -8,7 +8,7 @@ vim.o.shiftwidth = 4
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.foldmethod = 'indent'
-vim.o.foldlevelstart = 99  -- Open all folds by default
+vim.o.foldlevelstart = 99 -- Open all folds by default
 vim.o.winborder = "rounded"
 
 vim.cmd([[
