@@ -35,8 +35,9 @@ function fish_prompt
         set show "[$last2[1]::$last2[2]]"
     end
 
-    set mac "[apple]"
-    echo -n $color_label$mac$color_reset
+    if set -q MACHINE_LABEL; and test -n "$MACHINE_LABEL"
+        echo -n $color_label"[$MACHINE_LABEL]"$color_reset
+    end
 
     echo -n $color_blue$show $color_reset
 
