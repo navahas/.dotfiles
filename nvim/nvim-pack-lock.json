@@ -1,63 +1,35 @@
 {
   "plugins": {
     "buffmark": {
-      "rev": "522a3a4",
+      "rev": "522a3a45873f5270aadba7891316ef65c441bb8e",
       "src": "https://github.com/navahas/buffmark"
     },
-    "cmp-buffer": {
-      "rev": "b74fab3",
-      "src": "https://github.com/hrsh7th/cmp-buffer"
-    },
-    "cmp-nvim-lsp": {
-      "rev": "cbc7b02",
-      "src": "https://github.com/hrsh7th/cmp-nvim-lsp"
-    },
     "jellybeans.nvim": {
-      "rev": "28b8088",
+      "rev": "29f4c17981f70c0919c2f3f918da9a89f906bf37",
       "src": "https://github.com/wtfox/jellybeans.nvim"
     },
-    "lspkind.nvim": {
-      "rev": "3ddd1b4",
-      "src": "https://github.com/onsails/lspkind.nvim"
-    },
-    "mason-lspconfig.nvim": {
-      "rev": "3590d66",
-      "src": "https://github.com/williamboman/mason-lspconfig.nvim"
-    },
     "mason.nvim": {
-      "rev": "ad7146a",
+      "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/williamboman/mason.nvim"
     },
-    "nvim-cmp": {
-      "rev": "d78fb3b",
-      "src": "https://github.com/hrsh7th/nvim-cmp"
-    },
-    "nvim-lspconfig": {
-      "rev": "87d3018",
-      "src": "https://github.com/neovim/nvim-lspconfig"
-    },
-    "nvim-treesitter": {
-      "rev": "42fc28ba",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
-    },
     "nvim-web-devicons": {
-      "rev": "8dcb311",
+      "rev": "0d7d35fa946837b8738b17c18d1faa1ac351e7f9",
       "src": "https://github.com/nvim-tree/nvim-web-devicons"
     },
     "plenary.nvim": {
-      "rev": "b9fd522",
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "13bfaaa",
+      "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "telescope-fzf-native.nvim": {
-      "rev": "1f08ed6",
+      "rev": "b25b749b9db64d375d782094e2b9dce53ad53a40",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
     },
     "telescope.nvim": {
-      "rev": "b4da76b",
+      "rev": "7d324792b7943e4aa16ad007212e6acc6f9fe335",
       "src": "https://github.com/nvim-telescope/telescope.nvim"
     }
   }
