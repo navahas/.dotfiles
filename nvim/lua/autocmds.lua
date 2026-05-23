@@ -67,9 +67,9 @@ vim.api.nvim_create_autocmd('FileType', {
 -- ============================================
 
 -- Open last N commits of the current file in quickfix list
--- Call with number of versions you want
--- :lua OpenFileHistoryInQuickfix(5)
-function OpenFileHistoryInQuickfix(n)
+-- Usage: :FileHistory 5
+vim.api.nvim_create_user_command('FileHistory', function(opts)
+    local n = tonumber(opts.args) or 5
     local file = vim.fn.expand('%')
     local commits = vim.fn.systemlist("git log -n " .. n .. " --pretty=format:%H -- " .. file)
     local qf_entries = {}
@@ -87,4 +87,4 @@ function OpenFileHistoryInQuickfix(n)
 
     vim.fn.setqflist(qf_entries, 'r')
     vim.cmd("copen")
-end
+end, { nargs = '?' })
