@@ -2,6 +2,7 @@ dotbot/
 install
 nvim.backup
 fish/fish_secrets.fish
+fish/fish_variables
 bash/bash_secrets.sh
 aerospace/aerospace.toml
 .sync_timestamp
