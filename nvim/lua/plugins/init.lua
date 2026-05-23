@@ -21,7 +21,5 @@ vim.cmd.packadd('buffmark')
 vim.cmd.packadd('render-markdown.nvim')
 -- Load configurations
 require('plugins.telescope')
-require('plugins.treesitter')
 require('plugins.theme')
-require('plugins.lsp')
 require('plugins.buffmark')
