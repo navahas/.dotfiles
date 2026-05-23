@@ -1,4 +1,4 @@
--- Plugin management using vim.pack (Neovim 0.12+ nightly)
+-- Plugin management using vim.pack (NVIM v0.12.2)
 vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
