@@ -1,30 +1,16 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 
--- Helper function to get input for grep
-local function get_input()
-    local ok, input_word = pcall(vim.fn.input, {
-        prompt = "Grep —> ",
-        cancelreturn = nil,
-    })
-    if not ok or not input_word then return end
-    return input_word
-end
-
--- Helper function to grep word under cursor or visual selection
+-- Word under cursor or visual selection
 local function grep_word()
-    local word
     if vim.fn.mode() == 'v' then
-        -- Get visual selection
         local saved_reg = vim.fn.getreg('v')
         vim.cmd('noau normal! "vy"')
-        word = vim.fn.getreg('v')
+        local word = vim.fn.getreg('v')
         vim.fn.setreg('v', saved_reg)
-    else
-        -- Get word under cursor
-        get_input()
+        return word
     end
-    return word
+    return vim.fn.expand('<cword>')
 end
 
 -- Setup telescope

@@ -26,6 +26,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_bufsettings = 'noma nomod nobl nowrap ro nu rnu'
 vim.g.netrw_sort_sequence = '[/]$,*'
 
-vim.opt.swapfile = false -- Disable swap files
-vim.opt.backup = false   -- Disable backups
-vim.opt.undofile = true  -- Enable persistent undo
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true

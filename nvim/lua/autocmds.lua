@@ -1,24 +1,11 @@
--- ╭──────────────────────────────────────────────╮
--- │ AUTOCMDS & UTILITIES                         │
--- ╰──────────────────────────────────────────────╯
+local start_time = vim.fn.reltime()
 
--- ============================================
--- STARTUP TIME MEASUREMENT
--- ============================================
-
--- Record the start time
-vim.g.start_time = vim.fn.reltime()
-
--- Function to calculate and print the startup time
-local function print_startup_time()
-    local elapsed_time = vim.fn.reltimefloat(vim.fn.reltime(vim.g.start_time))
-    print(string.format("Neovim started in %.2f ms", elapsed_time * 1000)) -- Convert to milliseconds
-end
-
--- Print the startup time after everything is loaded
 vim.api.nvim_create_autocmd("VimEnter", {
-    callback = print_startup_time,
     group = vim.api.nvim_create_augroup("StartupTimeLogger", { clear = true }),
+    callback = function()
+        local elapsed = vim.fn.reltimefloat(vim.fn.reltime(start_time))
+        print(string.format("Neovim started in %.2f ms", elapsed * 1000))
+    end,
 })
 
 -- ============================================
@@ -26,39 +13,31 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- ============================================
 
 -- @c comment
-vim.fn.setreg("c", "jI*/kO/*j")
-
--- @l - (LOG): FILETYPE SETUP
 local esc = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
-vim.api.nvim_create_augroup('@CPrint', { clear = true })
-vim.api.nvim_create_augroup('@RustPrint', { clear = true })
-vim.api.nvim_create_augroup('@TypeScriptPrint', { clear = true })
+vim.fn.setreg("c", "jI*/kO/*j")
 
+-- @l - (LOG): filetype-specific print statement
 vim.api.nvim_create_autocmd('FileType', {
-    group = '@CPrint',
+    group = vim.api.nvim_create_augroup('@CPrint', { clear = true }),
     pattern = { 'c' },
     callback = function()
-        local macro = 'yiWo' .. 'printf("%s\\n' .. esc .. "la, " .. esc .. 'pA;' .. esc
-        -- local macro = 'yiWo' .. "printf('%s\\n', " .. esc .. 'pa);' .. esc
-        vim.fn.setreg("l", macro)
+        vim.fn.setreg("l", 'yiWo' .. 'printf("%s\\n' .. esc .. "la, " .. esc .. 'pA;' .. esc)
     end
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    group = '@RustPrint',
+    group = vim.api.nvim_create_augroup('@RustPrint', { clear = true }),
     pattern = { 'rust' },
     callback = function()
-        local macro = 'yiWo' .. 'println!("{}", ' .. esc .. 'pa);' .. esc
-        vim.fn.setreg("l", macro)
+        vim.fn.setreg("l", 'yiWo' .. 'println!("{}", ' .. esc .. 'pa);' .. esc)
     end
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-    group = '@TypeScriptPrint',
+    group = vim.api.nvim_create_augroup('@TypeScriptPrint', { clear = true }),
     pattern = { 'javascript', 'typescript' },
     callback = function()
-        local macro = 'yiWo' .. 'console.log("", ' .. esc .. 'pa);' .. esc
-        vim.fn.setreg("l", macro)
+        vim.fn.setreg("l", 'yiWo' .. 'console.log("", ' .. esc .. 'pa);' .. esc)
     end
 })
 
@@ -71,12 +50,13 @@ vim.api.nvim_create_autocmd('FileType', {
 vim.api.nvim_create_user_command('FileHistory', function(opts)
     local n = tonumber(opts.args) or 5
     local file = vim.fn.expand('%')
-    local commits = vim.fn.systemlist("git log -n " .. n .. " --pretty=format:%H -- " .. file)
+    local escaped = vim.fn.shellescape(file)
+    local commits = vim.fn.systemlist("git log -n " .. n .. " --pretty=format:%H -- " .. escaped)
     local qf_entries = {}
 
     for _, sha in ipairs(commits) do
         local temp_path = "/tmp/" .. sha .. "_" .. vim.fn.fnamemodify(file, ":t")
-        vim.fn.system("git show " .. sha .. ":" .. file .. " > " .. temp_path)
+        vim.fn.system("git show " .. sha .. ":" .. escaped .. " > " .. vim.fn.shellescape(temp_path))
         table.insert(qf_entries, {
             filename = temp_path,
             lnum = 1,
