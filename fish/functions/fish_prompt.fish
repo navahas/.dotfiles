@@ -2,11 +2,11 @@ function fish_prompt
     set -l last_status $status
 
     # Colors
-    set -l color_blue (set_color blue)
+    set -l color_blue  (set_color (set -q PROMPT_COLOR_PATH;  and echo $PROMPT_COLOR_PATH;  or echo blue))
     set -l color_green (set_color green)
-    set -l color_red (set_color red)
-    set -l color_grey (set_color 868686)
-    set -l color_label (set_color D7C09B)
+    set -l color_red   (set_color red)
+    set -l color_grey  (set_color 868686)
+    set -l color_label (set_color (set -q PROMPT_COLOR_LABEL; and echo $PROMPT_COLOR_LABEL; or echo D7C09B))
 
     set -l color_reset (set_color normal)
 
