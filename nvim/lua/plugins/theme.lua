@@ -80,6 +80,7 @@ require("jellybeans").setup({
         -- Messages
         highlights.ModeMsg = { fg = colors.yellow, bold = true, bg = "NONE" }
         highlights.ErrorMsg = { fg = colors.error, bg = "NONE", bold = true }
+        highlights.MsgSeparator = { bg = "NONE", fg = colors.grey }
 
         highlights.ColorColumn = { bg = "NONE" }
 
