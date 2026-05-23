@@ -43,6 +43,12 @@ telescope.setup({
             "*.rmeta",
         },
     },
+    pickers = {
+        find_files = { previewer = false, layout_config = { height = 0.4 } },
+        git_files = { previewer = false, layout_config = { height = 0.4 } },
+        live_grep = { layout_strategy = "vertical" },
+        grep_string = { layout_strategy = "vertical" },
+    },
     extensions = {
         fzf = {
             fuzzy = true,
