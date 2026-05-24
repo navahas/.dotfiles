@@ -36,9 +36,6 @@ map('n', 'n', 'nzzzv', opts)
 map('n', 'N', 'Nzzzv', opts)
 map('v', '<leader>p', '"_dP', opts)
 
-map('n', '<Space>]', ']<Space>', { silent = true })
-map('n', '<Space>[', '[<Space>', { silent = true })
-
 -- Autopairing
 local function auto_pair(open_char, close_char)
     return function()

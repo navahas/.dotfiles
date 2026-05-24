@@ -1,6 +1,6 @@
 require("jellybeans").setup({
     transparent = true,
-    italics = false,
+    italics = true,
     plugins = {
         all = true,
         auto = true,
@@ -9,7 +9,6 @@ require("jellybeans").setup({
     on_colors = function(colors)
         colors.error = "#D98870"
         colors.warning = colors.perano
-        colors.hint = colors.perano
     end,
     -- Customize highlight groups
     on_highlights = function(highlights, colors)
@@ -21,9 +20,9 @@ require("jellybeans").setup({
         highlights.TelescopePromptPrefix = { fg = colors.koromiko, bg = "NONE" }
         highlights.TelescopePromptCounter = { fg = colors.yellow, bg = "NONE" }
         highlights.TelescopeResultsBorder = { fg = colors.grey, bg = "NONE" }
-        highlights.TelescopeResultsTitle = { fg = "#B0D0F0", bg = "NONE" }
+        highlights.TelescopeResultsTitle = { fg = colors.perano, bg = "NONE" }
         highlights.TelescopePreviewBorder = { fg = colors.grey, bg = "NONE" }
-        highlights.TelescopePreviewTitle = { fg = "#CC88A3", bg = "NONE" }
+        highlights.TelescopePreviewTitle = { fg = colors.wewak, bg = "NONE" }
         highlights.TelescopeSelection = { fg = colors.koromiko, bg = "NONE", bold = true }
         highlights.TelescopeSelectionCaret = { fg = colors.koromiko, bg = "NONE" }
         highlights.TelescopeMatching = { fg = colors.koromiko, bold = true }
@@ -32,22 +31,22 @@ require("jellybeans").setup({
         highlights.DiagnosticError = { fg = colors.error, bg = "NONE" }
         highlights.DiagnosticWarn = { fg = colors.warning, bg = "NONE" }
         highlights.DiagnosticInfo = { fg = colors.info, bg = "NONE" }
-        highlights.DiagnosticHint = { fg = colors.hint, bg = "NONE" }
+        highlights.DiagnosticHint = { fg = colors.perano, bg = "NONE" }
 
         highlights.LspDiagnosticsUnderlineError = { undercurl = true, sp = colors.error }
         highlights.LspDiagnosticsUnderlineWarning = { undercurl = true, sp = colors.warning }
         highlights.LspDiagnosticsUnderlineInformation = { undercurl = true, sp = colors.info }
-        highlights.LspDiagnosticsUnderlineHint = { undercurl = true, sp = colors.hint }
+        highlights.LspDiagnosticsUnderlineHint = { undercurl = true, sp = colors.perano }
 
         highlights.DiagnosticVirtualTextError = { fg = colors.error }
         highlights.DiagnosticVirtualTextWarn = { fg = colors.warning }
         highlights.DiagnosticVirtualTextInfo = { fg = colors.info }
-        highlights.DiagnosticVirtualTextHint = { fg = colors.hint }
+        highlights.DiagnosticVirtualTextHint = { fg = colors.perano }
 
         highlights.DiagnosticFloatingError = { fg = colors.error, bg = "NONE" }
         highlights.DiagnosticFloatingWarn = { fg = colors.warning, bg = "NONE" }
         highlights.DiagnosticFloatingInfo = { fg = colors.info, bg = "NONE" }
-        highlights.DiagnosticFloatingHint = { fg = colors.hint, bg = "NONE" }
+        highlights.DiagnosticFloatingHint = { fg = colors.perano, bg = "NONE" }
 
         -- Floating windows
         highlights.FloatBorder = { fg = colors.grey, bg = "NONE" }
