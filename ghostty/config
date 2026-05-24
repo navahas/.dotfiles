@@ -9,15 +9,10 @@ command = /run/current-system/sw/bin/fish --login --interactive
 font-size = 15
 font-thicken = true
 font-thicken-strength = 200
-font-feature = zero
 cursor-text = #000000
 
-# alernate w
-font-feature = cv07
-# alternate 1
-font-feature = cv11
-# alternate 0
-font-feature = cv16
+# https://github.com/JetBrains/JetBrainsMono/wiki/OpenType-features
+font-feature = zero, cv07, cv11, cv16
 
 adjust-cell-height = 11%
 
