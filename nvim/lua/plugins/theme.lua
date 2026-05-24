@@ -11,6 +11,7 @@ require("jellybeans").setup({
         colors.warning = colors.perano
     end,
     -- Customize highlight groups
+    -- grep "#8fbfdc" ~/.local/share/nvim/site/pack/core/opt/jellybeans.nvim/lua/jellybeans/palettes/jellybeans.lua
     on_highlights = function(highlights, colors)
         -- Telescope backgrounds
         highlights.TelescopeNormal = { bg = "NONE" }
@@ -93,6 +94,19 @@ require("jellybeans").setup({
         highlights.PmenuBorder = { fg = colors.grey, bg = "NONE" }
         highlights.PmenuKind = { fg = colors.biloba_flower, bg = "NONE" }
         highlights.PmenuKindSel = { fg = colors.biloba_flower, bg = "NONE", bold = true }
+
+        highlights.RenderMarkdownH1Bg = { fg = colors.biloba_flower, bg = "NONE", bold = true }
+        highlights.RenderMarkdownH2Bg = { fg = colors.morning_glory, bg = "NONE", bold = true }
+        highlights.RenderMarkdownH3Bg = { fg = colors.goldenrod, bg = "NONE", bold = true }
+        highlights.RenderMarkdownH4Bg = { fg = colors.green_smoke, bg = "NONE", bold = true }
+        highlights.RenderMarkdownH5Bg = { fg = colors.wewak, bg = "NONE", bold = true }
+        highlights.RenderMarkdownH6Bg = { fg = colors.raw_sienna, bg = "NONE", bold = true }
+        highlights.RenderMarkdownCode = { bg = "NONE", italic = true }
+        highlights.RenderMarkdownCodeInline = { bg = "NONE", italic = true }
+        highlights.RenderMarkdownDash = { fg = colors.grey }
+        highlights["@spell.markdown"] = { fg = colors.grey_two }
+
+        highlights.String = { fg = "#a4b67a" }
     end,
 })
 
