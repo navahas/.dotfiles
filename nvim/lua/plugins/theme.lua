@@ -1,6 +1,6 @@
 require("jellybeans").setup({
     transparent = true,
-    italics = true,
+    italics = false,
     plugins = {
         all = true,
         auto = true,
