@@ -12,11 +12,12 @@ set -gx VISUAL nvim
 set -gx HOMEBREW_NO_AUTO_UPDATE 1
 set -gx NVM_DIR $HOME/.nvm
 set -gx EZA_CONFIG_DIR $HOME/.config/eza
-set -gx BAT_THEME "Visual Studio Dark+"
+set -gx BAT_THEME "Coldark-Dark"
 set -gx FZF_DEFAULT_OPTS '--reverse'
 set -gx WASMTIME_HOME "$HOME/.wasmtime"
 set -gx MANPATH "$HOME/man/share/man" $MANPATH
-set -gx MANPAGER "nvim +Man!"
+set -gx GROFF_NO_SGR 1
+set -gx MANPAGER "sh -c 'col -bx | bat --language=man --style=plain --paging=always'"
 
 #  Highest Priority
 #      ↑

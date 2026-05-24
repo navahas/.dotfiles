@@ -1,5 +1,8 @@
 function fman
-    set base ~/man/share/man
-    set f (find $base -type f | string replace "$base/" "" | fzf)
-    test -n "$f"; and man -l $base/$f
+    set query (rg --files $HOME/man/share/man | sed "s|$HOME/man/share/man/||" | fzf)
+    if test -n "$query"
+        man -l "$HOME/man/share/man/$query" | \
+            col -bx | \
+            bat --style=plain --language=man --paging=always
+    end
 end
