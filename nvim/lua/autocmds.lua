@@ -8,6 +8,17 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end,
 })
 
+local rust_ns = vim.api.nvim_create_namespace("rust_hl")
+vim.api.nvim_set_hl(rust_ns, "Statement", { fg = "#c6b6ee" })
+
+vim.api.nvim_create_autocmd({ "FileType", "WinEnter" }, {
+    group = vim.api.nvim_create_augroup("StatementHL", { clear = true }),
+    callback = function(args)
+        local ft = args.match ~= "" and args.match or vim.bo.filetype
+        vim.api.nvim_win_set_hl_ns(vim.api.nvim_get_current_win(), ft == "rust" and rust_ns or 0)
+    end,
+})
+
 -- ============================================
 -- MACROS
 -- ============================================
