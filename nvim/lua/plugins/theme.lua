@@ -5,7 +5,6 @@ require("jellybeans").setup({
         all = true,
         auto = true,
     },
-    -- Customize colors
     on_colors = function(colors)
         colors.error = "#D98870"
         colors.warning = colors.perano
@@ -13,7 +12,6 @@ require("jellybeans").setup({
     -- Customize highlight groups
     -- grep "#8fbfdc" ~/.local/share/nvim/site/pack/core/opt/jellybeans.nvim/lua/jellybeans/palettes/jellybeans.lua
     on_highlights = function(highlights, colors)
-        -- Telescope backgrounds
         highlights.TelescopeNormal = { bg = "NONE" }
         highlights.TelescopePromptNormal = { bg = "NONE" }
         highlights.TelescopePromptBorder = { fg = colors.grey, bg = "NONE" }
@@ -83,7 +81,6 @@ require("jellybeans").setup({
         highlights.MsgSeparator = { bg = "NONE", fg = colors.grey }
 
         highlights.ColorColumn = { bg = "NONE" }
-
         highlights.Visual = { bg = "#585755" }
 
         -- Completion menu (popup menu)
@@ -107,8 +104,12 @@ require("jellybeans").setup({
         highlights["@spell.markdown"] = { fg = colors.grey_two }
 
         highlights.String = { fg = "#a4b67a" }
+
+        -- LSP
+        highlights["@lsp.type.property.c"] = {}
+        highlights["@lsp.typemod.property.classScope.c"] = {}
+        highlights["@lsp.typemod.property.declaration.c"] = { link = "Property" }
     end,
 })
 
--- Apply the colorscheme
 vim.cmd.colorscheme("jellybeans")
