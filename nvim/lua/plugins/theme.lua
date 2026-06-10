@@ -109,6 +109,11 @@ require("jellybeans").setup({
         highlights["@lsp.type.property.c"] = {}
         highlights["@lsp.typemod.property.classScope.c"] = {}
         highlights["@lsp.typemod.property.declaration.c"] = { link = "Property" }
+
+        highlights["@lsp.type.parameter.c"] = {}
+        highlights["@lsp.mod.functionScope.c"] = {}
+        highlights["@lsp.typemod.parameter.functionScope.c"] = {}
+        highlights["@lsp.typemod.parameter.declaration.c"] = { link = "@variable.parameter" }
     end,
 })
 
