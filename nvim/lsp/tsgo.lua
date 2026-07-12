@@ -1,5 +1,12 @@
 return {
-    cmd = { 'typescript-language-server', '--stdio' },
+    cmd = { 'tsgo', '--lsp', '--stdio' },
+    capabilities = {
+        workspace = {
+            didChangeWatchedFiles = {
+                dynamicRegistration = false,
+            },
+        },
+    },
     filetypes = {
         'javascript',
         'javascriptreact',

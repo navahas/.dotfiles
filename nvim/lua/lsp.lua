@@ -30,7 +30,7 @@ require("mason").setup({})
 local servers = {
     "lua_ls",
     "rust_analyzer",
-    "ts_ls",
+    "tsgo",
     "clangd",
     "zls",
 }
@@ -43,7 +43,7 @@ if vim.fn.isdirectory(lsp_config_dir) == 1 then
         local server_name = vim.fn.fnamemodify(file, ':t:r')
         local ok, config = pcall(dofile, file)
         if ok and type(config) == 'table' then
-            config.capabilities = capabilities
+            config.capabilities = vim.tbl_deep_extend('force', capabilities, config.capabilities or {})
             vim.lsp.config[server_name] = config
         end
     end

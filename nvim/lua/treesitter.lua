@@ -1,5 +1,10 @@
 vim.filetype.add({ extension = { h = "c" } })
 
+-- Map filetypes whose name differs from their parser name.
+-- Native vim.treesitter.start guesses lang = filetype otherwise.
+vim.treesitter.language.register("tsx", { "typescriptreact" })
+vim.treesitter.language.register("javascript", { "javascriptreact" })
+
 vim.api.nvim_create_autocmd("FileType", {
     callback = function(args)
         local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(args.buf))
