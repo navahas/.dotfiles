@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# post-install check. want: fzf: true | rg: true
+nvim --headless "+lua print('fzf:', pcall(require('telescope').load_extension,'fzf'), '| rg:', vim.fn.executable('rg')==1)" +qa

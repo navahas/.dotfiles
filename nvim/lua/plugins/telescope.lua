@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
+local actions = require("telescope.actions")
 
 -- Word under cursor or visual selection
 local function grep_word()
@@ -16,21 +17,21 @@ end
 -- Setup telescope
 telescope.setup({
     defaults = {
-        file_ignore_patterns = {
-            "node_modules/.*",
-            "package%-lock.json",
-            "dist/.*",
-            -- Rust-specific ignores
-            "target/.*",
-            "Cargo.lock",
-            ".rustup/.*",
-            ".cargo/.*",
-            "*.rlib",
-            "*.rmeta",
+        -- never auto-hide the preview pane in small windows
+        preview = { preview_cutoff = 0 },
+        layout_config = { preview_cutoff = 0 },
+        mappings = {
+            -- C-q: send Tab-marked entries -> quickfix + open
+            i = { ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist },
+            n = { ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist },
         },
     },
     pickers = {
-        find_files = { previewer = false, layout_config = { height = 0.4 } },
+        find_files = {
+            previewer = false,
+            layout_config = { height = 0.4 },
+            find_command = { "rg", "--files", "--hidden", "--glob", "!.git" },
+        },
         git_files = { previewer = false, layout_config = { height = 0.4 } },
         live_grep = { layout_strategy = "vertical" },
         grep_string = { layout_strategy = "vertical" },
@@ -53,17 +54,35 @@ vim.keymap.set("n", "<leader>pf", builtin.find_files, { desc = "Find files" })
 vim.keymap.set("n", "<leader>pg", builtin.git_files, { desc = "Git files" })
 vim.keymap.set("n", "<leader>ps", builtin.live_grep, { desc = "Live grep (ripgrep)" })
 
-vim.keymap.set({ "n", "v" }, "<leader>pe", function()
-    local search_word = grep_word()
-    builtin.grep_string({ search = search_word })
-end, { desc = "Search selected cursor/section in vmode" })
+-- Bypasses Telescope picker/preview. Streams into quickfix, never blocks.
+vim.o.grepprg = "rg --vimgrep --smart-case --hidden --glob '!.git'"
+vim.o.grepformat = "%f:%l:%c:%m"
 
-vim.keymap.set("n", "<leader>px", function()
-    local query = vim.fn.input("Grep —> ")
-    builtin.live_grep({
-        default_text = query,
-        additional_args = function()
-            return { "--fixed-strings" }
-        end,
-    })
-end, { desc = "Live grep exact match" })
+-- Run rg async, populate quickfix, open it. Editor stays responsive.
+local function rg_to_qf(pattern, extra)
+    if not pattern or pattern == "" then return end
+    local cmd = { "rg", "--vimgrep", "--smart-case", "--hidden", "--glob", "!.git" }
+    vim.list_extend(cmd, extra or {})
+    table.insert(cmd, pattern)
+
+    vim.system(cmd, { text = true }, function(out)
+        vim.schedule(function()
+            vim.fn.setqflist({}, " ", {
+                title = "rg: " .. pattern,
+                lines = vim.split(out.stdout or "", "\n", { trimempty = true }),
+                efm = "%f:%l:%c:%m",
+            })
+            vim.cmd("copen")
+        end)
+    end)
+end
+
+-- Prompt grep -> quickfix
+vim.keymap.set("n", "<leader>pq", function()
+    rg_to_qf(vim.fn.input("rg —> "))
+end, { desc = "rg to quickfix (async)" })
+
+-- Word under cursor / selection -> quickfix (fixed-string)
+vim.keymap.set({ "n", "v" }, "<leader>pw", function()
+    rg_to_qf(grep_word(), { "--fixed-strings" })
+end, { desc = "rg cword to quickfix (async)" })
