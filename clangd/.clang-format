@@ -1,0 +1,29 @@
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 80
+Cpp11BracedListStyle: true
+UseTab: Never
+BreakBeforeBraces: Attach
+SpaceBeforeParens: ControlStatements
+AlignAfterOpenBracket: BlockIndent
+
+# AllowShortEnumsOnASingleLine: false
+# AlignConsecutiveAssignments: Consecutive
+
+BinPackArguments: false
+BinPackParameters: false
+PenaltyReturnTypeOnItsOwnLine: 10000
+PenaltyBreakBeforeFirstCallParameter: 0
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortCaseLabelsOnASingleLine: true
+IndentCaseLabels: true
+IndentCaseBlocks: false
+AttributeMacros:
+  - cold
+  - hot
+  - unused
+  - packed
+  - pure
+  - noinline
+BreakAfterAttributes: Always
