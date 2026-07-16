@@ -21,9 +21,9 @@ telescope.setup({
         preview = { preview_cutoff = 0 },
         layout_config = { preview_cutoff = 0 },
         mappings = {
-            -- C-q: send Tab-marked entries -> quickfix + open
-            i = { ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist },
-            n = { ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist },
+            -- C-q: Tab-marked entries if any, else all results -> quickfix + open
+            i = { ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist },
+            n = { ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist },
         },
     },
     pickers = {
@@ -82,7 +82,8 @@ vim.keymap.set("n", "<leader>pq", function()
     rg_to_qf(vim.fn.input("rg —> "))
 end, { desc = "rg to quickfix (async)" })
 
--- Word under cursor / selection -> quickfix (fixed-string)
+-- Word under cursor / selection -> grep_string picker (preview + filter).
+-- Tab-mark results then <C-q> to send to quickfix.
 vim.keymap.set({ "n", "v" }, "<leader>pw", function()
-    rg_to_qf(grep_word(), { "--fixed-strings" })
-end, { desc = "rg cword to quickfix (async)" })
+    builtin.grep_string({ search = grep_word() })
+end, { desc = "Grep cword (preview)" })
