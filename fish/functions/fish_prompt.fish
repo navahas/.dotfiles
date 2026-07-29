@@ -6,7 +6,8 @@ function fish_prompt
     set -l color_green (set_color green)
     set -l color_red   (set_color red)
     set -l color_grey  (set_color 868686)
-    set -l color_label (set_color (set -q PROMPT_COLOR_LABEL; and echo $PROMPT_COLOR_LABEL; or echo D7C09B))
+    set -l color_label      (set_color (set -q PROMPT_COLOR_LABEL; and echo $PROMPT_COLOR_LABEL; or echo D7C09B))
+    set -l color_light_blue (set_color brblue)
 
     set -l color_reset (set_color normal)
 
@@ -33,6 +34,10 @@ function fish_prompt
     else
         set -l last2 $parts[-2..-1]
         set show "[$last2[1]::$last2[2]]"
+    end
+
+    if set -q IN_NIX_SHELL; and test -n "$IN_NIX_SHELL"
+        echo -n $color_light_blue"[nix]"$color_reset
     end
 
     if set -q MACHINE_LABEL; and test -n "$MACHINE_LABEL"
