@@ -19,11 +19,7 @@ map({ "n", "v" }, "<C-j>", scroll_down_small, { noremap = true })
 map({ "n", "v" }, "<C-k>", scroll_up_small, { noremap = true })
 
 map("n", "<C-F>", function()
-    if #vim.lsp.get_clients({ bufnr = 0 }) > 0 then
-        vim.lsp.buf.format({ async = true })
-    else
-        vim.cmd("normal! mzvap=`z")
-    end
+    vim.lsp.buf.format({ async = true })
 end, opts)
 
 map('n', '<C-l>', ':cnext<CR>', opts)
