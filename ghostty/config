@@ -4,7 +4,8 @@ config-file = ./themes/Custom-01
 
 auto-update = download
 auto-update-channel = stable
-command = /usr/bin/fish --login --interactive
+# command = /usr/bin/fish --login --interactive
+command = $HOME/.nix-profile/bin/fish --login --interactive
 
 # command = /usr/local/bin/bash --noprofile --rcfile ~/.bashrc -i
 font-size = 13
