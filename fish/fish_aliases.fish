@@ -39,6 +39,7 @@ alias dfzf '$HOME/.local/scripts/docker/docker-fzf-id.sh'
 alias ssh- '$HOME/.local/scripts/ssh/ssh-fzf.sh'
 alias fasts3 'ssh fasts3 -t tmux attach'
 alias devlab 'ssh devlab -t tmux attach'
+alias dwell 'ssh dwell -t tmux attach'
 
 # File listing
 alias ls "ls -p -G"
