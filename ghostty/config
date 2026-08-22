@@ -6,7 +6,7 @@ auto-update-channel = stable
 
 command = /run/current-system/sw/bin/fish --login --interactive
 
-font-size = 15
+font-size = 19
 font-thicken = true
 font-thicken-strength = 200
 cursor-text = #000000
@@ -20,6 +20,9 @@ keybind = super+ctrl+h=goto_split:left
 keybind = super+ctrl+l=goto_split:right
 keybind = super+ctrl+k=goto_split:top
 keybind = super+ctrl+j=goto_split:bottom
+
+keybind = super+d=new_split:left
+keybind = super+l=resize_split:left,470
 
 window-inherit-font-size = true
 window-inherit-working-directory = true
