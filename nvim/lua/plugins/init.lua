@@ -1,4 +1,3 @@
--- Plugin management using vim.pack (NVIM v0.12.2)
 vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-tree/nvim-web-devicons" },
@@ -7,7 +6,6 @@ vim.pack.add({
     { src = "https://github.com/wtfox/jellybeans.nvim" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/navahas/buffmark" },
-    { src = 'https://github.com/MeanderingProgrammer/render-markdown.nvim' },
 })
 
 -- Build fzf-native if missing (new machine / fresh install). Idempotent.
@@ -32,7 +30,6 @@ vim.cmd.packadd('telescope-fzf-native.nvim')
 vim.cmd.packadd('jellybeans.nvim')
 vim.cmd.packadd('mason.nvim')
 vim.cmd.packadd('buffmark')
-vim.cmd.packadd('render-markdown.nvim')
 -- Load configurations
 require('plugins.telescope')
 require('plugins.theme')
