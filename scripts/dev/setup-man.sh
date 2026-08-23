@@ -21,17 +21,20 @@ fi
 
 echo "Organizing man pages..."
 mkdir -p "$MAN_DIR/share/man"
-find "$MAN_DIR/repo" -type f -name '*.[0-9]*' | while read -r f; do
+find "$MAN_DIR/repo" -name .git -prune -o -type f -name '*.[0-9]*' -print | while read -r f; do
   sec="${f##*.}"
+  # skip anything whose "section" doesn't start with a digit (guards junk)
+  case "$sec" in [0-9]*) ;; *) continue ;; esac
   dest="$MAN_DIR/share/man/man$sec"
   mkdir -p "$dest"
-  cp -n "$f" "$dest/" 2>/dev/null || true
+  cp -n "$f" "$dest/"
 done
 
+# build index so `man -k` / apropos work
+mandb -q "$MAN_DIR/share/man" 2>/dev/null || true
+
 echo "For Fish:"
-echo "set -gx MANPATH $HOME/man/share/man \$MANPATH"
-echo "alias man 'env MANPATH=$HOME/man/share/man man'"
+echo "set -gx MANPATH $HOME/man/share/man: \$MANPATH"
 echo
 echo "For Bash/Zsh:"
 echo "export MANPATH=\$HOME/man/share/man:\$MANPATH"
-echo "alias man='MANPATH=\$HOME/man/share/man man'"
