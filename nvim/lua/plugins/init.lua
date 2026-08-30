@@ -32,5 +32,5 @@ vim.cmd.packadd('mason.nvim')
 vim.cmd.packadd('buffmark')
 -- Load configurations
 require('plugins.telescope')
-require('plugins.theme')
+require('themes')
 require('plugins.buffmark')
