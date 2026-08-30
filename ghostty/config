@@ -1,4 +1,5 @@
-config-file = ./themes/Custom-01
+# config-file = ./themes/Origin
+config-file = ./themes/Sanzo-Patina
 # custom-shader = shaders/cursor_smear_fade.glsl
 
 auto-update = off

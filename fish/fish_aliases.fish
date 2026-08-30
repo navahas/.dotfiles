@@ -56,18 +56,19 @@ alias la "ls -Ah"
 #     ls -gFh --color --no-group -a $argv | sed '/^total/d'
 # end
 
-set -Ux LS_COLORS \
-"di=38;5;215:"\
+# ANSI slots (theme-agnostic, max compat): dir=3 ex=2 ln=4 or=1 docs=5 git=8
+set -gx LS_COLORS \
+"di=33:"\
 "ln=4;34:"\
-"or=4;93:"\
-"ex=4;32:"\
+"or=4;31:"\
+"ex=4;92:"\
 "*.md=3;94:"\
 "*README=3;94:"\
-"*.txt=3;:"\
-"*.git=38;5;247:"\
-"*.gitattributes=38;5;247:"\
-"*.gitignore=38;5;247:"\
-"*.gitmodules=38;5;247"
+"*.txt=3;90:"\
+"*.git=90:"\
+"*.gitattributes=90:"\
+"*.gitignore=90:"\
+"*.gitmodules=90"
 
 alias lsc "$HOME/.local/scripts/system/lsc.sh"
 alias ll "lsc --group-directories-first"
