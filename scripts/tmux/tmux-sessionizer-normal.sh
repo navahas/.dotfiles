@@ -7,14 +7,7 @@ search_inside=("$HOME/.dotfiles" "$HOME/.config")
 direct_dirs=("$HOME/nix-config")
 # Add dev subdirectories
 search_inside+=($(find "$HOME/dev" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
-
-# header="
-# ███████╗███████╗███████╗███████╗██╗ ██████╗ ███╗   ██╗██╗███████╗███████╗██████╗ 
-# ██╔════╝██╔════╝██╔════╝██╔════╝██║██╔═══██╗████╗  ██║██║╚══███╔╝██╔════╝██╔══██╗
-# ███████╗█████╗  ███████╗███████╗██║██║   ██║██╔██╗ ██║██║  ███╔╝ █████╗  ██████╔╝
-# ╚════██║██╔══╝  ╚════██║╚════██║██║██║   ██║██║╚██╗██║██║ ███╔╝  ██╔══╝  ██╔══██╗
-# ███████║███████╗███████║███████║██║╚██████╔╝██║ ╚████║██║███████╗███████╗██║  ██║
-# ╚══════╝╚══════╝╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝╚══════╝╚══════╝╚═╝  ╚═╝"
+search_inside+=($(find "$HOME/fasts3" -mindepth 1 -maxdepth 1 -type d 2>/dev/null))
 
 session_count=$(tmux list-sessions 2>/dev/null | wc -l | tr -d ' ')
 pane_count=$(tmux list-panes -a 2>/dev/null | wc -l | tr -d ' ')

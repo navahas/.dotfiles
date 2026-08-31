@@ -5,15 +5,6 @@ if [ -z "$(tmux list-sessions 2>/dev/null)" ]; then
     exit 0
 fi
 
-# header="
-# ████████╗███╗   ███╗██╗   ██╗██╗   ██╗
-# ╚══██╔══╝████╗ ████║██║   ██║ ██╗ ██╔╝
-#    ██║   ██╔████╔██║██║   ██║  ████╔╝ 
-#    ██║   ██║╚██╔╝██║██║   ██║ ██╔═██╗ 
-#    ██║   ██║ ╚═╝ ██║╚██████╔╝██╔╝  ██╗
-#    ╚═╝   ╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝"
-
-
 session_windows=$(tmux list-windows -a -F "#{session_name}:#{window_index} - #{window_name}")
 
 selected=$(echo "$session_windows" | fzf -m \
