@@ -50,14 +50,17 @@ return {
     ["@lsp.type.decorator"]                    = "@attribute",
     ["@lsp.type.selfKeyword"]                  = "@variable.builtin",
 
-    -- ---- capture refinements: route mislabeled captures to the right anchor ----
-    ["@keyword.operator"]                      = "@operator", -- sizeof/alignof, typeof, not/in/and/or = operators
-    ["@variable.builtin"]                      = "@constant", -- this/self/NULL/true = literal pop, off plain var
-    ["@function.builtin"]                      = "@function", -- libc printf/malloc = amber landmarks (explicit)
-    ["@constant.builtin"]                      = "@constant", -- true/false/nullptr(c23) = literal pop, not Special
+    -- ---- capture refinements: mislabeled captures -> right anchor ----------
+    -- sizeof/typeof/not/and/or are operators, not keywords
+    ["@keyword.operator"]                      = "@operator",
+    -- this/self/NULL/true = literal, off plain var
+    ["@variable.builtin"]                      = "@constant",
+    -- true/false/nullptr = literal, not Special
+    ["@constant.builtin"]                      = "@constant",
+    -- (@function.builtin colored directly in groups.lua = stdlib tone)
 
-    -- ---- preproc: macros route to the `Define` anchor (colored in groups) ---
-    ["@constant.macro"]                        = "Define", -- #define names, include guards
+    -- macros -> Define anchor (#define names, include guards)
+    ["@constant.macro"]                        = "Define",
 
     -- ---- older-grammar / alias captures ------------------------------------
     ["@doc"]                                   = "@comment",
@@ -71,25 +74,45 @@ return {
     -- ========================================================================
 
     -- ---- C -----------------------------------------------------------------
-    ["@function.macro.c"]                      = "PreProc",
-    ["@lsp.type.property.c"]                   = "@property",
-    ["@lsp.typemod.property.classScope.c"]     = {}, -- clear -> ts drives
-    ["@lsp.typemod.property.declaration.c"]    = "@property",
-    ["@lsp.type.parameter.c"]                  = "@variable.parameter",
-    ["@lsp.mod.functionScope.c"]               = {}, -- clear modifier token
-    ["@lsp.typemod.parameter.functionScope.c"] = "@variable.parameter",
-    ["@lsp.typemod.parameter.declaration.c"]   = "@variable.parameter",
-    ["@lsp.typemod.parameter.definition.c"]    = "@variable.parameter",
-    -- enum members = rose literals. The live tokens are the high-priority (127)
-    -- typemods -> @lsp (colorless); route them all to @number to force rose.
-    ["@lsp.type.enumMember.c"]                 = "@number",
-    ["@lsp.typemod.enumMember.readonly.c"]     = "@number",
-    ["@lsp.typemod.enumMember.fileScope.c"]    = "@number",
-    ["@lsp.typemod.enumMember.defaultLibrary.c"] = "@number",
-    ["@constant.builtin.c"]                    = "@constant", -- nullptr/NULL/true: beat grammar's Special link
-    ["@lsp.typemod.function.defaultLibrary.c"] = "@function",  -- malloc/printf/memcpy = amber, like any call
-    ["@lsp.typemod.function.globalScope.c"]    = "@function",  -- global fns: keep amber (beat @lsp blanking)
-    -- @keyword.operator.c inherits the COMMON @keyword.operator -> @operator link
+
+    -- preproc macros -> Define (all typemods; the 127 typemod else blanks)
+    ["@function.macro.c"]                        = "PreProc",
+    ["@lsp.typemod.macro.globalScope.c"]         = "Define",
+    ["@lsp.typemod.macro.fileScope.c"]           = "Define",
+    ["@lsp.typemod.macro.defaultLibrary.c"]      = "Define",
+    ["@lsp.typemod.macro.declaration.c"]         = "Define",
+
+    -- properties / fields (class members recede to bone, under the fn hero)
+    ["@lsp.type.property.c"]                      = "@property",
+    ["@lsp.typemod.property.declaration.c"]       = "@property",
+    ["@lsp.typemod.property.classScope.c"]        = "@variable.member",
+
+    -- parameters
+    ["@lsp.type.parameter.c"]                     = "@variable.parameter",
+    ["@lsp.typemod.parameter.functionScope.c"]    = "@variable.parameter",
+    ["@lsp.typemod.parameter.declaration.c"]      = "@variable.parameter",
+    ["@lsp.typemod.parameter.definition.c"]       = "@variable.parameter",
+    ["@lsp.mod.functionScope.c"]                  = {},
+
+    -- enum members -> rose (all typemods; the 127 typemod else blanks)
+    ["@lsp.type.enumMember.c"]                    = "@number",
+    ["@lsp.typemod.enumMember.readonly.c"]        = "@number",
+    ["@lsp.typemod.enumMember.fileScope.c"]       = "@number",
+    ["@lsp.typemod.enumMember.defaultLibrary.c"]  = "@number",
+
+    -- types: 3-way split. int/void/char = @type.builtin (treesitter, deeper slate);
+    -- struct foo = @type (slate). LSP typemods at 127 outrank @type.type.c (125),
+    -- so route them or they blank to @lsp:
+    --   defaultLibrary (size_t/FILE/pthread_t, from headers) -> teal-slate sibling
+    --   fileScope (user types declared in this file)         -> back to @type
+    ["@lsp.typemod.type.defaultLibrary.c"]        = "@type.library",
+    ["@lsp.typemod.type.fileScope.c"]             = "@type",
+
+    -- constants / user globals
+    ["@constant.builtin.c"]                       = "@constant",
+    ["@lsp.typemod.function.globalScope.c"]       = "@function",
+    -- stdlib fns (defaultLibrary) -> semantic.lua autocmd.
+    -- member-calls + NULL/true/false -> after/queries/c/highlights.scm.
 
 
     -- ---- Rust (example — add when needed) ----------------------------------

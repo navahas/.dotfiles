@@ -1,0 +1,30 @@
+# Sanzo — Patina | warm, aged variant. Full-spectrum faded pigments on warm-dark base.
+# Low chroma, high lightness = low fatigue. Regular vs bright = INTENSITY within a
+# group (e.g. type = slate, type-builtin = slate bright). Grey/sand = text tiers.
+# Anchored on: slate #97ACC8, peach #FCC79B, ivory fg #E8E8D3.
+# Roles: rose=error/del  green=string/add  peach=warn/kw  slate=type/info  mauve=const  sand=neutral-accent
+# Variants (spectrum position): Patina(warm) · Frost(cool) · Fog(neutral) · Dusk(deep) · Ember(warmest)
+background = #2B2A2A
+foreground = #e8e8d3
+selection-background = #45403c
+selection-foreground = #f4f4ea
+
+# normal
+palette = 0=#232020
+palette = 1=#d0897f
+palette = 2=#a2bb95
+palette = 3=#fcc79b
+palette = 4=#97acc8
+palette = 5=#bd9fb0
+palette = 6=#c3bf9f
+palette = 7=#e8e8d3
+
+# bright (lighter, same hue — wider step for intensity-within-group)
+palette = 8=#6f6863
+palette = 9=#deaca5
+palette = 10=#b9d29d
+palette = 11=#fdd8b9
+palette = 12=#b6c5d9
+palette = 13=#d1bcc8
+palette = 14=#e6e2c0
+palette = 15=#f4f4ea
