@@ -28,9 +28,10 @@ local VIS     = "#4d4d4d" -- Visual-mode selection (a touch lighter than SEL)
 
 -- BONE — content family (shades of #e8e8d3, warm undertone) ------------------
 local bone    = {
-    fg    = "#e8e8d3", -- variables / identifiers  (the subject you read)
-    param = "#d7d7c6", -- parameters               (inputs, one step down)
-    field = "#c7c7b6", -- fields / members / props  (data on objects)
+    -- var   = "#eaead7", -- variables ONLY — the pop (brightest)
+    var   = "#e8e8d3", -- variables ONLY — the pop (brightest)
+    fg    = "#e8e8d3", -- Normal / identifiers / members / properties (calm base)
+    param = "#d7d7c6", -- parameters (inputs, dimmer)
 }
 
 -- GREY ladder — connective + chrome, all below the bone family --------------
@@ -46,16 +47,25 @@ local grey    = {
 -- 5 ACCENTS — the only hues (muted tints) -----------------------------------
 local accent  = {
     fn      = "#dcbd93", -- functions  (HERO, warm)
-    type    = "#a8b0b8", -- types + preproc scaffolding (cool)
-    string  = "#a8bcac", -- strings + escape (green)
-    const   = "#cca598", -- numbers / literals + Error (rose)
+    type    = "#93a5a0", -- USER/custom types (cool teal-slate) — the type hero
+    string  = "#a8bcac", -- strings (green — see role note below)
+    const   = "#cca598", -- warm base: boolean / return / Error (dusty rose)
     keyword = "#b3a6b0", -- all keywords (plum-grey)
 }
 
--- Equal-luminance SIBLINGS — same L/chroma, hue nudged sideways. Add when you
--- want two captures separated with NO brightness step. Give each its own row.
+-- SIBLINGS — controlled enrichment: a split off one of the 5 families, kept
+-- tight so it stays a tint of that family, never a new hue (no rainbow). Each
+-- is either a VALUE step (same hue, lighter/darker) or a small hue nudge.
+-- The cool (type) family has three roles, all under one hue:
+--   type (#93a5a0 user types) · builtin (#859099 language/library) · def (#a8b0b8 preproc)
 local sibling = {
-    -- type_alt = "#a8b4ac", -- builtin types: type hue nudged toward green
+    fn_lib     = "#cebfa1", -- stdlib fns (malloc/free/pthread): faded amber, quiet "not mine"
+    builtin    = "#859099", -- builtin types (int/void/char) + library types + named consts: deeper blue-slate
+    def        = "#a8b0b8", -- definitions: preproc / #define / macros / modules — light blue
+    ret        = "#cc9a98", -- NUMBERS only: stronger rose, one step up from the const base
+    --                         (return/boolean/Error stay on the softer const base)
+    kw_control = "#9e8f9c", -- control flow (if/for/while/switch): deeper muted plum
+    --                         (frequent -> quiet). brighter alt #b8a0be
 }
 
 function M.get()
@@ -64,10 +74,10 @@ function M.get()
     -- surfaces
     p.bg, p.sel, p.visual = BG, SEL, VIS
 
-    -- bone (content). p.fg = the key light (Normal text / variables)
+    -- bone (content). p.fg = calm base (Normal text); p.bone_var = the pop
     p.fg                  = bone.fg
+    p.bone_var            = bone.var
     p.bone_param          = bone.param
-    p.bone_field          = bone.field
 
     -- grey ladder
     p.role_op             = grey.op
@@ -76,7 +86,7 @@ function M.get()
     p.grey                = grey.ui
     p.grey_ui             = grey.line
     p.grey_dim            = grey.dim
-    p.punc_grey           = grey.ui -- telescope borders / titles
+    p.punc_grey           = grey.punct -- telescope borders = punctuation tone (structural strokes)
     p.role_comment        = grey.comment
 
     -- accents + any siblings. Chrome (diagnostics/git/telescope/search) reads

@@ -10,7 +10,8 @@ background = #242424
 # background = #2b2b2b
 # background = #2e2e2e
 # background = #303030
-foreground = #e8e8d3
+# foreground = #e8e8d3
+foreground = #eaead7
 selection-background = #45403c
 selection-foreground = #f4f4ea
 

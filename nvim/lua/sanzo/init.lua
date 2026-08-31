@@ -54,6 +54,9 @@ function M.load()
     for group, opts in pairs(groups) do
         vim.api.nvim_set_hl(0, group, opts)
     end
+
+    -- 5. LSP semantic-token behaviors (stdlib fns, etc.) — sanzo-owned, gated.
+    require("sanzo.semantic").setup()
 end
 
 return M
