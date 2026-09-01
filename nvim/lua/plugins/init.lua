@@ -6,11 +6,12 @@ vim.pack.add({
     { src = "https://github.com/wtfox/jellybeans.nvim" },
     { src = "https://github.com/williamboman/mason.nvim" },
     { src = "https://github.com/navahas/buffmark" },
+    { src = "https://codeberg.org/navahas/sanzo.nvim" },
 })
 
 -- Build fzf-native if missing (new machine / fresh install). Idempotent.
 local fzf_dir = vim.fs.joinpath(vim.fn.stdpath("data"),
-"site/pack/core/opt/telescope-fzf-native.nvim")
+    "site/pack/core/opt/telescope-fzf-native.nvim")
 
 if vim.fn.filereadable(fzf_dir .. "/build/libfzf.so") == 0 then
     -- Block once so the .so is ready before telescope loads the fzf extension.
@@ -18,7 +19,7 @@ if vim.fn.filereadable(fzf_dir .. "/build/libfzf.so") == 0 then
     vim.notify("Building telescope-fzf-native...", vim.log.levels.INFO)
     local out = vim.system({ "make" }, { cwd = fzf_dir }):wait()
     vim.notify("fzf-native build " .. (out.code == 0 and "OK"
-        or "FAIL:\n" .. (out.stderr or "")),
+            or "FAIL:\n" .. (out.stderr or "")),
         out.code == 0 and vim.log.levels.INFO or vim.log.levels.ERROR)
 end
 
@@ -28,6 +29,7 @@ vim.cmd.packadd('nvim-web-devicons')
 vim.cmd.packadd('telescope.nvim')
 vim.cmd.packadd('telescope-fzf-native.nvim')
 vim.cmd.packadd('jellybeans.nvim')
+vim.cmd.packadd('sanzo.nvim')
 vim.cmd.packadd('mason.nvim')
 vim.cmd.packadd('buffmark')
 -- Load configurations
