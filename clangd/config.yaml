@@ -1,2 +1,10 @@
 CompileFlags:
   Add: [-std=c23, -Wall, -Wextra, -pedantic]
+
+---
+# Bare .h files have no compile command, so clangd guesses Objective-C++,
+# which conflicts with -std=c23. Force them to be parsed as C headers.
+If:
+  PathMatch: [.*\.h]
+CompileFlags:
+  Add: [-xc-header]
