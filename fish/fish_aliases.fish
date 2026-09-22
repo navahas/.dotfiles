@@ -7,6 +7,7 @@ alias vim 'vim'
 alias v. 'nvim .'
 
 alias claude 'claude --disallowedTools "mcp__*"'
+alias gdb 'gdb -q'
 
 # Tmux sessionizers and utilities
 alias tpv '$HOME/.local/scripts/tmux/tmux-sessionizer-old.sh'
