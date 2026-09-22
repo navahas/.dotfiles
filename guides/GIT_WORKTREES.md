@@ -1,6 +1,17 @@
 # GIT WORKTREES
 
 ```bash
+git init --bare repo/.bare
+echo 'gitdir: ./.bare' > repo/.git
+cd repo
+git remote add origin @url
+git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+git fetch origin
+```
+
+---
+
+```bash
 # Setup bare repo
 mkdir custom-name
 git clone --bare <repo-url> custom-name/.git
