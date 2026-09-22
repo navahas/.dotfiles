@@ -21,7 +21,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "sanzo.nvim": {
-      "rev": "bbc628bb411697b43940b5153f1d01c84743c938",
+      "rev": "cac2cf4c0eb332a45ccda1db9b7ca1f7bd7588dc",
       "src": "https://codeberg.org/navahas/sanzo.nvim"
     },
     "telescope-fzf-native.nvim": {
